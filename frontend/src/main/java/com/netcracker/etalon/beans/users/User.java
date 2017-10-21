@@ -1,17 +1,17 @@
-package com.netcracker.etalon.beans;
+package com.netcracker.etalon.beans.users;
 
 import java.util.Date;
 
 public abstract class User {
 
-    private int id;
-    private Role role;
-    private String userName;
-    private String passWord;
-    private String eMail;
-    private Date registerDate;
-    private String firstName;
-    private String lastName;
+    protected int id;
+    protected Role role;
+    protected String userName;
+    protected String passWord;
+    protected String eMail;
+    protected Date registerDate;
+    protected String firstName;
+    protected String lastName;
 
     public int getId() {
         return id;

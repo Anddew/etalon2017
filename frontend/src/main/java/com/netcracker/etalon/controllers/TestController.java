@@ -41,14 +41,8 @@ import java.util.List;
 @Controller
 public class TestController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String goToLoginPage() {
-        return "login";
-    }
-
     @RequestMapping(value = "/users-view", method = RequestMethod.GET)
     public ModelAndView getUsersAsModelWithView() {
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
         modelAndView.addObject("users", getStubUsers());

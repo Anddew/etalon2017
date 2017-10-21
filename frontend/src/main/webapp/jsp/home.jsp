@@ -9,7 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Register page</title>
+    <title>Home page</title>
 </head>
 <script src="resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="resources/js/custom/loadSimpleData.js"></script>
@@ -18,12 +18,11 @@
 
 <div class="container">
     <jsp:include page="/jsp/blocks/title.jsp">
-        <jsp:param name="heading" value="Register page" />
+        <jsp:param name="heading" value="Home page" />
     </jsp:include>
-
-
-
-
 </div>
+
+<jsp:include page="/jsp/blocks/footer.jsp"/>
 </body>
 </html>
+

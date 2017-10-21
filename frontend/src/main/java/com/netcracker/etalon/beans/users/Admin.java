@@ -1,4 +1,6 @@
-package com.netcracker.etalon.beans;
+package com.netcracker.etalon.beans.users;
 
-public class Admin {
+public class Admin extends User {
+
+    
 }

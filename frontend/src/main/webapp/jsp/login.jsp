@@ -48,7 +48,7 @@
         </div>
         <div class="col">  </div>
     </div>
-    <br>
+    <%--<br>
     <div>
         <h3>Printing data using model and view</h3>
         <div class="jsDataUsingModelAndView">
@@ -63,8 +63,10 @@
         <h3>Printing data using js & ajax</h3>
         <div class="jsDataUsingAjax">
         </div>
-    </div>
+    </div>--%>
 
 </div>
+
+<jsp:include page="/jsp/blocks/footer.jsp"/>
 </body>
 </html>

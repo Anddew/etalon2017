@@ -1,4 +1,4 @@
-package com.netcracker.etalon.beans;
+package com.netcracker.etalon.beans.users;
 
 public enum Role {
 
