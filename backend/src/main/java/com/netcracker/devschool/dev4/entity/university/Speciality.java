@@ -1,9 +1,10 @@
-package com.netcracker.etalon.beans;
+package com.netcracker.devschool.dev4.entity.university;
 
-public class Faculty {
+public class Speciality {
 
     private int id;
     private String name;
+    private Faculty faculty;
 
     public int getId() {
         return id;
@@ -19,6 +20,14 @@ public class Faculty {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 
 }

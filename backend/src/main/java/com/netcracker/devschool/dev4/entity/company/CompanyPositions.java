@@ -1,4 +1,4 @@
-package com.netcracker.etalon.beans;
+package com.netcracker.devschool.dev4.entity.company;
 
 import java.util.ArrayList;
 import java.util.List;
