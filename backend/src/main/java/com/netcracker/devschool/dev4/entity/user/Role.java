@@ -4,7 +4,7 @@ public enum Role {
 
     ADMIN,
     HEAD_COMPANY,
-    HEAD_UNIVERCITY,
+    HEAD_UNIVERSITY,
     STUDENT
 
 }

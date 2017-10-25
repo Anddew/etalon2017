@@ -1,20 +1,18 @@
-package com.netcracker.devschool.dev4.entity.user.headfromcompany;
+package com.netcracker.devschool.dev4.entity.user;
 
 import com.netcracker.devschool.dev4.entity.company.Company;
-import com.netcracker.devschool.dev4.entity.user.Role;
-import com.netcracker.devschool.dev4.entity.user.User;
 
 public class HeadFromCompany extends User {
 
-    protected String position;
+    protected BusinessTitle businessTitle;
     protected Company company;
 
-    public String getPosition() {
-        return position;
+    public BusinessTitle getBusinessTitle() {
+        return businessTitle;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setBusinessTitle(BusinessTitle businessTitle) {
+        this.businessTitle = businessTitle;
     }
 
     public Company getCompany() {

@@ -1,8 +1,6 @@
-package com.netcracker.devschool.dev4.entity.user.headfromuniversity;
+package com.netcracker.devschool.dev4.entity.user;
 
 import com.netcracker.devschool.dev4.entity.university.Faculty;
-import com.netcracker.devschool.dev4.entity.user.Role;
-import com.netcracker.devschool.dev4.entity.user.User;
 
 public class HeadFromUniversity extends User {
 

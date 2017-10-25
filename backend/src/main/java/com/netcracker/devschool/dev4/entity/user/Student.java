@@ -1,18 +1,16 @@
-package com.netcracker.devschool.dev4.entity.user.student;
+package com.netcracker.devschool.dev4.entity.user;
 
 import com.netcracker.devschool.dev4.entity.university.Speciality;
-import com.netcracker.devschool.dev4.entity.user.Role;
-import com.netcracker.devschool.dev4.entity.user.User;
 
 import java.util.Date;
 
 public class Student extends User {
 
     protected int groupNumber;
-    protected String educationForm;
+    protected EducationForm educationForm;
     protected double avgScore;
-    protected boolean onPracticeStatus;
-    protected boolean hasAllocation;
+    protected StudentPracticeStatus practiceStatus;
+    protected boolean needsDistribution;
     protected Date startPracticeDate;
     protected Date finishPracticeDate;
     protected Speciality speciality;

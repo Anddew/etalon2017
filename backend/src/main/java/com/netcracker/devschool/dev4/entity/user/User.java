@@ -5,7 +5,6 @@ import java.util.Date;
 public abstract class User {
 
     protected int id;
-    protected Role role;
     protected String userName;
     protected String passWord;
     protected String eMail;
@@ -13,20 +12,14 @@ public abstract class User {
     protected String firstName;
     protected String lastName;
 
+    public abstract Role getRole();
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Role getRole() {
-        return role;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
     }
 
     public String getUserName() {
