@@ -21,68 +21,71 @@
  * United States of America
  * All rights reserved.
  */
-package com.netcracker.etalon.beans;
+package com.netcracker.etalon.entities;
+
+import javax.persistence.*;
 
 /**
  * @author anpi0316
- *         Date: 24.10.2017
- *         Time: 20:59
+ *         Date: 21.10.2017
+ *         Time: 15:55
  */
-public class UserViewModel {
+@Entity
+@Table(name = "specialities", schema = "test_base", catalog = "")
+public class SpecialityEntity {
 
-    private String userId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
+    private int id;
+    private String name;
+    private FacultyEntity faculty;
 
-    public String getUserId() {
-        return userId;
+    @Id
+    @Column(name = "id")
+    public int getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
+    @Basic
+    @Column(name = "name")
+    public String getName() {
+        return name;
     }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        SpecialityEntity that = (SpecialityEntity) o;
+
+        if (id != that.id) return false;
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+
+        return true;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 
-    public String getEmail() {
-        return email;
+    @ManyToOne
+    @JoinColumn(name = "faculty_id", referencedColumnName = "id", nullable = false)
+    public FacultyEntity getFaculty() {
+        return faculty;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public void setFaculty(FacultyEntity faculty) {
+        this.faculty = faculty;
     }
 }
 /*

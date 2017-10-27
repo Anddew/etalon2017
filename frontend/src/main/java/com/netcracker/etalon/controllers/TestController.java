@@ -57,11 +57,11 @@ public class TestController {
     private List<UserViewModel> getStubUsers() {
         List<UserViewModel> userViewModels = new ArrayList<>();
         UserViewModel userViewModelIvan  = new UserViewModel();
-        userViewModelIvan.setId("113");
-        userViewModelIvan.setName("Ivan");
+        userViewModelIvan.setUserId("113");
+        userViewModelIvan.setFirstName("Ivan");
         UserViewModel userViewModelLeopold = new UserViewModel();
-        userViewModelLeopold.setId("114");
-        userViewModelLeopold.setName("Leopold");
+        userViewModelLeopold.setUserId("114");
+        userViewModelLeopold.setFirstName("Leopold");
         userViewModels.add(userViewModelIvan);
         userViewModels.add(userViewModelLeopold);
         return userViewModels;

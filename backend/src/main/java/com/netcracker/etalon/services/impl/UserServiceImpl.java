@@ -21,68 +21,43 @@
  * United States of America
  * All rights reserved.
  */
-package com.netcracker.etalon.beans;
+package com.netcracker.etalon.services.impl;
+
+import com.netcracker.etalon.entities.UserEntity;
+import com.netcracker.etalon.repository.UserRepository;
+import com.netcracker.etalon.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * @author anpi0316
- *         Date: 24.10.2017
- *         Time: 20:59
+ *         Date: 17.10.2017
+ *         Time: 18:09
  */
-public class UserViewModel {
+@Transactional
+@Service
+public class UserServiceImpl implements UserService {
 
-    private String userId;
-    private String firstName;
-    private String lastName;
-    private String email;
-    private String username;
-    private String password;
+    @Autowired
+    private UserRepository userRepository;
 
-    public String getUserId() {
-        return userId;
+    private static final String USER_ROLE_STUDENT = "student"; //todo create enum with roles
+
+    @Override
+    public List<UserEntity> findUserByUserName(String name) {
+        return  userRepository.findByUsername(name);
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    @Override
+    public void createUsers(List<UserEntity> userEntity) {
+        userRepository.save(userEntity);
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
+    public List<UserEntity> findAllStudents() {
+        return userRepository.findByRole(USER_ROLE_STUDENT);
     }
 }
 /*
