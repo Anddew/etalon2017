@@ -41,6 +41,41 @@ import java.util.List;
 @Controller
 public class TestController {
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String goToTestPage() {
+        return "test";
+    }
+
+    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    public String goTo403Page() {
+        return "403";
+    }
+
+    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    public String goTo404Page() {
+        return "404";
+    }
+
+    @RequestMapping(value = "/500", method = RequestMethod.GET)
+    public String goTo500Page() {
+        return "500";
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.GET)
+    public String goToAdminPage() {
+        return "admin";
+    }
+
+    @RequestMapping(value = "/head", method = RequestMethod.GET)
+    public String goToHeadPage() {
+        return "headofpractice";
+    }
+
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String goToStudentPage() {
+        return "student";
+    }
+
     @RequestMapping(value = "/users-view", method = RequestMethod.GET)
     public ModelAndView getUsersAsModelWithView() {
         ModelAndView modelAndView = new ModelAndView();
