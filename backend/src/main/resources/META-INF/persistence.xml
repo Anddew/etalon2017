@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persistence-unit name="jdaData" transaction-type="RESOURCE_LOCAL">
-    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <jta-data-source>java:/exampleDatasource</jta-data-source>
     <!--<class>com.entity.Address</class>-->
 
-    <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <!--<shared-cache-mode>NONE</shared-cache-mode>-->
     <properties>
-        <property name="hibernate.hbm2ddl.auto" value="validate" />
-
-        <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
-        <property name="hibernate.show_sql" value="false"/>
-        <property name="hibernate.format_sql" value="false"/>
+        <!--<property name="hibernate.hbm2ddl.auto" value="validate" />-->
+        <!--<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>-->
+        <!--<property name="hibernate.show_sql" value="false"/>-->
+        <!--<property name="hibernate.format_sql" value="false"/>-->
 
     </properties>
 </persistence-unit>

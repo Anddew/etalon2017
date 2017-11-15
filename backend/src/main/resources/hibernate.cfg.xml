@@ -9,17 +9,14 @@
     <property name="connection.url">jdbc:mysql://localhost:3306/netcrackerappdb</property>
     <property name="connection.username">root</property>
     <property name="connection.password">rootroot</property>
-    <mapping class="com.netcracker.devschool.dev4.entity.university.UniversityEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.university.FacultyEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.university.SpecialityEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.company.CompanyEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.user.StudentEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.user.AdminEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.user.HeadFromCompanyEntity"/>
-    <mapping class="com.netcracker.devschool.dev4.entity.user.HeadFromUniversityEntity"/>
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.university.UniversityEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.university.FacultyEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.university.SpecialityEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.company.CompanyEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.user.StudentEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.user.AdminEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.user.HeadFromCompanyEntity"/>-->
+    <!--<mapping class="com.netcracker.devschool.dev4.entity.user.HeadFromUniversityEntity"/>-->
 
-
-      <!-- DB schema will be updated if needed -->
-    <!-- <property name="hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
