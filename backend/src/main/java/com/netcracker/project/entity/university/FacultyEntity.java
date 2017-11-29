@@ -3,10 +3,11 @@ package com.netcracker.project.entity.university;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "faculties", schema = "netcrackerappdb", catalog = "")
+@Table(name = "faculty", schema = "netcrackerappdb")
 public class FacultyEntity {
     private int id;
     private String name;
+    private UniversityEntity university;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -26,6 +27,16 @@ public class FacultyEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "university_id")
+    public UniversityEntity getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(UniversityEntity university) {
+        this.university = university;
     }
 
     @Override
@@ -50,10 +61,7 @@ public class FacultyEntity {
 
     @Override
     public String toString() {
-        return "FacultyEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
 
 }

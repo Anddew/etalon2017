@@ -1,5 +1,4 @@
 package com.netcracker.project.service;
 
-public class UserServiceFactory {
-
+public interface UniversityService {
 }

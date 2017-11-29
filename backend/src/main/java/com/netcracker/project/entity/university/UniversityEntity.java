@@ -3,7 +3,7 @@ package com.netcracker.project.entity.university;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "universities", schema = "netcrackerappdb", catalog = "")
+@Table(name = "university", schema = "netcrackerappdb")
 public class UniversityEntity {
     private int id;
     private String name;
@@ -50,10 +50,8 @@ public class UniversityEntity {
 
     @Override
     public String toString() {
-        return "UniversityEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
+
 
 }

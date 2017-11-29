@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <bean id="conversionService"
+         class="com.netcracker.project.converter.CustomConvertersRegister">
+
+      <property name="converters">
+
+         <set>
+            <bean class="com.netcracker.project.converter.university.UniversityEntityToUniversityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.university.FacultyEntityToFacultyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.university.SpecialityEntityToSpecialityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.company.CompanyEntityToCompanyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.practice.RequestEntityToRequestViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromUniversityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromCompanyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.UserEntityToStudentViewModelConverter"/>
+         </set>
+
+      </property>
+
+   </bean>
+
+</beans>

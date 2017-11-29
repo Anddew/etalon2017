@@ -1,16 +1,13 @@
 package com.netcracker.project.repository;
 
-import com.netcracker.project.entity.user.StudentEntity;
+import com.netcracker.project.entity.user.student.EducationForm;
+import com.netcracker.project.entity.user.student.StudentEntity;
 import org.springframework.data.repository.CrudRepository;
-import org.springframework.stereotype.Repository;
 
-@Repository
+import java.util.List;
+
 public interface StudentRepository extends CrudRepository<StudentEntity, Integer> {
 
-    StudentEntity findByGroupNumber(int groupNumber);
-
-//    List<StudentEntity> findByAvgScoreLessThan(double avgScore);
-
-    StudentEntity findByRequiredJob(boolean requiredJob);
+//    List<StudentEntity> findByEducationForm(EducationForm educationForm);
 
 }

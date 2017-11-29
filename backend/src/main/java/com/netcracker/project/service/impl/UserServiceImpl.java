@@ -1,34 +1,26 @@
 package com.netcracker.project.service.impl;
 
+import com.netcracker.project.repository.StudentRepository;
+import com.netcracker.project.repository.UserRepository;
 import com.netcracker.project.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
+@Service
+public class UserServiceImpl implements UserService {
 
-public class UserServiceImpl<T> implements UserService<T> {
+    @Autowired
+    private UserRepository userRepository;
 
-    @Override
-    public void create(T elem) {
+    @Autowired
+    private StudentRepository studentRepository;
 
+    public UserRepository getUserRepository() {
+        return userRepository;
     }
 
-    @Override
-    public void update(T elem) {
-
-    }
-
-    @Override
-    public void delete(T elem) {
-
-    }
-
-    @Override
-    public T findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<T> findAll() {
-        return null;
+    public StudentRepository getStudentRepository() {
+        return studentRepository;
     }
 
 }

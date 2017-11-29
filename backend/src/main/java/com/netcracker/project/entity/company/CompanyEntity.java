@@ -3,8 +3,9 @@ package com.netcracker.project.entity.company;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "companies", schema = "netcrackerappdb", catalog = "")
+@Table(name = "company", schema = "netcrackerappdb")
 public class CompanyEntity {
+
     private int id;
     private String name;
 
@@ -50,10 +51,8 @@ public class CompanyEntity {
 
     @Override
     public String toString() {
-        return "CompanyEntity{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
+        return name;
     }
+
 
 }
