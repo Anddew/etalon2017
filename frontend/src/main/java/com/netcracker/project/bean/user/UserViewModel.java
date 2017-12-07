@@ -1,6 +1,6 @@
 package com.netcracker.project.bean.user;
 
-import com.netcracker.project.entity.user.Role;
+import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.security.impl.CustomUser;
 
 
@@ -11,6 +11,10 @@ public abstract class UserViewModel extends CustomUser {
     private String createTime;
     private String firstName;
     private String lastName;
+
+    public UserViewModel() {
+
+    }
 
     public String getId() {
         return id;
@@ -52,6 +56,17 @@ public abstract class UserViewModel extends CustomUser {
         this.lastName = lastName;
     }
 
-    public abstract Role getRole();
+    public abstract UserRole getRole();
+
+    @Override
+    public String toString() {
+        return "UserViewModel{" +
+                "id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                ", createTime='" + createTime + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                "} " + super.toString();
+    }
 
 }

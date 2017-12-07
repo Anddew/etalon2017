@@ -19,7 +19,7 @@ public class UserEntityToHeadFromUniversityViewModelConverter implements Convert
         headFromUniversityViewModel.setId(String.valueOf(userEntity.getId()));
         headFromUniversityViewModel.setUsername(userEntity.getUsername());
         headFromUniversityViewModel.setEmail(userEntity.getEmail());
-        headFromUniversityViewModel.setCreateTime(userEntity.getCreateTime().toString());
+//        headFromUniversityViewModel.setCreateTime(userEntity.getCreateTime().toString());
         headFromUniversityViewModel.setFirstName(userEntity.getFirstName());
         headFromUniversityViewModel.setLastName(userEntity.getLastName());
         return headFromUniversityViewModel;

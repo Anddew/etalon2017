@@ -1,13 +1,14 @@
 package com.netcracker.project.repository;
 
 import com.netcracker.project.entity.university.FacultyEntity;
-import com.netcracker.project.entity.university.UniversityEntity;
 import org.springframework.data.repository.CrudRepository;
 
-import java.util.Set;
+import java.util.List;
 
 public interface FacultyRepository extends CrudRepository<FacultyEntity, Integer> {
 
-    Set<FacultyEntity> findFacultyEntitiesByUniversityId(int universityId);
+    List<FacultyEntity> findAll();
+
+    FacultyEntity findById(int id);
 
 }

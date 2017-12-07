@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
 
    <bean id="conversionService"
          class="com.netcracker.project.converter.CustomConvertersRegister">
@@ -10,13 +12,23 @@
 
          <set>
             <bean class="com.netcracker.project.converter.university.UniversityEntityToUniversityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.university.UniversityViewModelToUniversityEntityConverter"/>
             <bean class="com.netcracker.project.converter.university.FacultyEntityToFacultyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.university.FacultyViewModelToFacultyEntityConverter"/>
             <bean class="com.netcracker.project.converter.university.SpecialityEntityToSpecialityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.university.SpecialityViewModelToSpecialityEntityConverter"/>
             <bean class="com.netcracker.project.converter.company.CompanyEntityToCompanyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.company.CompanyViewModelToCompanyEntityConverter"/>
             <bean class="com.netcracker.project.converter.practice.RequestEntityToRequestViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.practice.RequestViewModelToRequestEntityConverter"/>
             <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromUniversityViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.HeadFromUniversityViewModelToUserEntityConverter"/>
             <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromCompanyViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.HeadFromCompanyViewModelToUserEntityConverter"/>
             <bean class="com.netcracker.project.converter.user.UserEntityToStudentViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.StudentViewModelToUserEntityConverter"/>
+            <bean class="com.netcracker.project.converter.user.UserEntityToAdminViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.user.AdminViewModelToUserEntityConverter"/>
          </set>
 
       </property>

@@ -1,10 +1,6 @@
 package com.netcracker.project;
 
-import com.netcracker.project.entity.user.UserEntity;
-import com.netcracker.project.service.impl.UserServiceImpl;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.Set;
 
 public class Main {
 
@@ -35,6 +31,7 @@ public class Main {
     public static void runSpringDataAppContext() {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("backend-spring-context.xml");
 
+
         //Repository
 //        UserRepository studentRepository = context.getBean(UserRepository.class);
 //        StudentEntity university = studentRepository.findByEmailAndPassword("ivanov@mail.ru", "ivanov");
@@ -54,9 +51,9 @@ public class Main {
 //        List<UserEntity> list = userRepository.findByRole(Role.STUDENT);
 //        System.out.println(list);
 
-        UserServiceImpl userService = context.getBean(UserServiceImpl.class);
-        Set<UserEntity> students = userService.getUserRepository().findAll();
-        System.out.println(students);
+//        UserServiceImpl userService = context.getBean(UserServiceImpl.class);
+//        Set<UserEntity> students = userService.getUserRepository().findAll();
+//        System.out.println(students);
 
 //        UserService userService = context.getBean(UserService.class);
 //        StudentRepository studentRepository = userService.getStudentRepository();

@@ -1,7 +1,7 @@
 package com.netcracker.project.bean.user;
 
 import com.netcracker.project.bean.university.SpecialityViewModel;
-import com.netcracker.project.entity.user.Role;
+import com.netcracker.project.entity.user.UserRole;
 
 public class StudentViewModel extends UserViewModel {
 
@@ -72,8 +72,20 @@ public class StudentViewModel extends UserViewModel {
     }
 
     @Override
-    public Role getRole() {
-        return Role.STUDENT;
+    public UserRole getRole() {
+        return UserRole.STUDENT;
     }
 
+    @Override
+    public String toString() {
+        return "StudentViewModel{" +
+                "id='" + id + '\'' +
+                ", educationForm='" + educationForm + '\'' +
+                ", speciality=" + speciality +
+                ", groupNumber='" + groupNumber + '\'' +
+                ", avgScore='" + avgScore + '\'' +
+                ", requiredJob='" + requiredJob + '\'' +
+                ", practiceStatus='" + practiceStatus + '\'' +
+                "} " + super.toString();
+    }
 }

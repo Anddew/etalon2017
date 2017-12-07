@@ -2,6 +2,7 @@ package com.netcracker.project.entity.practice;
 
 import com.netcracker.project.entity.university.FacultyEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
+import com.netcracker.project.entity.user.student.HireCondition;
 import com.netcracker.project.entity.user.student.StudentEntity;
 
 import javax.persistence.*;
@@ -13,12 +14,13 @@ import java.util.Set;
 @Entity
 @Table(name = "request", schema = "netcrackerappdb")
 public class RequestEntity {
+
     private int id;
     private RequestStatus status;
     private FacultyEntity faculty;
     private int studentRequiredCount;
     private double minAvgScore;
-    private boolean provideHire;
+    private HireCondition hireCondition;
     private Date dateStart;
     private Date dateEnd;
     private EducationForm educationForm;
@@ -73,14 +75,13 @@ public class RequestEntity {
         this.minAvgScore = minAvgScore;
     }
 
-    @Basic
-    @Column(name = "provide_hire", nullable = true)
-    public boolean getProvideHire() {
-        return provideHire;
+    @Enumerated(EnumType.STRING)
+    public HireCondition getHireCondition() {
+        return hireCondition;
     }
 
-    public void setProvideHire(boolean acceptHire) {
-        this.provideHire = acceptHire;
+    public void setHireCondition(HireCondition hireCondition) {
+        this.hireCondition = hireCondition;
     }
 
     @Basic
@@ -130,14 +131,13 @@ public class RequestEntity {
         return id == that.id &&
                 studentRequiredCount == that.studentRequiredCount &&
                 Objects.equals(minAvgScore, that.minAvgScore) &&
-                Objects.equals(provideHire, that.provideHire) &&
                 Objects.equals(dateStart, that.dateStart) &&
                 Objects.equals(dateEnd, that.dateEnd);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, studentRequiredCount, minAvgScore, provideHire, dateStart, dateEnd);
+        return Objects.hash(id, studentRequiredCount, minAvgScore, dateStart, dateEnd);
     }
 
 }

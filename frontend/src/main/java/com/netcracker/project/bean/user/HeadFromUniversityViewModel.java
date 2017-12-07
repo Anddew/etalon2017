@@ -1,7 +1,7 @@
 package com.netcracker.project.bean.user;
 
 import com.netcracker.project.bean.university.FacultyViewModel;
-import com.netcracker.project.entity.user.Role;
+import com.netcracker.project.entity.user.UserRole;
 
 public class HeadFromUniversityViewModel extends UserViewModel {
 
@@ -16,8 +16,14 @@ public class HeadFromUniversityViewModel extends UserViewModel {
     }
 
     @Override
-    public Role getRole() {
-        return Role.HEAD_FROM_UNIVERSITY;
+    public UserRole getRole() {
+        return UserRole.HEAD_FROM_UNIVERSITY;
     }
 
+    @Override
+    public String toString() {
+        return "HeadFromUniversityViewModel{" +
+                "faculty=" + faculty +
+                "} " + super.toString();
+    }
 }

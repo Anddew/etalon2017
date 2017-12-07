@@ -1,0 +1,23 @@
+#head_from_company {
+    display: none;
+}
+
+input[value="head_from_company"]:checked ~ #head_from_company {
+    display: block;
+}
+
+#head_from_university {
+    display: none;
+}
+
+input[value="head_from_university"]:checked ~ #head_from_university {
+    display: block;
+}
+
+#student {
+    display: none;
+}
+
+input[value="student"]:checked ~ #student {
+    display: block;
+}

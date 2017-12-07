@@ -17,7 +17,7 @@ public class StudentEntity {
     private SpecialityEntity speciality;
     private int groupNumber;
     private Double avgScore;
-    private boolean requiredJob;
+    private boolean requiredJob; //todo enum
     private PracticeStatus practiceStatus;
     private Set<RequestEntity> practices = new HashSet<>();
 

@@ -1,7 +1,7 @@
 package com.netcracker.project.bean.user;
 
 import com.netcracker.project.bean.company.CompanyViewModel;
-import com.netcracker.project.entity.user.Role;
+import com.netcracker.project.entity.user.UserRole;
 
 public class HeadFromCompanyViewModel extends UserViewModel {
 
@@ -16,8 +16,14 @@ public class HeadFromCompanyViewModel extends UserViewModel {
     }
 
     @Override
-    public Role getRole() {
-        return Role.HEAD_FROM_COMPANY;
+    public UserRole getRole() {
+        return UserRole.HEAD_FROM_COMPANY;
     }
 
+    @Override
+    public String toString() {
+        return "HeadFromCompanyViewModel{" +
+                "company=" + company +
+                "} " + super.toString();
+    }
 }

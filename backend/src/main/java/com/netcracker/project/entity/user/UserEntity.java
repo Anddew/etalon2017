@@ -11,8 +11,9 @@ import java.util.Objects;
 @Entity
 @Table(name = "user", schema = "netcrackerappdb")
 public class UserEntity {
+
     private int id;
-    private Role role;
+    private UserRole role;
     private String username;
     private String password;
     private String email;
@@ -35,11 +36,11 @@ public class UserEntity {
     }
 
     @Enumerated(EnumType.STRING)
-    public Role getRole() {
+    public UserRole getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(UserRole role) {
         this.role = role;
     }
 
@@ -168,4 +169,5 @@ public class UserEntity {
                 ", studentInfo=" + studentInfo +
                 '}';
     }
+    
 }

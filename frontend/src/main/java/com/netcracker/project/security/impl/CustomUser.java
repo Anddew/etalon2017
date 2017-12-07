@@ -109,4 +109,17 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
     public void setAuthorities(List<GrantedAuthority> authorities) {
         this.authorities = authorities;
     }
+
+    @Override
+    public String toString() {
+        return "CustomUser{" +
+                "password='" + password + '\'' +
+                ", username='" + username + '\'' +
+                ", authorities=" + authorities +
+                ", enabled=" + enabled +
+                ", accountNonExpired=" + accountNonExpired +
+                ", accountNonLocked=" + accountNonLocked +
+                ", credentialsNonExpired=" + credentialsNonExpired +
+                '}';
+    }
 }

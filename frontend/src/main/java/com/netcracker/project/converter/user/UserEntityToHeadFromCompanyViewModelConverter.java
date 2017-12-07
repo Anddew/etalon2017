@@ -19,7 +19,7 @@ public class UserEntityToHeadFromCompanyViewModelConverter implements Converter<
         headFromCompanyViewModel.setId(String.valueOf(userEntity.getId()));
         headFromCompanyViewModel.setUsername(userEntity.getUsername());
         headFromCompanyViewModel.setEmail(userEntity.getEmail());
-        headFromCompanyViewModel.setCreateTime(userEntity.getCreateTime().toString());
+//        headFromCompanyViewModel.setCreateTime(userEntity.getCreateTime().toString());
         headFromCompanyViewModel.setFirstName(userEntity.getFirstName());
         headFromCompanyViewModel.setLastName(userEntity.getLastName());
         return headFromCompanyViewModel;

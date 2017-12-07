@@ -9,7 +9,7 @@ public class RequestViewModel {
     private FacultyViewModel faculty;
     private String studentRequiredCount;
     private String minAvgScore;
-    private String provideHire;
+    private String hireCondition;
     private String dateStart;
     private String dateEnd;
     private String educationForm;
@@ -55,12 +55,12 @@ public class RequestViewModel {
         this.minAvgScore = minAvgScore;
     }
 
-    public String getProvideHire() {
-        return provideHire;
+    public String getHireCondition() {
+        return hireCondition;
     }
 
-    public void setProvideHire(String provideHire) {
-        this.provideHire = provideHire;
+    public void setHireCondition(String hireCondition) {
+        this.hireCondition = hireCondition;
     }
 
     public String getDateStart() {
