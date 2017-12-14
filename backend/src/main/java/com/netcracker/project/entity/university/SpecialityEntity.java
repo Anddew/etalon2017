@@ -10,6 +10,7 @@ public class SpecialityEntity {
     private FacultyEntity faculty;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;

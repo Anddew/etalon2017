@@ -22,6 +22,7 @@ public class StudentEntity {
     private Set<RequestEntity> practices = new HashSet<>();
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -30,7 +31,6 @@ public class StudentEntity {
     public void setId(int id) {
         this.id = id;
     }
-
 
     @Enumerated(EnumType.STRING)
     @Column(name = "education_form")
@@ -51,7 +51,6 @@ public class StudentEntity {
     public void setSpeciality(SpecialityEntity speciality) {
         this.speciality = speciality;
     }
-
 
     @Basic
     @Column(name = "group_number", nullable = false)

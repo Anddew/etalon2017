@@ -9,22 +9,15 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
 
-public class AdminViewModelToUserEntityConverter implements Converter<AdminViewModel, UserEntity> {
+public class AdminViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<AdminViewModel, UserEntity> {
 
     @Autowired
     private ConversionService conversionService;
 
     @Override
     public UserEntity convert(AdminViewModel adminViewModel) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(Integer.parseInt(adminViewModel.getId()));
-        userEntity.setRole(UserRole.valueOf(adminViewModel.getRole().getDescription()));
-        userEntity.setUsername(adminViewModel.getUsername());
-        userEntity.setPassword(adminViewModel.getPassword());
-        userEntity.setEmail(adminViewModel.getEmail());
-        userEntity.setCreateTime(Timestamp.valueOf(adminViewModel.getCreateTime()));
-        userEntity.setFirstName(adminViewModel.getFirstName());
-        userEntity.setLastName(adminViewModel.getLastName());
+        UserEntity userEntity = super.convert(adminViewModel);
         return userEntity;
     }
+
 }

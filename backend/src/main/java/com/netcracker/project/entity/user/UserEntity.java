@@ -25,7 +25,7 @@ public class UserEntity {
     private StudentEntity studentInfo;
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public int getId() {
         return id;
@@ -124,8 +124,8 @@ public class UserEntity {
         this.faculty = faculty;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "student_id")
     public StudentEntity getStudentInfo() {
         return studentInfo;
     }

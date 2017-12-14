@@ -10,22 +10,14 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
 
-public class HeadFromCompanyViewModelToUserEntityConverter implements Converter<HeadFromCompanyViewModel, UserEntity> {
+public class HeadFromCompanyViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<HeadFromCompanyViewModel, UserEntity> {
 
     @Autowired
     private ConversionService conversionService;
 
     @Override
     public UserEntity convert(HeadFromCompanyViewModel headFromCompanyViewModel) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(Integer.parseInt(headFromCompanyViewModel.getId()));
-        userEntity.setRole(UserRole.valueOf(headFromCompanyViewModel.getRole().getDescription()));
-        userEntity.setUsername(headFromCompanyViewModel.getUsername());
-        userEntity.setPassword(headFromCompanyViewModel.getPassword());
-        userEntity.setEmail(headFromCompanyViewModel.getEmail());
-        userEntity.setCreateTime(Timestamp.valueOf(headFromCompanyViewModel.getCreateTime()));
-        userEntity.setFirstName(headFromCompanyViewModel.getFirstName());
-        userEntity.setLastName(headFromCompanyViewModel.getLastName());
+        UserEntity userEntity = super.convert(headFromCompanyViewModel);
         userEntity.setCompany(conversionService.convert(headFromCompanyViewModel.getCompany(), CompanyEntity.class));
         return userEntity;
     }

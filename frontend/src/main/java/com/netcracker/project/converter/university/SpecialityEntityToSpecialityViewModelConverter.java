@@ -15,8 +15,14 @@ public class SpecialityEntityToSpecialityViewModelConverter implements Converter
     @Override
     public SpecialityViewModel convert(SpecialityEntity specialityEntity) {
         SpecialityViewModel specialityViewModel = new SpecialityViewModel();
-        specialityViewModel.setId(String.valueOf(specialityEntity.getId()));
-        specialityViewModel.setName(specialityEntity.getName());
+        int id = specialityEntity.getId();
+        if(id != 0) {
+            specialityViewModel.setId(String.valueOf(id));
+        }
+        String name = specialityEntity.getName();
+        if(name != null) {
+            specialityViewModel.setName(name);
+        }
         specialityViewModel.setFaculty(conversionService.convert(specialityEntity.getFaculty(), FacultyViewModel.class));
         return specialityViewModel;
     }

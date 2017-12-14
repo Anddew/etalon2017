@@ -2,9 +2,12 @@
 
 <html>
 <head>
-    <title>Error</title>
+    <title>Access denied</title>
 </head>
 <body>
-    <a href="/login">Log in</a>
+    <div class="container" align="center">
+        <h1>You have no rights to visit this page.</h1>
+        <a href="home">Go home</a>
+    </div>
 </body>
 </html>

@@ -9,8 +9,15 @@ public class CompanyViewModelToCompanyEntityConverter implements Converter<Compa
     @Override
     public CompanyEntity convert(CompanyViewModel companyViewModel) {
         CompanyEntity companyEntity = new CompanyEntity();
-        companyEntity.setId(Integer.parseInt(companyViewModel.getId()));
-        companyEntity.setName(companyViewModel.getName());
+        String id = companyViewModel.getId();
+        if(id != null) {
+            companyEntity.setId(Integer.parseInt(id));
+        }
+        String name = companyViewModel.getName();
+        if(name != null) {
+            companyEntity.setName(name);
+        }
         return companyEntity;
     }
+
 }

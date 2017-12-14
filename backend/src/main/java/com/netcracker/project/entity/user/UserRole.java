@@ -1,5 +1,6 @@
 package com.netcracker.project.entity.user;
 
+
 public enum UserRole {
 
     ADMINISTRATOR("Administrator"),

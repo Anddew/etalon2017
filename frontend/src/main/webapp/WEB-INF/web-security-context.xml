@@ -24,13 +24,14 @@
         <intercept-url pattern="/heads-university" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_UNIVERSITY')" />
         <intercept-url pattern="/students" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
         <intercept-url pattern="/practice" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
-        <intercept-url pattern="/*" access="isAuthenticated()" />
+        <intercept-url pattern="/home" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
+        <!--<intercept-url pattern="/*" access="isAuthenticated()" />-->
     </http>
 
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="customUserDetailsService">
-            <!--<password-encoder hash="md5" />-->
+            <password-encoder hash="md5" />
         </authentication-provider>
     </authentication-manager>
 

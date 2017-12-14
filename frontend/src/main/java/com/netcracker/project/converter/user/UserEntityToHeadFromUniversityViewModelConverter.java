@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
-public class UserEntityToHeadFromUniversityViewModelConverter implements Converter<UserEntity, HeadFromUniversityViewModel> {
+public class UserEntityToHeadFromUniversityViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, HeadFromUniversityViewModel> {
 
     @Autowired
     private ConversionService conversionService;
@@ -15,13 +15,9 @@ public class UserEntityToHeadFromUniversityViewModelConverter implements Convert
     @Override
     public HeadFromUniversityViewModel convert(UserEntity userEntity) {
         HeadFromUniversityViewModel headFromUniversityViewModel = new HeadFromUniversityViewModel();
+        setUserFields(headFromUniversityViewModel, userEntity);
         headFromUniversityViewModel.setFaculty(conversionService.convert(userEntity.getFaculty(), FacultyViewModel.class));
-        headFromUniversityViewModel.setId(String.valueOf(userEntity.getId()));
-        headFromUniversityViewModel.setUsername(userEntity.getUsername());
-        headFromUniversityViewModel.setEmail(userEntity.getEmail());
-//        headFromUniversityViewModel.setCreateTime(userEntity.getCreateTime().toString());
-        headFromUniversityViewModel.setFirstName(userEntity.getFirstName());
-        headFromUniversityViewModel.setLastName(userEntity.getLastName());
         return headFromUniversityViewModel;
     }
+
 }

@@ -3,9 +3,13 @@ package com.netcracker.project.converter.practice;
 import com.netcracker.project.bean.practice.RequestViewModel;
 import com.netcracker.project.bean.university.FacultyViewModel;
 import com.netcracker.project.entity.practice.RequestEntity;
+import com.netcracker.project.entity.practice.RequestStatus;
+import com.netcracker.project.entity.user.student.EducationForm;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+
+import java.util.Date;
 
 public class RequestEntityToRequestViewModelConverter implements Converter<RequestEntity, RequestViewModel> {
 
@@ -15,15 +19,39 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
     @Override
     public RequestViewModel convert(RequestEntity requestEntity) {
         RequestViewModel requestViewModel = new RequestViewModel();
-        requestViewModel.setId(String.valueOf(requestEntity.getId()));
-        requestViewModel.setStatus(requestEntity.getStatus().getDescription());
+        int id = requestEntity.getId();
+        if(id != 0) {
+            requestViewModel.setId(String.valueOf(id));
+        }
+        RequestStatus status = requestEntity.getStatus();
+        if(status != null) {
+            requestViewModel.setStatus(status.getDescription());
+        }
         requestViewModel.setFaculty(conversionService.convert(requestEntity.getFaculty(), FacultyViewModel.class));
-        requestViewModel.setStudentRequiredCount(String.valueOf(requestEntity.getStudentRequiredCount()));
-        requestViewModel.setMinAvgScore(String.valueOf(requestEntity.getMinAvgScore()));
-        requestViewModel.setHireCondition(requestEntity.getHireCondition().getDescription());
-        requestViewModel.setDateStart(requestEntity.getDateStart().toString());
-        requestViewModel.setDateEnd(requestEntity.getDateEnd().toString());
-        requestViewModel.setEducationForm(requestEntity.getEducationForm().toString());
+        int studentRequiredCount = requestEntity.getStudentRequiredCount();
+        if(studentRequiredCount != 0) {
+            requestViewModel.setStudentRequiredCount(String.valueOf(studentRequiredCount));
+        }
+        double minAvgScore = requestEntity.getMinAvgScore();
+        if(minAvgScore != 0) {
+            requestViewModel.setMinAvgScore(String.valueOf(minAvgScore));
+        }
+        String hireCondition = requestEntity.getHireCondition().getDescription();
+        if(hireCondition != null) {
+            requestViewModel.setHireCondition(hireCondition);
+        }
+        Date dateStart = requestEntity.getDateStart();
+        if(dateStart != null) {
+            requestViewModel.setDateStart(dateStart.toString());
+        }
+        Date dateEnd = requestEntity.getDateEnd();
+        if(dateEnd != null) {
+            requestViewModel.setDateEnd(dateEnd.toString());
+        }
+        EducationForm educationForm = requestEntity.getEducationForm();
+        if(educationForm != null) {
+            requestViewModel.setEducationForm(educationForm.toString());
+        }
         return requestViewModel;
     }
 }

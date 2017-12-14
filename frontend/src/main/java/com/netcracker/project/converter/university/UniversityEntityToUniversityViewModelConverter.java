@@ -9,8 +9,14 @@ public class UniversityEntityToUniversityViewModelConverter implements Converter
     @Override
     public UniversityViewModel convert(UniversityEntity universityEntity) {
         UniversityViewModel universityViewModel = new UniversityViewModel();
-        universityViewModel.setId(String.valueOf(universityEntity.getId()));
-        universityViewModel.setName(universityEntity.getName());
+        int id = universityEntity.getId();
+        if(id != 0) {
+            universityViewModel.setId(String.valueOf(id));
+        }
+        String name = universityEntity.getName();
+        if(name != null) {
+            universityViewModel.setName(name);
+        }
         return universityViewModel;
     }
 

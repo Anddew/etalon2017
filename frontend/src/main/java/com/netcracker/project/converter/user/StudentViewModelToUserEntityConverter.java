@@ -2,7 +2,6 @@ package com.netcracker.project.converter.user;
 
 import com.netcracker.project.bean.user.StudentViewModel;
 import com.netcracker.project.entity.university.SpecialityEntity;
-import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
@@ -14,30 +13,37 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
 
-public class StudentViewModelToUserEntityConverter implements Converter<StudentViewModel, UserEntity> {
+public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<StudentViewModel, UserEntity> {
 
     @Autowired
     private ConversionService conversionService;
 
     @Override
     public UserEntity convert(StudentViewModel studentViewModel) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(Integer.parseInt(studentViewModel.getId()));
-        userEntity.setRole(UserRole.valueOf(studentViewModel.getRole().getDescription()));
-        userEntity.setUsername(studentViewModel.getUsername());
-        userEntity.setPassword(studentViewModel.getPassword());
-        userEntity.setEmail(studentViewModel.getEmail());
-        userEntity.setCreateTime(Timestamp.valueOf(studentViewModel.getCreateTime()));
-        userEntity.setFirstName(studentViewModel.getFirstName());
-        userEntity.setLastName(studentViewModel.getLastName());
+        UserEntity userEntity = super.convert(studentViewModel);
 
         StudentEntity studentEntity = new StudentEntity();
-        studentEntity.setEducationForm(EducationForm.valueOf(studentViewModel.getEducationForm()));
+        String educationForm = studentViewModel.getEducationForm();
+        if(educationForm != null) {
+            studentEntity.setEducationForm(EducationForm.valueOf(educationForm));
+        }
         studentEntity.setSpeciality(conversionService.convert(studentViewModel.getSpeciality(), SpecialityEntity.class));
-        studentEntity.setGroupNumber(Integer.parseInt(studentViewModel.getGroupNumber()));
-        studentEntity.setAvgScore(Double.parseDouble(studentViewModel.getAvgScore()));
-        studentEntity.setRequiredJob(studentViewModel.getRequiredJob().equals(HireCondition.ACCEPT.toString()));
-        studentEntity.setPracticeStatus(PracticeStatus.valueOf(studentViewModel.getPracticeStatus()));
+        String groupNumber = studentViewModel.getGroupNumber();
+        if(groupNumber != null) {
+            studentEntity.setGroupNumber(Integer.parseInt(groupNumber));
+        }
+        String avgScore = studentViewModel.getAvgScore();
+        if(avgScore != null) {
+            studentEntity.setAvgScore(Double.parseDouble(avgScore));
+        }
+        String requiredJob = studentViewModel.getRequiredJob();
+        if(requiredJob != null) {
+            studentEntity.setRequiredJob(requiredJob.equals(HireCondition.ACCEPT.toString()));
+        }
+        String practiceStatus = studentViewModel.getPracticeStatus().toUpperCase();
+        if(practiceStatus != null) {
+            studentEntity.setPracticeStatus(PracticeStatus.valueOf(practiceStatus));
+        }
         userEntity.setStudentInfo(studentEntity);
 
         return userEntity;

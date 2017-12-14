@@ -1,6 +1,7 @@
 package com.netcracker.project.controller;
 
 import com.netcracker.project.security.UserLoginService;
+import com.netcracker.project.validation.Validator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;
@@ -17,25 +18,38 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
+    private static final String LOGIN_VIEW_PATH = "login";
+    private static final String LOGIN_URL_PATTERN = "login";
+
     private static final String USERNAME_USER_PARAMETER = "username";
     private static final String PASSWORD_USER_PARAMETER = "password";
+    private static final String ERROR_PARAMETER_NAME = "error";
+    private static final String ERROR_MESSAGE = "Something going wrong.";
+
+    @Autowired
+    private Validator validator;
 
     @Autowired
     private UserLoginService userLoginService;
 
-    @RequestMapping(value = "login", method = RequestMethod.GET)
-    public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-                              HttpServletRequest request) {
+    @RequestMapping(value = LOGIN_URL_PATTERN, method = RequestMethod.GET)
+    public ModelAndView login(@RequestParam(value = ERROR_PARAMETER_NAME, required = false) String error,
+                              HttpServletRequest request,
+                              HttpServletResponse response) {
+
         ModelAndView modelAndView = new ModelAndView();
         if(error != null) {
-            modelAndView.addObject("error", "Something going wrong.");
+            modelAndView.addObject(ERROR_PARAMETER_NAME, ERROR_MESSAGE);
         }
-        modelAndView.setViewName("login");
+        modelAndView.setViewName(LOGIN_VIEW_PATH);
         return modelAndView;
     }
 
-    @RequestMapping(value = "login", method = RequestMethod.POST)
-    public void login(@RequestBody Map<String,String> userParameters, HttpServletRequest request, HttpServletResponse response) {
+    @RequestMapping(value = LOGIN_URL_PATTERN, method = RequestMethod.POST)
+    public void login(@RequestBody Map<String,String> userParameters,
+                      HttpServletRequest request,
+                      HttpServletResponse response) {
+
         try {
             userLoginService.authenticateUserAndSetSession(userParameters.get(USERNAME_USER_PARAMETER), userParameters.get(PASSWORD_USER_PARAMETER), request, response);
         } catch (BadCredentialsException e) {

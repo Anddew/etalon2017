@@ -2,13 +2,16 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:util="http://www.springframework.org/schema/util"
        xsi:schemaLocation="
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
         http://www.springframework.org/schema/context
-        http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd">
 
     <mvc:annotation-driven />
 
@@ -16,7 +19,7 @@
     <context:component-scan base-package="com.netcracker.project.security" />
     <context:component-scan base-package="com.netcracker.project.bean" />
     <context:component-scan base-package="com.netcracker.project.validation" />
-    <context:component-scan base-package="com.netcracker.project.servicefront.impl" />
+    <!--<context:component-scan base-package="com.netcracker.project.servicefront.impl" />-->
     <import resource="classpath:backend-spring-context.xml" />
     <import resource="web-converters-context.xml"/>
 
@@ -25,6 +28,38 @@
         <property name="prefix" value="/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
+
+    <bean id="userRegistrationServiceFactory" class="com.netcracker.project.servicefront.impl.UserRegistrationServiceFactory">
+        <property name="registrationServices" ref="userRegistrationServices">
+        </property>
+
+    </bean>
+
+    <util:map id="userRegistrationServices"
+              map-class="java.util.HashMap"
+              key-type="com.netcracker.project.entity.user.UserRole"
+              value-type="com.netcracker.project.servicefront.UserRegistrationService">
+        <entry key-ref="student" value-ref="studentRegistrationService"/>
+        <entry key-ref="headFromCompany" value-ref="headFromCompanyRegistrationService"/>
+        <entry key-ref="headFromUniversity" value-ref="headFromUniversityRegistrationService"/>
+    </util:map>
+
+    <bean id="student" class="com.netcracker.project.entity.user.UserRole" factory-method="valueOf">
+        <constructor-arg value="STUDENT"/>
+    </bean>
+    <bean id="admin" class="com.netcracker.project.entity.user.UserRole" factory-method="valueOf">
+        <constructor-arg value="ADMINISTRATOR"/>
+    </bean>
+    <bean id="headFromCompany" class="com.netcracker.project.entity.user.UserRole" factory-method="valueOf">
+        <constructor-arg value="HEAD_FROM_COMPANY"/>
+    </bean>
+    <bean id="headFromUniversity" class="com.netcracker.project.entity.user.UserRole" factory-method="valueOf">
+        <constructor-arg value="HEAD_FROM_UNIVERSITY"/>
+    </bean>
+
+    <bean id="studentRegistrationService" class="com.netcracker.project.servicefront.impl.StudentRegistrationServiceImpl" />
+    <bean id="headFromCompanyRegistrationService" class="com.netcracker.project.servicefront.impl.HeadFromCompanyRegistrationServiceImpl" />
+    <bean id="headFromUniversityRegistrationService" class="com.netcracker.project.servicefront.impl.HeadFromUniversityRegistrationServiceImpl" />
 
     <mvc:resources mapping="/resources/**" location="/resources/"/>
 

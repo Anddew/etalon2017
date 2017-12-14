@@ -10,25 +10,16 @@ import org.springframework.core.convert.converter.Converter;
 
 import java.sql.Timestamp;
 
-public class HeadFromUniversityViewModelToUserEntityConverter implements Converter<HeadFromUniversityViewModel, UserEntity> {
+public class HeadFromUniversityViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<HeadFromUniversityViewModel, UserEntity> {
 
     @Autowired
     private ConversionService conversionService;
 
     @Override
     public UserEntity convert(HeadFromUniversityViewModel headFromUniversityViewModel) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setId(Integer.parseInt(headFromUniversityViewModel.getId()));
-        userEntity.setRole(UserRole.valueOf(headFromUniversityViewModel.getRole().getDescription()));
-        userEntity.setUsername(headFromUniversityViewModel.getUsername());
-        userEntity.setPassword(headFromUniversityViewModel.getPassword());
-        userEntity.setEmail(headFromUniversityViewModel.getEmail());
-        userEntity.setCreateTime(Timestamp.valueOf(headFromUniversityViewModel.getCreateTime()));
-        userEntity.setFirstName(headFromUniversityViewModel.getFirstName());
-        userEntity.setLastName(headFromUniversityViewModel.getLastName());
+        UserEntity userEntity = super.convert(headFromUniversityViewModel);
         userEntity.setFaculty(conversionService.convert(headFromUniversityViewModel.getFaculty(), FacultyEntity.class));
         return userEntity;
     }
-
 
 }

@@ -1,52 +1,55 @@
 +function () {
 
+    var $alphanumericPattern = /^[\w\d]{3,15}$/,
+        $emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+        $textPattern = /^[\w]{2,15}$/,
+        $groupNumberPattern = /^[\w\d][\w\d\-]{1,10}$/
+
+    ;
+
     var Validation = {
 
-        validateOnEmpty: function (inputs, btns) {
-            var isAnyValidationErrors = false;
-            if (inputs) {
-                inputs.some(function (input) {
-                    if (!input.val().trim()) {
-                        isAnyValidationErrors = true;
-
-                        input.next().html('Field is required.');
-                        input.next().show();
-                    } else {
-                        input.next().hide();
-                    }
-                });
-            }
+        switchButtons: function (btns, condition) {
             if (btns) {
-                if (isAnyValidationErrors) {
+                if (condition) {
                     btns.some(function (button) {
-                        button.attr("disabled", true)
+                        button.removeAttr('disabled')
                     })
                 } else {
                     btns.some(function (button) {
-                        button.removeAttr('disabled')
+                        button.attr("disabled", true)
                     })
                 }
             }
         },
 
-        formValidation: function (inputs) {
-            var isNoErrors = true;
-            if (inputs) {
-                inputs.some(function (input) {
-                    if (!input.val().trim()) {
-                        isNoErrors = false;
-                        input.next().html('Field is required.');
-                        input.next().show();
-                    } else {
-                        input.next().hide();
-                    }
-                });
+        validateOnEmpty: function (inputs) {
+            for(var i = 0; i < inputs.length; i++) {
+                if(!inputs[i].val().trim()) {
+                    return false;
+                }
             }
-            return isNoErrors;
+            return true;
         },
 
-        checkPasswordRepeating: function (password, repeat) {
+        validateAlphanumericField: function (value) {
+            return $alphanumericPattern.test(value.val());
+        },
+
+        validateEmail: function (email) {
+            return $emailPattern.test(email.val().toLowerCase());
+        },
+
+        validatePasswordRepeating: function (password, repeat) {
             return (password.val() === repeat.val());
+        },
+
+        validateTextField: function (value) {
+            return $textPattern.test(value.val());
+        },
+
+        validateGroupNumber: function (value) {
+            return $groupNumberPattern.test(value.val());
         }
 
     };

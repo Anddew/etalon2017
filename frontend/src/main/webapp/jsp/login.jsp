@@ -37,7 +37,7 @@
                         </label>
                     </div>
                     <button type="submit" class="btn btn-primary jsSubmitLogin">Log in</button>
-                    <a href="register" class="btn btn-secondary">Go register</a>
+                    <a href="register">Go register</a>
                     <div class="alert alert-danger jsInputIncorrectNotification" role="alert" style="display: none">
                         Incorrect input. Check your input data.
                     </div>
