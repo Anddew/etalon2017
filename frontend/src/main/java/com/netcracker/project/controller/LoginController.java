@@ -1,7 +1,8 @@
 package com.netcracker.project.controller;
 
 import com.netcracker.project.security.UserLoginService;
-import com.netcracker.project.validation.Validator;
+import com.netcracker.project.validation.UserValidator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Controller;
@@ -18,6 +19,8 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
+    private Logger logger = Logger.getLogger(LoginController.class.getSimpleName());
+
     private static final String LOGIN_VIEW_PATH = "login";
     private static final String LOGIN_URL_PATTERN = "login";
 
@@ -27,7 +30,7 @@ public class LoginController {
     private static final String ERROR_MESSAGE = "Something going wrong.";
 
     @Autowired
-    private Validator validator;
+    private UserValidator validator;
 
     @Autowired
     private UserLoginService userLoginService;
@@ -42,6 +45,7 @@ public class LoginController {
             modelAndView.addObject(ERROR_PARAMETER_NAME, ERROR_MESSAGE);
         }
         modelAndView.setViewName(LOGIN_VIEW_PATH);
+        logger.debug("Show login page.");
         return modelAndView;
     }
 
@@ -53,6 +57,7 @@ public class LoginController {
         try {
             userLoginService.authenticateUserAndSetSession(userParameters.get(USERNAME_USER_PARAMETER), userParameters.get(PASSWORD_USER_PARAMETER), request, response);
         } catch (BadCredentialsException e) {
+            logger.error("Bad credentials.", e);
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
         }
     }

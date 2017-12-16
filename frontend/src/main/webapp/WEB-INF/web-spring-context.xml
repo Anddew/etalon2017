@@ -30,9 +30,7 @@
     </bean>
 
     <bean id="userRegistrationServiceFactory" class="com.netcracker.project.servicefront.impl.UserRegistrationServiceFactory">
-        <property name="registrationServices" ref="userRegistrationServices">
-        </property>
-
+        <property name="registrationServices" ref="userRegistrationServices" />
     </bean>
 
     <util:map id="userRegistrationServices"

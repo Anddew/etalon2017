@@ -3,10 +3,13 @@ package com.netcracker.project.converter.user;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.UserRole;
+import org.apache.log4j.Logger;
 
 import java.sql.Timestamp;
 
 public abstract class UserViewModelToUserEntityConverter {
+
+    private Logger logger = Logger.getLogger(UserViewModelToUserEntityConverter.class.getSimpleName());
 
     public UserEntity convert(UserViewModel userViewModel) {
         UserEntity userEntity = new UserEntity();
@@ -42,6 +45,8 @@ public abstract class UserViewModelToUserEntityConverter {
         if(lastName != null) {
             userEntity.setLastName(lastName);
         }
+
+        logger.debug("Nested conversion UserViewModel to UserEntity completed.");
         return userEntity;
     }
 

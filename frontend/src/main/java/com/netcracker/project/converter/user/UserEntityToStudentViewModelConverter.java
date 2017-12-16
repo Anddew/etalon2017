@@ -7,11 +7,14 @@ import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
 import com.netcracker.project.entity.user.student.PracticeStatus;
 import com.netcracker.project.entity.user.student.StudentEntity;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
 public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, StudentViewModel> {
+
+    private Logger logger = Logger.getLogger(UserEntityToStudentViewModelConverter.class.getSimpleName());
 
     @Autowired
     private ConversionService conversionService;
@@ -19,7 +22,7 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
     @Override
     public StudentViewModel convert(UserEntity userEntity) {
         StudentViewModel studentViewModel = new StudentViewModel();
-        setUserFields(studentViewModel, userEntity);
+        convert(studentViewModel, userEntity);
 
         StudentEntity studentEntity = userEntity.getStudentInfo();
         EducationForm educationForm = studentEntity.getEducationForm();
@@ -40,6 +43,8 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
         if(practiceStatus != null) {
             studentViewModel.setPracticeStatus(practiceStatus.getDescription());
         }
+
+        logger.debug("Conversion UserEntity to StudentViewModel completed.");
         return studentViewModel;
     }
 

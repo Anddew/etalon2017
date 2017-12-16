@@ -5,7 +5,8 @@ import com.netcracker.project.exception.RegistrationException;
 import com.netcracker.project.security.Encrypter;
 import com.netcracker.project.servicefront.UserRegistrationService;
 import com.netcracker.project.service.UserService;
-import com.netcracker.project.validation.Validator;
+import com.netcracker.project.validation.UserValidator;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,8 @@ import java.util.Map;
 @Component
 public abstract class UserRegistrationServiceImpl implements UserRegistrationService {
 
+    private Logger logger = Logger.getLogger(UserRegistrationServiceImpl.class.getSimpleName());
+
     private static final String EMAIL_PARAMETER_NAME = "email";
     private static final String FIRST_NAME_PARAMETER_NAME = "firstname";
     private static final String LAST_NAME_PARAMETER_NAME = "lastname";
@@ -25,7 +28,7 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
     private static final String USER_VALIDATION_ERROR_MESSAGE = "Cannot register user. Input data isn`t correct.";
 
     @Autowired
-    protected Validator validator;
+    protected UserValidator validator;
 
     @Autowired
     protected ConversionService conversionService;
@@ -38,7 +41,8 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
-        if(!validator.validateUserRegistration(userParameters)) {
+        if(!validator.validateUserFields(userParameters)) {
+            logger.warn("User fields validation failed.");
             throw new RegistrationException(USER_VALIDATION_ERROR_MESSAGE);
         }
         user.setUsername(userParameters.get(USERNAME_PARAMETER_NAME));
@@ -47,6 +51,7 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
         user.setEmail(userParameters.get(EMAIL_PARAMETER_NAME));
         user.setFirstName(userParameters.get(FIRST_NAME_PARAMETER_NAME));
         user.setLastName(userParameters.get(LAST_NAME_PARAMETER_NAME));
+        logger.info("User parameters successfully added.");
     }
 
 

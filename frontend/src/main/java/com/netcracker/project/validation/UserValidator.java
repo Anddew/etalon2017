@@ -1,12 +1,15 @@
 package com.netcracker.project.validation;
 
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.regex.Pattern;
 
 @Component
-public class Validator {
+public class UserValidator {
+
+    private Logger logger = Logger.getLogger(UserValidator.class.getSimpleName());
 
     private static final String USERNAME_USER_PARAMETER = "username";
     private static final String PASSWORD_USER_PARAMETER = "password";
@@ -39,6 +42,7 @@ public class Validator {
         if(password == null || repeatPassword == null) {
             return false;
         }
+        logger.debug("Password repeating validation success.");
         return password.equals(repeatPassword);
     }
 
@@ -62,7 +66,7 @@ public class Validator {
         return textFieldPattern.matcher(facultyName).matches();
     }
 
-    public boolean validateUserRegistration(Map<String,String> userParameters) {
+    public boolean validateUserFields(Map<String,String> userParameters) {
         if(!validateUsername(userParameters.get(USERNAME_USER_PARAMETER))) {
             return false;
         }
@@ -78,27 +82,31 @@ public class Validator {
         if(!validateTextField(userParameters.get(LAST_NAME_PARAMETER_NAME))) {
             return false;
         }
+        logger.debug("User fields validation success.");
         return true;
     }
 
-    public boolean validateStudentRegistration(Map<String,String> userParameters) {
+    public boolean validateStudentFields(Map<String,String> userParameters) {
         if(!validateGroupNumber(userParameters.get(GROUP_NUMBER_PARAMETER_NAME))) {
             return false;
         }
+        logger.debug("Student user fields validation success.");
         return true;
     }
 
-    public boolean validateHeadFromCompanyRegistration(Map<String,String> userParameters) {
+    public boolean validateHeadFromCompanyFields(Map<String,String> userParameters) {
         if(!validateCompanyName(userParameters.get(COMPANY_PARAMETER_NAME))) {
             return false;
         }
+        logger.debug("Head from company user fields validation success.");
         return true;
     }
 
-    public boolean validateHeadFromUniversityRegistration(Map<String,String> userParameters) {
+    public boolean validateHeadFromUniversityFields(Map<String,String> userParameters) {
         if(!validateFacultyName(userParameters.get(FACULTY_PARAMETER_NAME))) {
             return false;
         }
+        logger.debug("Head from university user fields validation success.");
         return true;
     }
 

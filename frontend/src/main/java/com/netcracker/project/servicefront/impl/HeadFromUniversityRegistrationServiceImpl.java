@@ -5,6 +5,7 @@ import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.exception.RegistrationException;
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -12,13 +13,16 @@ import java.util.Map;
 @Service
 public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationServiceImpl {
 
+    private Logger logger = Logger.getLogger(HeadFromUniversityRegistrationServiceImpl.class.getSimpleName());
+
     private static final String HEAD_FROM_UNIVERSITY_VALIDATION_ERROR_MESSAGE = "Cannot register head from university user. Input data isn`t correct.";
 
     private static final String FACULTY_PARAMETER_NAME = "faculty";
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
-        if(!validator.validateHeadFromUniversityRegistration(userParameters)) {
+        if(!validator.validateHeadFromUniversityFields(userParameters)) {
+            logger.warn("Head from university user validation failed.");
             throw new RegistrationException(HEAD_FROM_UNIVERSITY_VALIDATION_ERROR_MESSAGE);
         }
         super.register(user, userParameters);
@@ -28,6 +32,7 @@ public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationS
         headFromUniversity.setFaculty(faculty);
         UserEntity userEntity = conversionService.convert(headFromUniversity, UserEntity.class);
         userService.addUser(userEntity);
+        logger.info("Head from university user have been successfully registered.");
     }
 
 }

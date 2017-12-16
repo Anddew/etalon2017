@@ -5,6 +5,7 @@ import com.netcracker.project.converter.user.UserEntityToAdminViewModelConverter
 import com.netcracker.project.converter.user.UserEntityToStudentViewModelConverter;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.service.UserService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -18,6 +19,8 @@ import java.util.Set;
 
 @Controller
 public class UserController {
+
+    private Logger logger = Logger.getLogger(UserController.class.getSimpleName());
 
     @Autowired
     private ConversionService conversionService;
@@ -34,27 +37,27 @@ public class UserController {
     @RequestMapping(value = "/students", method = RequestMethod.GET)
     @ResponseBody
     public List<StudentViewModel> getAllStudents() {
-        System.out.println("/student do!");
         List<UserEntity> users = userService.findAllStudents();
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
+        logger.debug("Show all students.");
         return students;
     }
 
     @RequestMapping(value = "/heads-company", method = RequestMethod.GET)
     @ResponseBody
     public List<HeadFromCompanyViewModel> getAllHeadsFromCompany() {
-        System.out.println("/heads-company do!");
         List<UserEntity> users = userService.findAllHeadsFromCompany();
         List<HeadFromCompanyViewModel> headsFromCompany = (List<HeadFromCompanyViewModel>) conversionService.convert(users, userEntityTypeDescriptor, headFromCompanyViewModelTypeDescriptor);
+        logger.debug("Show all heads from companies.");
         return headsFromCompany;
     }
 
     @RequestMapping(value = "/heads-university", method = RequestMethod.GET)
     @ResponseBody
     public List<HeadFromUniversityViewModel> getAllHeadsFromUniversity() {
-        System.out.println("/heads-university do!");
         List<UserEntity> users = userService.findAllHeadsFromUniversity();
         List<HeadFromUniversityViewModel> headsFromUniversity = (List<HeadFromUniversityViewModel>) conversionService.convert(users, userEntityTypeDescriptor, headFromUniversityViewModelTypeDescriptor);
+        logger.debug("Show all heads from universities.");
         return headsFromUniversity;
     }
 
@@ -63,10 +66,8 @@ public class UserController {
     public List<AdminViewModel> getAllAdmins() {
         List<UserEntity> users = userService.findAllAdmins();
         List<AdminViewModel> admins = (List<AdminViewModel>) conversionService.convert(users, userEntityTypeDescriptor, adminViewModelTypeDescriptor);
+        logger.debug("Show all admins.");
         return admins;
     }
-
-
-
 
 }

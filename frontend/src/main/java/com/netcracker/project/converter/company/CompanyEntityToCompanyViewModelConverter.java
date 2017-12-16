@@ -1,10 +1,14 @@
 package com.netcracker.project.converter.company;
 
 import com.netcracker.project.bean.company.CompanyViewModel;
+import com.netcracker.project.controller.UserController;
 import com.netcracker.project.entity.company.CompanyEntity;
+import org.apache.log4j.Logger;
 import org.springframework.core.convert.converter.Converter;
 
 public class CompanyEntityToCompanyViewModelConverter implements Converter<CompanyEntity, CompanyViewModel> {
+
+    private Logger logger = Logger.getLogger(CompanyEntityToCompanyViewModelConverter.class.getSimpleName());
 
     @Override
     public CompanyViewModel convert(CompanyEntity companyEntity) {
@@ -17,6 +21,7 @@ public class CompanyEntityToCompanyViewModelConverter implements Converter<Compa
         if(name != null) {
             companyViewModel.setName(name);
         }
+        logger.debug("Conversion CompanyEntity to CompanyViewModel completed.");
         return companyViewModel;
     }
 

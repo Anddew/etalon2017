@@ -4,11 +4,14 @@ import com.netcracker.project.bean.university.FacultyViewModel;
 import com.netcracker.project.bean.university.SpecialityViewModel;
 import com.netcracker.project.entity.university.FacultyEntity;
 import com.netcracker.project.entity.university.SpecialityEntity;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
 public class SpecialityViewModelToSpecialityEntityConverter implements Converter<SpecialityViewModel, SpecialityEntity> {
+
+    private Logger logger = Logger.getLogger(SpecialityEntityToSpecialityViewModelConverter.class.getSimpleName());
 
     @Autowired
     private ConversionService conversionService;
@@ -25,6 +28,7 @@ public class SpecialityViewModelToSpecialityEntityConverter implements Converter
             specialityEntity.setName(name);
         }
         specialityEntity.setFaculty(conversionService.convert(specialityViewModel.getFaculty(), FacultyEntity.class));
+        logger.debug("Conversion SpecialityViewModel to SpecialityEntity completed.");
         return specialityEntity;
     }
 

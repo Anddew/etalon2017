@@ -6,6 +6,7 @@ import com.netcracker.project.entity.practice.RequestStatus;
 import com.netcracker.project.entity.university.FacultyEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -14,6 +15,7 @@ import java.sql.Date;
 
 public class RequestViewModelToRequestEntityConverter implements Converter<RequestViewModel, RequestEntity> {
 
+    private Logger logger = Logger.getLogger(RequestViewModelToRequestEntityConverter.class.getSimpleName());
 
     @Autowired
     private ConversionService conversionService;
@@ -54,6 +56,7 @@ public class RequestViewModelToRequestEntityConverter implements Converter<Reque
         if(educationForm != null) {
             requestEntity.setEducationForm(EducationForm.valueOf(educationForm));
         }
+        logger.debug("Conversion RequestViewModel to RequestEntity completed.");
         return requestEntity;
     }
 

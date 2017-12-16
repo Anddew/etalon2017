@@ -9,6 +9,7 @@ import com.netcracker.project.entity.university.UniversityEntity;
 import com.netcracker.project.service.FacultyService;
 import com.netcracker.project.service.SpecialityService;
 import com.netcracker.project.service.UniversityService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -20,6 +21,8 @@ import java.util.List;
 
 @Controller
 public class UniversityController {
+
+    private Logger logger = Logger.getLogger(UniversityController.class.getSimpleName());
 
     @Autowired
     private ConversionService conversionService;
@@ -35,6 +38,7 @@ public class UniversityController {
     public UniversityViewModel getUniversityById(@PathVariable String universityId) {
         int id = Integer.parseInt(universityId);
         UniversityEntity university = universityService.getUniversityById(id);
+        logger.debug("Show university id=" + universityId);
         return conversionService.convert(university, UniversityViewModel.class);
     }
 
@@ -49,6 +53,7 @@ public class UniversityController {
     @ResponseBody
     public List<UniversityViewModel> getAllUniversities() {
         List<UniversityEntity> universities = universityService.getAllUniversities();
+        logger.debug("Show all universities.");
         return (List<UniversityViewModel>) conversionService.convert(universities, universityEntityTypeDescriptor, universityViewModelTypeDescriptor);
     }
 

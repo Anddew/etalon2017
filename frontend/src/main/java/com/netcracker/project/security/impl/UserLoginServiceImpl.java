@@ -1,6 +1,7 @@
 package com.netcracker.project.security.impl;
 
 import com.netcracker.project.security.UserLoginService;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
 
+    private Logger logger = Logger.getLogger(UserLoginServiceImpl.class.getSimpleName());
+
     @Autowired
     @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
@@ -24,8 +27,9 @@ public class UserLoginServiceImpl implements UserLoginService {
     public void authenticateUserAndSetSession(String username, String password, HttpServletRequest request, HttpServletResponse response) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         token.setDetails(new WebAuthenticationDetails(request));
-        Authentication authenticatedUser = authenticationManager.authenticate( token );
+        Authentication authenticatedUser = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+        logger.debug("Authentication and setting session completed for user '" + username + "'.");
     }
 
 }
