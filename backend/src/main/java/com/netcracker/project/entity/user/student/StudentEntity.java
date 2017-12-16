@@ -12,7 +12,7 @@ import java.util.Set;
 @Table(name = "student", schema = "netcrackerappdb")
 public class StudentEntity {
 
-    private int id;
+    private int studentId;
     private EducationForm educationForm;
     private SpecialityEntity speciality;
     private int groupNumber;
@@ -24,12 +24,12 @@ public class StudentEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    public int getStudentId() {
+        return studentId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStudentId(int id) {
+        this.studentId = id;
     }
 
     @Enumerated(EnumType.STRING)
@@ -111,7 +111,7 @@ public class StudentEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StudentEntity that = (StudentEntity) o;
-        return id == that.id &&
+        return studentId == that.studentId &&
                 groupNumber == that.groupNumber &&
                 Objects.equals(avgScore, that.avgScore) &&
                 Objects.equals(requiredJob, that.requiredJob);
@@ -119,13 +119,13 @@ public class StudentEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, groupNumber, avgScore, requiredJob);
+        return Objects.hash(studentId, groupNumber, avgScore, requiredJob);
     }
 
     @Override
     public String toString() {
         return "StudentEntity{" +
-                "id=" + id +
+                "id=" + studentId +
                 ", educationForm=" + educationForm +
                 ", speciality=" + speciality +
                 ", groupNumber=" + groupNumber +
@@ -134,6 +134,5 @@ public class StudentEntity {
                 ", practiceStatus=" + practiceStatus +
                 '}';
     }
-
 
 }

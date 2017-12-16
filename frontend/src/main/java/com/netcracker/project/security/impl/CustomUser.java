@@ -1,15 +1,19 @@
 package com.netcracker.project.security.impl;
 
+import org.apache.log4j.Logger;
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class CustomUser implements UserDetails, CredentialsContainer {
 
     private static final long serialVersionUID = 410L;
+
+    private Logger logger = Logger.getLogger(CustomUser.class.getSimpleName());
 
     private String password;
     private String username;
@@ -21,7 +25,6 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
 
 
     public CustomUser() {
-
     }
 
     public CustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -38,6 +41,7 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
             this.accountNonLocked = accountNonLocked;
             this.authorities = (List<GrantedAuthority>) authorities;
         } else {
+            logger.warn("Illegal value of username of password.");
             throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
         }
     }
@@ -111,6 +115,26 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CustomUser that = (CustomUser) o;
+        return enabled == that.enabled &&
+                accountNonExpired == that.accountNonExpired &&
+                accountNonLocked == that.accountNonLocked &&
+                credentialsNonExpired == that.credentialsNonExpired &&
+                Objects.equals(logger, that.logger) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(authorities, that.authorities);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), logger, password, username, authorities, enabled, accountNonExpired, accountNonLocked, credentialsNonExpired);
+    }
+
+    @Override
     public String toString() {
         return "CustomUser{" +
                 "password='" + password + '\'' +
@@ -122,4 +146,5 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
                 ", credentialsNonExpired=" + credentialsNonExpired +
                 '}';
     }
+
 }

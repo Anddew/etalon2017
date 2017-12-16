@@ -26,6 +26,11 @@ public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEn
         UserEntity userEntity = super.convert(studentViewModel);
 
         StudentEntity studentEntity = new StudentEntity();
+
+        String studentId = studentViewModel.getStudentId();
+        if(studentId != null) {
+            studentEntity.setStudentId(Integer.parseInt(studentId));
+        }
         String educationForm = studentViewModel.getEducationForm();
         if(educationForm != null) {
             studentEntity.setEducationForm(EducationForm.valueOf(educationForm));

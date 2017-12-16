@@ -1,13 +1,8 @@
 package com.netcracker.project.controller;
 
 import com.netcracker.project.bean.university.FacultyViewModel;
-import com.netcracker.project.bean.university.SpecialityViewModel;
-import com.netcracker.project.bean.university.UniversityViewModel;
 import com.netcracker.project.entity.university.FacultyEntity;
-import com.netcracker.project.entity.university.SpecialityEntity;
-import com.netcracker.project.entity.university.UniversityEntity;
 import com.netcracker.project.service.FacultyService;
-import com.netcracker.project.service.UniversityService;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;

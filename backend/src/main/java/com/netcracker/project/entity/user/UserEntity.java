@@ -12,7 +12,7 @@ import java.util.Objects;
 @Table(name = "user", schema = "netcrackerappdb")
 public class UserEntity {
 
-    private int id;
+    private int userId;
     private UserRole role;
     private String username;
     private String password;
@@ -27,12 +27,12 @@ public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    public int getId() {
-        return id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Enumerated(EnumType.STRING)
@@ -139,7 +139,7 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return id == that.id &&
+        return userId == that.userId &&
                 Objects.equals(username, that.username) &&
                 Objects.equals(password, that.password) &&
                 Objects.equals(email, that.email) &&
@@ -150,13 +150,13 @@ public class UserEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, email, createTime, firstName, lastName);
+        return Objects.hash(userId, username, password, email, createTime, firstName, lastName);
     }
 
     @Override
     public String toString() {
         return "UserEntity{" +
-                "id=" + id +
+                "id=" + userId +
                 ", role=" + role +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

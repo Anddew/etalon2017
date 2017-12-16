@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "faculty", schema = "netcrackerappdb")
 public class FacultyEntity {
+
     private int id;
     private String name;
     private UniversityEntity university;

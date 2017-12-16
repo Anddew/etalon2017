@@ -13,9 +13,9 @@ public abstract class UserViewModelToUserEntityConverter {
 
     public UserEntity convert(UserViewModel userViewModel) {
         UserEntity userEntity = new UserEntity();
-        String id = userViewModel.getId();
+        String id = userViewModel.getUserId();
         if(id != null) {
-            userEntity.setId(Integer.parseInt(id));
+            userEntity.setUserId(Integer.parseInt(id));
         }
         String role = userViewModel.getRole().toString().toUpperCase();
         if(role != null) {

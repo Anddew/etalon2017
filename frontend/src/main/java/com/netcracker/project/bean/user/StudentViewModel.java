@@ -3,9 +3,13 @@ package com.netcracker.project.bean.user;
 import com.netcracker.project.bean.university.SpecialityViewModel;
 import com.netcracker.project.entity.user.UserRole;
 
+import java.util.Objects;
+
 public class StudentViewModel extends UserViewModel {
 
-    private String id;
+    private static final long serialVersionUID = -5030508116953769658L;
+
+    private String studentId;
     private String educationForm;
     private SpecialityViewModel speciality;
     private String groupNumber;
@@ -13,14 +17,12 @@ public class StudentViewModel extends UserViewModel {
     private String requiredJob;
     private String practiceStatus;
 
-    @Override
-    public String getId() {
-        return id;
+    public String getStudentId() {
+        return studentId;
     }
 
-    @Override
-    public void setId(String id) {
-        this.id = id;
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 
     public String getEducationForm() {
@@ -77,9 +79,28 @@ public class StudentViewModel extends UserViewModel {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StudentViewModel that = (StudentViewModel) o;
+        return  Objects.equals(studentId, that.studentId) &&
+                Objects.equals(educationForm, that.educationForm) &&
+                Objects.equals(speciality, that.speciality) &&
+                Objects.equals(groupNumber, that.groupNumber) &&
+                Objects.equals(avgScore, that.avgScore) &&
+                Objects.equals(requiredJob, that.requiredJob) &&
+                Objects.equals(practiceStatus, that.practiceStatus);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), studentId, educationForm, speciality, groupNumber, avgScore, requiredJob, practiceStatus);
+    }
+
+    @Override
     public String toString() {
         return "StudentViewModel{" +
-                "id='" + id + '\'' +
+                "studentId='" + studentId + '\'' +
                 ", educationForm='" + educationForm + '\'' +
                 ", speciality=" + speciality +
                 ", groupNumber='" + groupNumber + '\'' +
@@ -88,4 +109,5 @@ public class StudentViewModel extends UserViewModel {
                 ", practiceStatus='" + practiceStatus + '\'' +
                 "} " + super.toString();
     }
+
 }

@@ -5,6 +5,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "university", schema = "netcrackerappdb")
 public class UniversityEntity {
+
     private int id;
     private String name;
 
@@ -53,6 +54,5 @@ public class UniversityEntity {
     public String toString() {
         return name;
     }
-
 
 }

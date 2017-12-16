@@ -141,4 +141,19 @@ public class RequestEntity {
         return Objects.hash(id, studentRequiredCount, minAvgScore, dateStart, dateEnd);
     }
 
+    @Override
+    public String toString() {
+        return "RequestEntity{" +
+                "id=" + id +
+                ", status=" + status +
+                ", faculty=" + faculty +
+                ", studentRequiredCount=" + studentRequiredCount +
+                ", minAvgScore=" + minAvgScore +
+                ", hireCondition=" + hireCondition +
+                ", dateStart=" + dateStart +
+                ", dateEnd=" + dateEnd +
+                ", educationForm=" + educationForm +
+                '}';
+    }
+
 }

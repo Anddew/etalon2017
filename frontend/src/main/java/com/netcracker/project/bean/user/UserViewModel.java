@@ -3,25 +3,28 @@ package com.netcracker.project.bean.user;
 import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.security.impl.CustomUser;
 
+import java.util.Objects;
+
 
 public abstract class UserViewModel extends CustomUser {
 
-    private String id;
+    private static final long serialVersionUID = -7262052903432757865L;
+
+    private String userId;
     private String email;
     private String createTime;
     private String firstName;
     private String lastName;
 
     public UserViewModel() {
-
     }
 
-    public String getId() {
-        return id;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getEmail() {
@@ -59,9 +62,26 @@ public abstract class UserViewModel extends CustomUser {
     public abstract UserRole getRole();
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        UserViewModel that = (UserViewModel) o;
+        return Objects.equals(userId, that.userId) &&
+                Objects.equals(email, that.email) &&
+                Objects.equals(createTime, that.createTime) &&
+                Objects.equals(firstName, that.firstName) &&
+                Objects.equals(lastName, that.lastName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), userId, email, createTime, firstName, lastName);
+    }
+
+    @Override
     public String toString() {
         return "UserViewModel{" +
-                "id='" + id + '\'' +
+                "userId='" + userId + '\'' +
                 ", email='" + email + '\'' +
                 ", createTime='" + createTime + '\'' +
                 ", firstName='" + firstName + '\'' +

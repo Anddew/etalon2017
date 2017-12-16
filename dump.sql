@@ -25,12 +25,12 @@ DROP TABLE IF EXISTS `admins`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admins` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `user_name` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
   `email` varchar(25) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `admins_id_uindex` (`id`),
+  PRIMARY KEY (`userId`),
+  UNIQUE KEY `admins_id_uindex` (`userId`),
   UNIQUE KEY `admins_user_name_uindex` (`user_name`),
   UNIQUE KEY `admins_email_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -53,9 +53,9 @@ DROP TABLE IF EXISTS company;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `companies` (
-  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`userId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -77,13 +77,13 @@ DROP TABLE IF EXISTS faculty;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `faculties` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `university_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `fk_university_idx` (`university_id`),
-  CONSTRAINT `fk_university` FOREIGN KEY (`university_id`) REFERENCES university (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_university` FOREIGN KEY (`university_id`) REFERENCES university (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -105,7 +105,7 @@ DROP TABLE IF EXISTS `headsfromcompany`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `headsfromcompany` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(16) NOT NULL,
   `password` varchar(32) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -113,11 +113,11 @@ CREATE TABLE `headsfromcompany` (
   `first_name` varchar(45) NOT NULL,
   `last_name` varchar(45) NOT NULL,
   `company_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `company_idx` (`company_id`),
-  CONSTRAINT `fk_companies` FOREIGN KEY (`company_id`) REFERENCES company (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_companies` FOREIGN KEY (`company_id`) REFERENCES company (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -138,7 +138,7 @@ DROP TABLE IF EXISTS `headsfromuniversity`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `headsfromuniversity` (
-  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `user_name` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
   `email` varchar(25) NOT NULL,
@@ -146,7 +146,7 @@ CREATE TABLE `headsfromuniversity` (
   `first_name` varchar(15) DEFAULT NULL,
   `last_name` varchar(15) DEFAULT NULL,
   `faculty_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `headfromuniversity_user_name_uindex` (`user_name`),
   UNIQUE KEY `headfromuniversity_email_uindex` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -169,7 +169,7 @@ DROP TABLE IF EXISTS request;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requests` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `check_status` tinyint(1) NOT NULL,
   `student_required_count` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
@@ -178,9 +178,9 @@ CREATE TABLE `requests` (
   `date_start` date NOT NULL,
   `date_end` date NOT NULL,
   `education_form` enum('FULL_TIME','PART_TIME','DISTANCE') DEFAULT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   KEY `faculty_id_idx` (`faculty_id`),
-  CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES faculty (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `faculty_id` FOREIGN KEY (`faculty_id`) REFERENCES faculty (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -228,13 +228,13 @@ DROP TABLE IF EXISTS speciality;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `specialities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `faculty_id` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `fk_faculty_idx` (`faculty_id`),
-  CONSTRAINT `fk_faculty` FOREIGN KEY (`faculty_id`) REFERENCES faculty (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `fk_faculty` FOREIGN KEY (`faculty_id`) REFERENCES faculty (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -256,7 +256,7 @@ DROP TABLE IF EXISTS user;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `students` (
-  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   `user_name` varchar(15) NOT NULL,
   `password` varchar(15) NOT NULL,
   `email` varchar(25) NOT NULL,
@@ -269,24 +269,18 @@ CREATE TABLE `students` (
   `avg_score` double NOT NULL,
   `required_job` tinyint(1) NOT NULL,
   `practice_status` enum('Available','Waiting','On practice') NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `students_user_name_uindex` (`user_name`),
   UNIQUE KEY `students_password_uindex` (`password`),
   UNIQUE KEY `students_email_uindex` (`email`),
   KEY `speciality_id_idx` (`speciality_id`),
-  CONSTRAINT `speciality_id` FOREIGN KEY (`speciality_id`) REFERENCES speciality (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `speciality_id` FOREIGN KEY (`speciality_id`) REFERENCES speciality (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
 -- Dumping data for table `students`
 --
-
-LOCK TABLES user WRITE;
-/*!40000 ALTER TABLE user DISABLE KEYS */;
-INSERT INTO user VALUES (1,'ivanov','ivanov','ivanov@mail.ru',NULL,'Ivan','Ivanov','Full-Time',26,880290,8.2,1,'Available');
-/*!40000 ALTER TABLE user ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `universities`
@@ -296,9 +290,9 @@ DROP TABLE IF EXISTS university;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `universities` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
+  PRIMARY KEY (`userId`),
   UNIQUE KEY `name_UNIQUE` (`name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;

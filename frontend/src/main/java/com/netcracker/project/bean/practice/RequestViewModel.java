@@ -2,6 +2,8 @@ package com.netcracker.project.bean.practice;
 
 import com.netcracker.project.bean.university.FacultyViewModel;
 
+import java.util.Objects;
+
 public class RequestViewModel {
 
     private String id;
@@ -85,6 +87,42 @@ public class RequestViewModel {
 
     public void setEducationForm(String educationForm) {
         this.educationForm = educationForm;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        RequestViewModel that = (RequestViewModel) o;
+        return Objects.equals(id, that.id) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(faculty, that.faculty) &&
+                Objects.equals(studentRequiredCount, that.studentRequiredCount) &&
+                Objects.equals(minAvgScore, that.minAvgScore) &&
+                Objects.equals(hireCondition, that.hireCondition) &&
+                Objects.equals(dateStart, that.dateStart) &&
+                Objects.equals(dateEnd, that.dateEnd) &&
+                Objects.equals(educationForm, that.educationForm);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, status, faculty, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm);
+    }
+
+    @Override
+    public String toString() {
+        return "RequestViewModel{" +
+                "id='" + id + '\'' +
+                ", status='" + status + '\'' +
+                ", faculty=" + faculty +
+                ", studentRequiredCount='" + studentRequiredCount + '\'' +
+                ", minAvgScore='" + minAvgScore + '\'' +
+                ", hireCondition='" + hireCondition + '\'' +
+                ", dateStart='" + dateStart + '\'' +
+                ", dateEnd='" + dateEnd + '\'' +
+                ", educationForm='" + educationForm + '\'' +
+                '}';
     }
 
 }
