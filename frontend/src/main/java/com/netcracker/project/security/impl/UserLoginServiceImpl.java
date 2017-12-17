@@ -9,8 +9,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetails;
+import org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -23,12 +25,19 @@ public class UserLoginServiceImpl implements UserLoginService {
     @Qualifier("authenticationManager")
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenBasedRememberMeServices rememberMeServices;
 
-    public void authenticateUserAndSetSession(String username, String password, HttpServletRequest request, HttpServletResponse response) {
+
+    public void authenticateUserAndSetSession(String username, String password, String rememberMe, HttpServletRequest request, HttpServletResponse response) {
         UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username, password);
         token.setDetails(new WebAuthenticationDetails(request));
         Authentication authenticatedUser = authenticationManager.authenticate(token);
         SecurityContextHolder.getContext().setAuthentication(authenticatedUser);
+        if(Boolean.valueOf(rememberMe)) {
+            logger.debug("Set remember me cookie for successfully authenticated user '" + username +"'.");
+            rememberMeServices.onLoginSuccess(request, response, authenticatedUser);
+        }
         logger.debug("Authentication and setting session completed for user '" + username + "'.");
     }
 

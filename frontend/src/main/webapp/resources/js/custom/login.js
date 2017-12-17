@@ -4,85 +4,65 @@ $(document).ready(function () {
         BTN_SUBMIT_REGISTER: '.jsSubmitLogin',
         INPUT_USERNAME: '.jsUsername',
         INPUT_PASSWORD: '.jsPassword',
+        INPUT_REMEMBER_ME: '.jsRememberMe',
+
+        NOTIFICATION_USERNAME_ERROR: '.jsUsernameNotification',
+        NOTIFICATION_PASSWORD_ERROR: '.jsPasswordNotification',
         NOTIFICATION_SERVER_ERROR: '.jsCredentialsIncorrectNotification',
-        NOTIFICATION_INCORRECT_INPUT: '.jsInputIncorrectNotification',
-        BTN_SUBMIT_PRINT: '.jsPrintOnClick',
-        CONTAINER_DATA_USING_AJAX_PRINT: 'jsPrint'
+        NOTIFICATION_INCORRECT_INPUT: '.jsInputIncorrectNotification'
         };
 
     var
         $submitButton = $(ELEMENTS.BTN_SUBMIT_REGISTER),
         $usernameField = $(ELEMENTS.INPUT_USERNAME),
         $passwordField = $(ELEMENTS.INPUT_PASSWORD),
+        $rememberMeField = $(ELEMENTS.INPUT_REMEMBER_ME),
+
+        $usernameErrorNotification = $(ELEMENTS.NOTIFICATION_USERNAME_ERROR),
+        $passwordErrorNotification = $(ELEMENTS.NOTIFICATION_PASSWORD_ERROR),
         $credentialNotification = $(ELEMENTS.NOTIFICATION_SERVER_ERROR),
-        $incorrectInputNotification = $(ELEMENTS.NOTIFICATION_INCORRECT_INPUT),
-        usersContainer = $(ELEMENTS.CONTAINER_DATA_USING_AJAX),
-        $submitPrint = $(ELEMENTS.BTN_SUBMIT_PRINT),
-        printContainer = $(ELEMENTS.CONTAINER_DATA_USING_AJAX_PRINT)
+        $incorrectInputNotification = $(ELEMENTS.NOTIFICATION_INCORRECT_INPUT)
         ;
 
-    // $submitPrint.click(function (event) {
-    //     event.stopPropagation();
-    //
-    //     $.ajax({
-    //         url: 'students',
-    //         type: 'GET',
-    //         dataType: 'json',
-    //         contentType: "application/json",
-    //         mimeType: 'application/json',
-    //         data: '',
-    //         success: function (data) {
-    //             if (data) {
-    //                 printUsers(data);
-    //             }
-    //         }
-    //     });
-    //
-    //     function printUsers(students) {
-    //         students.some(function (student) {
-    //             printContainer.append('<span>' + student.studentId + ' | ' + student.username + ' | ' + student.email + '</span><br>')
-    //         });
-    //     }
-    //
-    // });
+    $usernameField.on('blur', function () {
+        !Validation.validateAlphanumericField($usernameField) ?
+            ($usernameErrorNotification.show(), Validation.switchButtons([$submitButton], false)) :
+            ($usernameErrorNotification.hide(), Validation.switchButtons([$submitButton], true));
+    });
 
+    $passwordField.on('blur', function () {
+        !Validation.validateAlphanumericField($passwordField) ?
+            ($passwordErrorNotification.show(), Validation.switchButtons([$submitButton], false)) :
+            ($passwordErrorNotification.hide(), Validation.switchButtons([$submitButton], true));
+    });
 
     $submitButton.click(function (event) {
         event.stopPropagation();
 
-        if(formValidation()) {
-            $.ajax({
-                url: 'login',
-                type: 'POST',
-                contentType: "application/json",
-                data: JSON.stringify({
-                    username: $usernameField.val(),
-                    password: $passwordField.val()
-                })
-                ,
-                success: function () {
-                    $credentialNotification.hide();
-                    $incorrectInputNotification.hide();
-                    window.location.href = "/home"
-                },
-                error: function (xhr, textStatus) {
-                    $incorrectInputNotification.hide();
-                    xhr.status == 401 ? $credentialNotification.show() : alert('Something went wrong, try again later.');
-                }
-            });
-        } else {
-            $credentialNotification.hide();
+        if(!Validation.validateOnEmpty([$usernameField, $passwordField])) {
             $incorrectInputNotification.show();
+            Validation.switchButtons([$submitButton], false);
+            return;
         }
 
+        $.ajax({
+            url: 'authorization',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({
+                username: $usernameField.val(),
+                password: $passwordField.val(),
+                rememberme: $rememberMeField.is(':checked')
+            })
+            ,
+            success: function () {
+                window.location.href = "/home"
+            },
+            error: function (xhr, textStatus) {
+                xhr.status == 401 ? $credentialNotification.show() : alert('Something went wrong, try again later.');
+            }
+        });
+
     });
-
-    function formValidation() {
-        return Validation.formValidation([
-            $usernameField,
-            $passwordField
-        ]);
-    }
-
 
 });

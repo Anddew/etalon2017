@@ -36,6 +36,7 @@ public class CustomUserDetailsService implements UserDetailsService {
         }
         List<GrantedAuthority> authorities = new ArrayList<>();
         authorities.add(new SimpleGrantedAuthority(user.getRole().toString()));
+        logger.debug("User '" + username + "' was loaded for authorization.");
         return new User(user.getUsername(), user.getPassword(), authorities);
     }
 

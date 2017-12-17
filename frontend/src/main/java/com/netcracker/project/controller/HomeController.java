@@ -24,7 +24,7 @@ public class HomeController {
         ModelAndView modelAndView = new ModelAndView();
         if (authentication != null) {
             modelAndView.setViewName(HOME_VIEW_PATH);
-            logger.debug("Show home page for authentificated user: " + ((Principal) authentication.getPrincipal()).getName());
+            logger.debug("Show home page for authentificated user: " + authentication.getName());
         } else {
             modelAndView.setViewName(ERROR_VIEW_PATH);
             logger.debug("Show error page for non-authentificated user.");

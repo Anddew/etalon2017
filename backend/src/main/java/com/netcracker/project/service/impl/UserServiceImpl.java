@@ -49,7 +49,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserEntity findById(int id) {
-        return userRepository.findById(id);
+        return userRepository.findByUserId(id);
     }
 
     @Override

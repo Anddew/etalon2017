@@ -8,13 +8,12 @@
     <beans:import resource="classpath:backend-spring-context.xml"/>
 
     <http use-expressions="true">
-        <form-login login-page="/login"
-                    login-processing-url="/login?ok"
-                    authentication-failure-url="/login?error"
-                    username-parameter="username"
-                    password-parameter="password"/>
+        <form-login login-page="/authorization"
+        />
         <logout logout-url="/logout"
-                logout-success-url="/login" />
+                logout-success-url="/authorization"
+                delete-cookies="JSESSIONID"/>
+        <remember-me services-ref="rememberMeServices" key="uniqueAndSecret" />
         <csrf disabled="true" />
         <access-denied-handler error-page="/jsp/error.jsp" />
         <intercept-url pattern="/login" access="permitAll()" />
@@ -25,9 +24,28 @@
         <intercept-url pattern="/students" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
         <intercept-url pattern="/practice" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
         <intercept-url pattern="/home" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
-        <!--<intercept-url pattern="/*" access="isAuthenticated()" />-->
     </http>
 
+    <beans:bean id="rememberMeServices"
+                class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+        <beans:constructor-arg name="userDetailsService" ref="customUserDetailsService" />
+        <beans:constructor-arg name="key" value="uniqueAndSecret" />
+        <beans:property name="tokenValiditySeconds" value="1209600" />
+        <!--<beans:property name="parameter" value="remember-me" />-->
+    </beans:bean>
+
+    <beans:bean id="rememberMeAuthenticationProvider"
+                class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+        <beans:constructor-arg name="key" value="uniqueAndSecret" />
+    </beans:bean>
+
+    <beans:bean id="rememberMeFilter"
+                class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+        <beans:constructor-arg name="authenticationManager" ref="authenticationManager" />
+        <beans:constructor-arg name="rememberMeServices" ref="rememberMeServices" />
+        <!--<beans:property name="rememberMeServices" ref="rememberMeServices" />-->
+        <!--<beans:property name="authenticationManager" ref="authenticationManager" />-->
+    </beans:bean>
 
     <authentication-manager alias="authenticationManager">
         <authentication-provider user-service-ref="customUserDetailsService">

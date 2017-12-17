@@ -5,6 +5,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public interface UserLoginService {
 
-    void authenticateUserAndSetSession(String username, String password, HttpServletRequest request, HttpServletResponse response);
+    void authenticateUserAndSetSession(String username, String password, String rememberMe, HttpServletRequest request, HttpServletResponse response);
 
 }
