@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
+import java.util.Optional;
+
 public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, StudentViewModel> {
 
     private Logger logger = Logger.getLogger(UserEntityToStudentViewModelConverter.class.getSimpleName());
@@ -25,8 +27,8 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
         convert(studentViewModel, userEntity);
 
         StudentEntity studentEntity = userEntity.getStudentInfo();
-        int studentId = studentEntity.getStudentId();
-        if(studentId != 0) {
+        Integer studentId = studentEntity.getStudentId();
+        if(studentId != null) {
             studentViewModel.setStudentId(String.valueOf(studentId));
         }
         EducationForm educationForm = studentEntity.getEducationForm();
@@ -34,12 +36,12 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
             studentViewModel.setEducationForm(educationForm.getDescription());
         }
         studentViewModel.setSpeciality(conversionService.convert(studentEntity.getSpeciality(), SpecialityViewModel.class));
-        int groupNumber = studentEntity.getGroupNumber();
-        if(groupNumber != 0) {
+        Integer groupNumber = studentEntity.getGroupNumber();
+        if(groupNumber != null) {
             studentViewModel.setGroupNumber(String.valueOf(groupNumber));
         }
-        double avgScore = studentEntity.getAvgScore();
-        if(avgScore !=0) {
+        Double avgScore = studentEntity.getAvgScore();
+        if(avgScore != null) {
             studentViewModel.setAvgScore(String.valueOf(avgScore));
         }
         studentViewModel.setRequiredJob(studentEntity.getRequiredJob() ? HireCondition.ACCEPT.toString() : HireCondition.DENY.toString());

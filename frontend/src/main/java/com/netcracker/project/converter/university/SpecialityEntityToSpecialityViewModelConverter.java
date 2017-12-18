@@ -18,8 +18,8 @@ public class SpecialityEntityToSpecialityViewModelConverter implements Converter
     @Override
     public SpecialityViewModel convert(SpecialityEntity specialityEntity) {
         SpecialityViewModel specialityViewModel = new SpecialityViewModel();
-        int id = specialityEntity.getId();
-        if(id != 0) {
+        Integer id = specialityEntity.getId();
+        if(id != null) {
             specialityViewModel.setId(String.valueOf(id));
         }
         String name = specialityEntity.getName();

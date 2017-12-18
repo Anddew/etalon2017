@@ -18,8 +18,8 @@ public class FacultyEntityToFacultyViewModelConverter implements Converter<Facul
     @Override
     public FacultyViewModel convert(FacultyEntity facultyEntity) {
         FacultyViewModel facultyViewModel = new FacultyViewModel();
-        int id = facultyEntity.getId();
-        if (id != 0) {
+        Integer id = facultyEntity.getId();
+        if (id != null) {
             facultyViewModel.setId(String.valueOf(id));
         }
         String name = facultyEntity.getName();

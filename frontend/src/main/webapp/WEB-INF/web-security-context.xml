@@ -31,20 +31,12 @@
         <beans:constructor-arg name="userDetailsService" ref="customUserDetailsService" />
         <beans:constructor-arg name="key" value="uniqueAndSecret" />
         <beans:property name="tokenValiditySeconds" value="1209600" />
-        <!--<beans:property name="parameter" value="remember-me" />-->
-    </beans:bean>
-
-    <beans:bean id="rememberMeAuthenticationProvider"
-                class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-        <beans:constructor-arg name="key" value="uniqueAndSecret" />
     </beans:bean>
 
     <beans:bean id="rememberMeFilter"
                 class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
         <beans:constructor-arg name="authenticationManager" ref="authenticationManager" />
         <beans:constructor-arg name="rememberMeServices" ref="rememberMeServices" />
-        <!--<beans:property name="rememberMeServices" ref="rememberMeServices" />-->
-        <!--<beans:property name="authenticationManager" ref="authenticationManager" />-->
     </beans:bean>
 
     <authentication-manager alias="authenticationManager">

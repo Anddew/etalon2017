@@ -13,8 +13,8 @@ public class CompanyEntityToCompanyViewModelConverter implements Converter<Compa
     @Override
     public CompanyViewModel convert(CompanyEntity companyEntity) {
         CompanyViewModel companyViewModel = new CompanyViewModel();
-        int id = companyEntity.getId();
-        if(id != 0) {
+        Integer id = companyEntity.getId();
+        if(id != null) {
             companyViewModel.setId(String.valueOf(id));
         }
         String name = companyEntity.getName();

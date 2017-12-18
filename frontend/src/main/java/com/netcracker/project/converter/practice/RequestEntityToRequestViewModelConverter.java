@@ -22,8 +22,8 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
     @Override
     public RequestViewModel convert(RequestEntity requestEntity) {
         RequestViewModel requestViewModel = new RequestViewModel();
-        int id = requestEntity.getId();
-        if(id != 0) {
+        Integer id = requestEntity.getId();
+        if(id != null) {
             requestViewModel.setId(String.valueOf(id));
         }
         RequestStatus status = requestEntity.getStatus();
@@ -31,12 +31,12 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
             requestViewModel.setStatus(status.getDescription());
         }
         requestViewModel.setFaculty(conversionService.convert(requestEntity.getFaculty(), FacultyViewModel.class));
-        int studentRequiredCount = requestEntity.getStudentRequiredCount();
-        if(studentRequiredCount != 0) {
+        Integer studentRequiredCount = requestEntity.getStudentRequiredCount();
+        if(studentRequiredCount != null) {
             requestViewModel.setStudentRequiredCount(String.valueOf(studentRequiredCount));
         }
-        double minAvgScore = requestEntity.getMinAvgScore();
-        if(minAvgScore != 0) {
+        Double minAvgScore = requestEntity.getMinAvgScore();
+        if(minAvgScore != null) {
             requestViewModel.setMinAvgScore(String.valueOf(minAvgScore));
         }
         String hireCondition = requestEntity.getHireCondition().getDescription();

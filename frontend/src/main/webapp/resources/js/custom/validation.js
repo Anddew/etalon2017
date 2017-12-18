@@ -3,7 +3,7 @@
     var $alphanumericPattern = /^[\w\d]{3,15}$/,
         $emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         $textPattern = /^[\w]{2,15}$/,
-        $groupNumberPattern = /^[\w\d][\w\d\-]{1,10}$/
+        $groupNumberPattern = /^[\d]{1,10}$/
     ;
 
     var Validation = {

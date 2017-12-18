@@ -12,8 +12,8 @@ public class UniversityEntityToUniversityViewModelConverter implements Converter
     @Override
     public UniversityViewModel convert(UniversityEntity universityEntity) {
         UniversityViewModel universityViewModel = new UniversityViewModel();
-        int id = universityEntity.getId();
-        if(id != 0) {
+        Integer id = universityEntity.getId();
+        if(id != null) {
             universityViewModel.setId(String.valueOf(id));
         }
         String name = universityEntity.getName();

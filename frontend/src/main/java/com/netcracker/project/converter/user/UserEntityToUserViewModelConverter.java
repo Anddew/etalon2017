@@ -11,8 +11,8 @@ public abstract class UserEntityToUserViewModelConverter {
     private Logger logger = Logger.getLogger(UserEntityToUserViewModelConverter.class.getSimpleName());
 
     public void convert(UserViewModel userViewModel, UserEntity userEntity) {
-        int id = userEntity.getUserId();
-        if(id != 0) {
+        Integer id = userEntity.getUserId();
+        if(id != null) {
             userViewModel.setUserId(String.valueOf(id));
         }
         String username = userEntity.getUsername();

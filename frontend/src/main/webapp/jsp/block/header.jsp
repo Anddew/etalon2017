@@ -17,8 +17,9 @@
             <div class="col-md-2">
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication var="user" property="principal"/>
-                    <h3>Hello, ${user.username}</h3>
+                    <h5>Hello, ${user.username}</h5>
                     <br/>
+                    <h6>Role - ${user.authorities}</h6>
                     <a href="/logout">Log out</a>
                 </sec:authorize>
             </div>
