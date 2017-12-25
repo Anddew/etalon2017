@@ -4,6 +4,7 @@ import com.netcracker.project.bean.company.CompanyViewModel;
 import com.netcracker.project.entity.company.CompanyEntity;
 import org.apache.log4j.Logger;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 public class CompanyViewModelToCompanyEntityConverter implements Converter<CompanyViewModel, CompanyEntity> {
 
@@ -13,11 +14,11 @@ public class CompanyViewModelToCompanyEntityConverter implements Converter<Compa
     public CompanyEntity convert(CompanyViewModel companyViewModel) {
         CompanyEntity companyEntity = new CompanyEntity();
         String id = companyViewModel.getId();
-        if(id != null) {
+        if(!StringUtils.isEmpty(id)) {
             companyEntity.setId(Integer.parseInt(id));
         }
         String name = companyViewModel.getName();
-        if(name != null) {
+        if(!StringUtils.isEmpty(name)) {
             companyEntity.setName(name);
         }
         logger.debug("Conversion CompanyViewModel to CompanyEntity completed.");

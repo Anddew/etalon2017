@@ -17,8 +17,12 @@ public interface UserService {
 
     UserEntity findById(int id);
 
+    UserEntity findStudent(int id);
+
     UserEntity findUserByUserName(String username);
 
     void addUser(UserEntity user);
+
+    UserEntity findStudentByUsername(String username);
 
 }

@@ -4,6 +4,7 @@ import com.netcracker.project.bean.university.UniversityViewModel;
 import com.netcracker.project.entity.university.UniversityEntity;
 import org.apache.log4j.Logger;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 public class UniversityViewModelToUniversityEntityConverter implements Converter<UniversityViewModel, UniversityEntity> {
 
@@ -13,11 +14,11 @@ public class UniversityViewModelToUniversityEntityConverter implements Converter
     public UniversityEntity convert(UniversityViewModel universityViewModel) {
         UniversityEntity universityEntity = new UniversityEntity();
         String id = universityViewModel.getId();
-        if(id != null) {
+        if(!StringUtils.isEmpty(id)) {
             universityEntity.setId(Integer.parseInt(id));
         }
         String name = universityViewModel.getName();
-        if(name != null) {
+        if(!StringUtils.isEmpty(name)) {
             universityEntity.setName(name);
         }
         logger.debug("Conversion UniversityViewModel to UniversityEntity completed.");

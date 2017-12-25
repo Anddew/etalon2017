@@ -45,31 +45,31 @@ public class RegisterController {
     public void register(@RequestBody Map<String,String> userParameters, HttpServletRequest request, HttpServletResponse response) {
         String roleParameter = userParameters.get(ROLE_PARAMETER_NAME);
         if(roleParameter == null) {
-            logger.warn("Request parameter 'role' is null. Response HTTP code 400 - Bad request.");
+            logger.debug("Request parameter 'role' is null. Response HTTP code 400 - Bad request.");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         UserRole role = UserRole.valueOf(roleParameter.toUpperCase());
         if(role == null) {
-            logger.warn("Request parameter 'role' is invalid, no matches. Response HTTP code 400 - Bad request.");
+            logger.debug("Request parameter 'role' is invalid, no matches. Response HTTP code 400 - Bad request.");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         UserRegistrationService userRegistrationService = userRegistrationServiceFactory.getRegistrationService(role);
         if(userRegistrationService == null) {
-            logger.warn("Cannot find registration service for this role - " + role.toString() + ". Response HTTP code 400 - Bad request.");
+            logger.debug("Cannot find registration service for this role - " + role.toString() + ". Response HTTP code 400 - Bad request.");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         UserViewModel userViewModel = UserViewModelFactory.getViewModel(role);
         if(userViewModel == null) {
-            logger.warn("Cannot find view model for this role - " + role.toString() + ". Response HTTP code 400 - Bad request.");
+            logger.debug("Cannot find view model for this role - " + role.toString() + ". Response HTTP code 400 - Bad request.");
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
             return;
         }
         try {
             userRegistrationService.register(userViewModel, userParameters);
-            logger.info("User registration successful.");
+            logger.debug("User registration successful.");
         } catch (RegistrationException e) {
             logger.error("Cannot register user. Response HTTP code 400 - Bad request.", e);
             response.setStatus(HttpServletResponse.SC_BAD_REQUEST);

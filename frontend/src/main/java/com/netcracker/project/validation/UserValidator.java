@@ -68,18 +68,23 @@ public class UserValidator {
 
     public boolean validateUserFields(Map<String,String> userParameters) {
         if(!validateUsername(userParameters.get(USERNAME_USER_PARAMETER))) {
+            logger.debug("User fields validation fails. Invalid username.");
             return false;
         }
         if(!validatePassword(userParameters.get(PASSWORD_USER_PARAMETER), userParameters.get(PASSWORD_REPEAT_PARAMETER_NAME))) {
+            logger.debug("User fields validation fails. Invalid password.");
             return false;
         }
         if(!validateEmail(userParameters.get(EMAIL_PARAMETER_NAME))) {
+            logger.debug("User fields validation fails. Invalid email.");
             return false;
         }
         if(!validateTextField(userParameters.get(FIRST_NAME_PARAMETER_NAME))) {
+            logger.debug("User fields validation fails. Invalid first name.");
             return false;
         }
         if(!validateTextField(userParameters.get(LAST_NAME_PARAMETER_NAME))) {
+            logger.debug("User fields validation fails. Invalid last name.");
             return false;
         }
         logger.debug("User fields validation success.");
@@ -88,6 +93,7 @@ public class UserValidator {
 
     public boolean validateStudentFields(Map<String,String> userParameters) {
         if(!validateGroupNumber(userParameters.get(GROUP_NUMBER_PARAMETER_NAME))) {
+            logger.debug("Student fields validation fails. Invalid group number.");
             return false;
         }
         logger.debug("Student user fields validation success.");
@@ -96,6 +102,7 @@ public class UserValidator {
 
     public boolean validateHeadFromCompanyFields(Map<String,String> userParameters) {
         if(!validateCompanyName(userParameters.get(COMPANY_PARAMETER_NAME))) {
+            logger.debug("Head from company fields validation fails. Invalid company name.");
             return false;
         }
         logger.debug("Head from company user fields validation success.");
@@ -104,6 +111,7 @@ public class UserValidator {
 
     public boolean validateHeadFromUniversityFields(Map<String,String> userParameters) {
         if(!validateFacultyName(userParameters.get(FACULTY_PARAMETER_NAME))) {
+            logger.debug("Head from university fields validation fails. Invalid faculty name.");
             return false;
         }
         logger.debug("Head from university user fields validation success.");

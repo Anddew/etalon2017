@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 public class FacultyViewModelToFacultyEntityConverter implements Converter<FacultyViewModel, FacultyEntity> {
 
@@ -24,7 +25,7 @@ public class FacultyViewModelToFacultyEntityConverter implements Converter<Facul
             facultyEntity.setId(Integer.parseInt(id));
         }
         String name = facultyViewModel.getName();
-        if(name != null) {
+        if(!StringUtils.isEmpty(name)) {
             facultyEntity.setName(name);
         }
         facultyEntity.setUniversity(conversionService.convert(facultyViewModel.getUniversity(), UniversityEntity.class));

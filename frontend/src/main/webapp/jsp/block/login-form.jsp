@@ -24,7 +24,7 @@
 <button type="submit" class="btn btn-primary jsSubmitLogin">Log in</button>
 <a href="register">Go register</a>
 <div class="alert alert-danger jsInputIncorrectNotification" role="alert" style="display: none">
-    Incorrect input. Check your input data.
+    Some fields are empty. Fill `em all!
 </div>
 <div class="alert alert-danger jsCredentialsIncorrectNotification" role="alert" style="display: none">
     No such user. Check your username and password.

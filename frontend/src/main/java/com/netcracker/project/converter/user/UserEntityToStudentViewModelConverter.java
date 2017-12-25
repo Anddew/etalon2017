@@ -44,7 +44,7 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
         if(avgScore != null) {
             studentViewModel.setAvgScore(String.valueOf(avgScore));
         }
-        studentViewModel.setRequiredJob(studentEntity.getRequiredJob() ? HireCondition.ACCEPT.toString() : HireCondition.DENY.toString());
+        studentViewModel.setRequiredJob(studentEntity.getRequiredJob() ? HireCondition.ACCEPT.getDescription() : HireCondition.DENY.getDescription());
         PracticeStatus practiceStatus = studentEntity.getPracticeStatus();
         if(practiceStatus != null) {
             studentViewModel.setPracticeStatus(practiceStatus.getDescription());

@@ -2,6 +2,7 @@ package com.netcracker.project.service.impl;
 
 import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.entity.user.UserEntity;
+import com.netcracker.project.entity.user.student.StudentEntity;
 import com.netcracker.project.repository.StudentRepository;
 import com.netcracker.project.repository.UserRepository;
 import com.netcracker.project.service.UserService;
@@ -53,13 +54,24 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity findStudent(int id) {
+        return userRepository.findStudentById(id);
+    }
+
+    @Override
     public UserEntity findUserByUserName(String username) {
         return userRepository.findByUsername(username);
     }
 
     @Override
     public void addUser(UserEntity user) {
+
         userRepository.save(user);
+    }
+
+    @Override
+    public UserEntity findStudentByUsername(String username) {
+        return userRepository.findByUsernameAndRole(username, UserRole.STUDENT);
     }
 
 }

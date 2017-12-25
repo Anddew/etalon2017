@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 public class SpecialityViewModelToSpecialityEntityConverter implements Converter<SpecialityViewModel, SpecialityEntity> {
 
@@ -20,11 +21,11 @@ public class SpecialityViewModelToSpecialityEntityConverter implements Converter
     public SpecialityEntity convert(SpecialityViewModel specialityViewModel) {
         SpecialityEntity specialityEntity = new SpecialityEntity();
         String id = specialityViewModel.getId();
-        if(id != null) {
+        if(!StringUtils.isEmpty(id)) {
             specialityEntity.setId(Integer.parseInt(id));
         }
         String name = specialityViewModel.getName();
-        if(name != null) {
+        if(!StringUtils.isEmpty(name)) {
             specialityEntity.setName(name);
         }
         specialityEntity.setFaculty(conversionService.convert(specialityViewModel.getFaculty(), FacultyEntity.class));

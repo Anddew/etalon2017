@@ -6,6 +6,7 @@ import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.PracticeStatus;
 import com.netcracker.project.exception.RegistrationException;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -30,7 +31,11 @@ public class StudentRegistrationServiceImpl extends UserRegistrationServiceImpl 
         student.setGroupNumber(userParameters.get(GROUP_NUMBER_PARAMETER_NAME));
         student.setPracticeStatus(PracticeStatus.AVAILABLE.getDescription());
         UserEntity userEntity = conversionService.convert(student, UserEntity.class);
-        userService.addUser(userEntity);
+        try {
+            userService.addUser(userEntity);
+        } catch (DataAccessException e) {
+            throw new RegistrationException("Cannot add user", e);
+        }
         logger.info("Student user have been successfully registered.");
     }
 }

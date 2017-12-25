@@ -6,6 +6,7 @@ import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.exception.RegistrationException;
 import org.apache.log4j.Logger;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
@@ -31,7 +32,11 @@ public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationS
         faculty.setName(userParameters.get(FACULTY_PARAMETER_NAME));
         headFromUniversity.setFaculty(faculty);
         UserEntity userEntity = conversionService.convert(headFromUniversity, UserEntity.class);
-        userService.addUser(userEntity);
+        try {
+            userService.addUser(userEntity);
+        } catch (DataAccessException e) {
+            throw new RegistrationException("Cannot add user", e);
+        }
         logger.info("Head from university user have been successfully registered.");
     }
 

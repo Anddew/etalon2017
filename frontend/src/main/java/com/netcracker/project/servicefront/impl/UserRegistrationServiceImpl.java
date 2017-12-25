@@ -54,6 +54,4 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
         logger.info("User parameters successfully added.");
     }
 
-
-
 }

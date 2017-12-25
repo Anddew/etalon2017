@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 
@@ -28,28 +29,28 @@ public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEn
         StudentEntity studentEntity = new StudentEntity();
 
         String studentId = studentViewModel.getStudentId();
-        if(studentId != null) {
+        if(!StringUtils.isEmpty(studentId)) {
             studentEntity.setStudentId(Integer.parseInt(studentId));
         }
         String educationForm = studentViewModel.getEducationForm();
-        if(educationForm != null) {
+        if(!StringUtils.isEmpty(educationForm)) {
             studentEntity.setEducationForm(EducationForm.valueOf(educationForm));
         }
         studentEntity.setSpeciality(conversionService.convert(studentViewModel.getSpeciality(), SpecialityEntity.class));
         String groupNumber = studentViewModel.getGroupNumber();
-        if(groupNumber != null) {
+        if(!StringUtils.isEmpty(groupNumber)) {
             studentEntity.setGroupNumber(Integer.parseInt(groupNumber));
         }
         String avgScore = studentViewModel.getAvgScore();
-        if(avgScore != null) {
+        if(!StringUtils.isEmpty(avgScore)) {
             studentEntity.setAvgScore(Double.parseDouble(avgScore));
         }
         String requiredJob = studentViewModel.getRequiredJob();
-        if(requiredJob != null) {
-            studentEntity.setRequiredJob(requiredJob.equals(HireCondition.ACCEPT.toString()));
+        if(!StringUtils.isEmpty(requiredJob)) {
+            studentEntity.setRequiredJob(requiredJob.equals(HireCondition.ACCEPT.getDescription()));
         }
         String practiceStatus = studentViewModel.getPracticeStatus().toUpperCase();
-        if(practiceStatus != null) {
+        if(!StringUtils.isEmpty(practiceStatus)) {
             studentEntity.setPracticeStatus(PracticeStatus.valueOf(practiceStatus));
         }
         userEntity.setStudentInfo(studentEntity);

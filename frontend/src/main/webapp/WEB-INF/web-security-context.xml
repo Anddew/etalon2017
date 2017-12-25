@@ -15,7 +15,7 @@
                 delete-cookies="JSESSIONID"/>
         <remember-me services-ref="rememberMeServices" key="uniqueAndSecret" />
         <csrf disabled="true" />
-        <access-denied-handler error-page="/jsp/error.jsp" />
+        <access-denied-handler error-page="/jsp/access-denied.jsp" />
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/register" access="permitAll()" />
         <intercept-url pattern="/admins" access="hasAuthority('ADMINISTRATOR')" />
@@ -30,7 +30,7 @@
                 class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
         <beans:constructor-arg name="userDetailsService" ref="customUserDetailsService" />
         <beans:constructor-arg name="key" value="uniqueAndSecret" />
-        <beans:property name="tokenValiditySeconds" value="1209600" />
+        <beans:property name="tokenValiditySeconds" value="#{2*7*24*60*60}" />
     </beans:bean>
 
     <beans:bean id="rememberMeFilter"

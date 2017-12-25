@@ -2,8 +2,8 @@ package com.netcracker.project.entity.user.student;
 
 public enum  HireCondition {
 
-    ACCEPT("Ready"),
-    DENY("Not ready");
+    ACCEPT("Require"),
+    DENY("Not require");
 
     private String description;
 

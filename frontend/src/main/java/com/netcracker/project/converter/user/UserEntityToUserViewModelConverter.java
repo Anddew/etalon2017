@@ -3,6 +3,7 @@ package com.netcracker.project.converter.user;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import org.apache.log4j.Logger;
+import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 
@@ -16,11 +17,11 @@ public abstract class UserEntityToUserViewModelConverter {
             userViewModel.setUserId(String.valueOf(id));
         }
         String username = userEntity.getUsername();
-        if(username != null) {
+        if(!StringUtils.isEmpty(username)) {
             userViewModel.setUsername(username);
         }
         String email = userEntity.getEmail();
-        if(email != null) {
+        if(!StringUtils.isEmpty(email)) {
             userViewModel.setEmail(email);
         }
         Timestamp createTime = userEntity.getCreateTime();
@@ -28,11 +29,11 @@ public abstract class UserEntityToUserViewModelConverter {
             userViewModel.setCreateTime(createTime.toString());
         }
         String firstName = userEntity.getFirstName();
-        if(firstName != null) {
+        if(!StringUtils.isEmpty(firstName)) {
             userViewModel.setFirstName(firstName);
         }
         String lastName = userEntity.getLastName();
-        if(lastName != null) {
+        if(!StringUtils.isEmpty(lastName)) {
             userViewModel.setLastName(lastName);
         }
         logger.debug("Nested conversion UserEntity to UserViewModel completed.");

@@ -25,12 +25,14 @@ $(document).ready(function () {
         ;
 
     $usernameField.on('blur', function () {
+        Validation.hideNotifications([$incorrectInputNotification, $credentialNotification]);
         !Validation.validateAlphanumericField($usernameField) ?
             ($usernameErrorNotification.show(), Validation.switchButtons([$submitButton], false)) :
             ($usernameErrorNotification.hide(), Validation.switchButtons([$submitButton], true));
     });
 
     $passwordField.on('blur', function () {
+        Validation.hideNotifications([$incorrectInputNotification, $credentialNotification]);
         !Validation.validateAlphanumericField($passwordField) ?
             ($passwordErrorNotification.show(), Validation.switchButtons([$submitButton], false)) :
             ($passwordErrorNotification.hide(), Validation.switchButtons([$submitButton], true));
@@ -64,5 +66,7 @@ $(document).ready(function () {
         });
 
     });
+
+
 
 });

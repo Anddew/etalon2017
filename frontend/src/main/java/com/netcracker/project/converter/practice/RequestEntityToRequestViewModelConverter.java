@@ -9,6 +9,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 import java.util.Date;
 
@@ -40,7 +41,7 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Reque
             requestViewModel.setMinAvgScore(String.valueOf(minAvgScore));
         }
         String hireCondition = requestEntity.getHireCondition().getDescription();
-        if(hireCondition != null) {
+        if(!StringUtils.isEmpty(hireCondition)) {
             requestViewModel.setHireCondition(hireCondition);
         }
         Date dateStart = requestEntity.getDateStart();
