@@ -23,22 +23,22 @@
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
                     <h5>Menu</h5>
                     <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
-                    <button type="button" class="btn btn-primary jsHeadFromCompanyButton">Heads from company</button>
-                    <button type="button" class="btn btn-primary jsHeadFromUniversityButton">Heads from university</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
-                <h5>User menu</h5>
-                <button type="button" class="btn btn-primary">My practices</button>
-                <button type="button" class="btn btn-primary">My students</button>
+                <h5>Head menu</h5>
+                    <button type="button" class="btn btn-primary">My practices</button>
+                    <button type="button" class="btn btn-primary">My students</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('STUDENT')">
                     <h5>Student menu</h5>
-                    <button type="button" class="btn btn-primary">My practices</button>
+                    <button type="button" class="btn btn-primary jsStudentPractisesButton">My practices</button>
                     <button type="button" class="btn btn-primary jsStudentFullInfoButton" value="0">My full info</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
                     <h5>Admin menu</h5>
                     <button type="button" class="btn btn-primary jsAdminsButton">Admins</button>
+                    <button type="button" class="btn btn-primary jsHeadFromCompanyButton">Heads from company</button>
+                    <button type="button" class="btn btn-primary jsHeadFromUniversityButton">Heads from university</button>
                     <button type="button" class="btn btn-primary">Set student info</button>
                     <button type="button" class="btn btn-primary">Assign to practice</button>
                 </sec:authorize>
@@ -136,6 +136,28 @@
 
             <div class="jsStudentFullInfoContainer" style="display: none">
                 <jsp:include page="/jsp/block/student.jsp" />
+            </div>
+
+            <div class="jsStudentPracticesContainer" style="display: none">
+                <table id="studentPracticesTable"
+                       data-pagination="true"
+                       data-page-size="10"
+                       data-page-list="[5, 10, 20, 50, 100]"
+                       data-search="true"
+                       data-classes="table table-hover">
+                    <thead>
+                    <tr>
+                        <th data-field="status" data-halign="center" data-align="left">Status</th>
+                        <th data-field="faculty" data-halign="center" data-align="left">Faculty</th>
+                        <th data-field="educationForm" data-halign="center" data-align="left">Education form</th>
+                        <th data-field="studentRequiredCount" data-halign="center" data-align="left">Count</th>
+                        <th data-field="minAvgScore" data-halign="center" data-align="left">Score (min)</th>
+                        <th data-field="hireCondition" data-halign="center" data-align="left">Hiring</th>
+                        <th data-field="dateStart" data-halign="center" data-align="left">Start</th>
+                        <th data-field="dateEnd" data-halign="center" data-align="left">End</th>
+                    </tr>
+                    </thead>
+                </table>
             </div>
 
         </div>

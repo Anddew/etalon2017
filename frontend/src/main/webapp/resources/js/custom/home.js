@@ -6,12 +6,14 @@ $(document).ready(function () {
         BTN_HEADS_FROM_UNIVERSITY: '.jsHeadFromUniversityButton',
         BTN_ADMINS: '.jsAdminsButton',
         BTN_STUDENT_FULL_INFO: '.jsStudentFullInfoButton',
+        BTN_STUDENT_PRACTICES: '.jsStudentPractisesButton',
 
         CONTAINER_STUDENTS_DATA: '.jsStudentsContainer',
         CONTAINER_HEAD_FROM_COMPANY_DATA: '.jsHeadFromCompanyContainer',
         CONTAINER_HEAD_FROM_UNIVERSITY_DATA: '.jsHeadFromUniversityContainer',
         CONTAINER_ADMINS_DATA: '.jsAdminsContainer',
-        CONTAINER_STUDENT_FULL_INFO_DATA: '.jsStudentFullInfoContainer'
+        CONTAINER_STUDENT_FULL_INFO_DATA: '.jsStudentFullInfoContainer',
+        CONTAINER_STUDENT_PRACTICES_DATA: '.jsStudentPracticesContainer'
     };
 
     var
@@ -20,12 +22,14 @@ $(document).ready(function () {
         $submitHeadsFromUniversityButton = $(ELEMENTS.BTN_HEADS_FROM_UNIVERSITY),
         $submitAdminsButton = $(ELEMENTS.BTN_ADMINS),
         $submitStudentFullInfoButton = $(ELEMENTS.BTN_STUDENT_FULL_INFO),
+        $submitStudentPracticesButton = $(ELEMENTS.BTN_STUDENT_PRACTICES),
 
         $studentsContainerData = $(ELEMENTS.CONTAINER_STUDENTS_DATA),
         $headFromCompanyContainerData = $(ELEMENTS.CONTAINER_HEAD_FROM_COMPANY_DATA),
         $headFromUniversityContainerData = $(ELEMENTS.CONTAINER_HEAD_FROM_UNIVERSITY_DATA),
         $adminsContainerData = $(ELEMENTS.CONTAINER_ADMINS_DATA),
-        $studentFullInfoContainerData = $(ELEMENTS.CONTAINER_STUDENT_FULL_INFO_DATA)
+        $studentFullInfoContainerData = $(ELEMENTS.CONTAINER_STUDENT_FULL_INFO_DATA),
+        $studentPracticesContainerData = $(ELEMENTS.CONTAINER_STUDENT_PRACTICES_DATA)
     ;
 
     var $containers = [
@@ -33,7 +37,8 @@ $(document).ready(function () {
         $headFromCompanyContainerData,
         $headFromUniversityContainerData,
         $adminsContainerData,
-        $studentFullInfoContainerData
+        $studentFullInfoContainerData,
+        $studentPracticesContainerData
     ];
 
     function hideAllContainters(containers) {
@@ -168,6 +173,30 @@ $(document).ready(function () {
         $('#requiredJob').html(student.requiredJob);
         $('#status').html(student.practiceStatus);
     }
+
+    $submitStudentPracticesButton.click(function (event) {
+        event.stopPropagation();
+
+        hideAllContainters($containers);
+
+        $.ajax({
+            url: '/practices/my',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (practices) {
+                $studentPracticesContainerData.show();
+                $('#studentPracticesTable').bootstrapTable({
+                    data: practices
+                });
+            }
+        });
+
+    });
+
+
 
 
 
