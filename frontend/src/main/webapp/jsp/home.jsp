@@ -20,22 +20,22 @@
         <div class="col-sm-2" align="center">
             <div class="btn-group-vertical">
                 <sec:authentication var="user" property="principal"/>
-                <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
-                    <h5>Menu</h5>
-                    <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
+                <sec:authorize access="hasAnyAuthority('STUDENT')">
+                    <h5>Student menu</h5>
+                    <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
+                    <button type="button" class="btn btn-primary jsStudentFullInfoButton" value="0">My full info</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
                 <h5>Head menu</h5>
-                    <button type="button" class="btn btn-primary">My practices</button>
+                    <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
                     <button type="button" class="btn btn-primary">My students</button>
                 </sec:authorize>
-                <sec:authorize access="hasAnyAuthority('STUDENT')">
-                    <h5>Student menu</h5>
-                    <button type="button" class="btn btn-primary jsStudentPractisesButton">My practices</button>
-                    <button type="button" class="btn btn-primary jsStudentFullInfoButton" value="0">My full info</button>
+                <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
+                    <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
                     <h5>Admin menu</h5>
+                    <button type="button" class="btn btn-primary jsPracticesButton">Practices</button>
                     <button type="button" class="btn btn-primary jsAdminsButton">Admins</button>
                     <button type="button" class="btn btn-primary jsHeadFromCompanyButton">Heads from company</button>
                     <button type="button" class="btn btn-primary jsHeadFromUniversityButton">Heads from university</button>
@@ -138,8 +138,8 @@
                 <jsp:include page="/jsp/block/student.jsp" />
             </div>
 
-            <div class="jsStudentPracticesContainer" style="display: none">
-                <table id="studentPracticesTable"
+            <div class="jsPracticesContainer" style="display: none">
+                <table id="practicesTable"
                        data-pagination="true"
                        data-page-size="10"
                        data-page-list="[5, 10, 20, 50, 100]"
@@ -148,13 +148,15 @@
                     <thead>
                     <tr>
                         <th data-field="status" data-halign="center" data-align="left">Status</th>
-                        <th data-field="faculty" data-halign="center" data-align="left">Faculty</th>
+                        <th data-field="faculty.name" data-halign="center" data-align="left">Faculty</th>
                         <th data-field="educationForm" data-halign="center" data-align="left">Education form</th>
                         <th data-field="studentRequiredCount" data-halign="center" data-align="left">Count</th>
                         <th data-field="minAvgScore" data-halign="center" data-align="left">Score (min)</th>
                         <th data-field="hireCondition" data-halign="center" data-align="left">Hiring</th>
                         <th data-field="dateStart" data-halign="center" data-align="left">Start</th>
                         <th data-field="dateEnd" data-halign="center" data-align="left">End</th>
+                        <th data-field="headFromUniversity.lastName" data-halign="center" data-align="left">Head from university</th>
+                        <th data-field="headFromCompany.lastName" data-halign="center" data-align="left">Head from company</th>
                     </tr>
                     </thead>
                 </table>

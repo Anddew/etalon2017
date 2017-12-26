@@ -34,28 +34,16 @@ public class PracticeController {
     private ConversionService conversionService;
 
     @Autowired
-    private PracticeService practiceService;
-
-    @Autowired
     private UserService userService;
 
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public List<PracticeViewModel> getAllPractices() {
-        List<PracticeEntity> practiceEntities = practiceService.findAllPractices();
-        List<PracticeViewModel> practices = (List<PracticeViewModel>) conversionService.convert(practiceEntities, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
-        logger.debug("Show all practices.");
-        return practices;
-    }
-
-    @RequestMapping(value = "/my", method = RequestMethod.GET)
-    @ResponseBody
-    public List<PracticeViewModel> getAllMyPractices(HttpServletRequest request, HttpServletResponse response) {
+    public List<PracticeViewModel> getPractices(HttpServletRequest request, HttpServletResponse response) {
         String principal = request.getUserPrincipal().getName();
         List<PracticeEntity> myPracticeEntities = userService.getPractices(principal);
         List<PracticeViewModel> myPractices = (List<PracticeViewModel>) conversionService.convert(myPracticeEntities, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
-        logger.debug("Show practices for user '" + principal + "'.");
+        logger.debug("Show practices for user '" + principal + "' (authority - '" + request.getAuthType() + "').");
         return myPractices;
     }
 
