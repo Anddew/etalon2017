@@ -6,6 +6,7 @@ $(document).ready(function () {
         BTN_HEADS_FROM_UNIVERSITY: '.jsHeadFromUniversityButton',
         BTN_ADMINS: '.jsAdminsButton',
         BTN_STUDENT_FULL_INFO: '.jsStudentFullInfoButton',
+        BTN_STUDENTS_FROM_PRACTICE: '.jsStudentsFromPracticeButton',
         BTN_PRACTICES: '.jsPracticesButton',
 
         CONTAINER_STUDENTS_DATA: '.jsStudentsContainer',
@@ -22,6 +23,7 @@ $(document).ready(function () {
         $submitHeadsFromUniversityButton = $(ELEMENTS.BTN_HEADS_FROM_UNIVERSITY),
         $submitAdminsButton = $(ELEMENTS.BTN_ADMINS),
         $submitStudentFullInfoButton = $(ELEMENTS.BTN_STUDENT_FULL_INFO),
+        $submitStudentsFromPracticeButton = $(ELEMENTS.BTN_STUDENTS_FROM_PRACTICE),
         $submitPracticesButton = $(ELEMENTS.BTN_PRACTICES),
 
         $studentsContainerData = $(ELEMENTS.CONTAINER_STUDENTS_DATA),
@@ -189,8 +191,42 @@ $(document).ready(function () {
             success: function (practices) {
                 $practicesContainerData.show();
                 $('#practicesTable').bootstrapTable({
-                    data: practices
+                    data: practices,
                 });
+            }
+        });
+
+        $('#practicesTable tbody tr td').on('click', 'button', function () {
+            alert('click!');
+        } );
+    });
+
+
+
+    $submitStudentsFromPracticeButton.click(function (event) {
+        event.stopPropagation();
+
+        hideAllContainters($containers);
+        var id = $submitStudentsFromPracticeButton.val();
+
+        $.ajax({
+            url: '/students/practice/' + id,
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (students) {
+                $studentsContainerData.show();
+                if(students) {
+                    alert("ok!");
+                } else {
+                    alert("no ok !!!");
+                }
+
+                /*$('#practicesTable').bootstrapTable({
+                    data: practices
+                });*/
             }
         });
 
@@ -220,5 +256,6 @@ $(document).ready(function () {
     }
 
     window.onLoad = function() { calcOffset(); };*/
+
 
 });

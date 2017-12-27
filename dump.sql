@@ -165,7 +165,7 @@ UNLOCK TABLES;
 -- Table structure for table `requests`
 --
 
-DROP TABLE IF EXISTS request;
+DROP TABLE IF EXISTS practice;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requests` (
@@ -188,17 +188,17 @@ CREATE TABLE `requests` (
 -- Dumping data for table `requests`
 --
 
-LOCK TABLES request WRITE;
-/*!40000 ALTER TABLE request DISABLE KEYS */;
-INSERT INTO request VALUES (1,0,2,6,NULL,NULL,'0000-00-00','0000-00-00',NULL),(3,0,1,7,NULL,NULL,'0000-00-00','0000-00-00',NULL);
-/*!40000 ALTER TABLE request ENABLE KEYS */;
+LOCK TABLES practice WRITE;
+/*!40000 ALTER TABLE practice DISABLE KEYS */;
+INSERT INTO practice VALUES (1,0,2,6,NULL,NULL,'0000-00-00','0000-00-00',NULL),(3,0,1,7,NULL,NULL,'0000-00-00','0000-00-00',NULL);
+/*!40000 ALTER TABLE practice ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
 -- Table structure for table `requestsstudents`
 --
 
-DROP TABLE IF EXISTS request_student;
+DROP TABLE IF EXISTS practice_student;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `requestsstudents` (
@@ -206,7 +206,7 @@ CREATE TABLE `requestsstudents` (
   `request_id` int(11) NOT NULL,
   PRIMARY KEY (`student_id`,`request_id`),
   KEY `fk_request_idx` (`request_id`),
-  CONSTRAINT `fk_request` FOREIGN KEY (`request_id`) REFERENCES request (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_request` FOREIGN KEY (`request_id`) REFERENCES practice (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_student` FOREIGN KEY (`student_id`) REFERENCES user (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -215,9 +215,9 @@ CREATE TABLE `requestsstudents` (
 -- Dumping data for table `requestsstudents`
 --
 
-LOCK TABLES request_student WRITE;
-/*!40000 ALTER TABLE request_student DISABLE KEYS */;
-/*!40000 ALTER TABLE request_student ENABLE KEYS */;
+LOCK TABLES practice_student WRITE;
+/*!40000 ALTER TABLE practice_student DISABLE KEYS */;
+/*!40000 ALTER TABLE practice_student ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

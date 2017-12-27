@@ -1,22 +1,24 @@
 package com.netcracker.project.entity.practice;
 
 import com.netcracker.project.entity.university.FacultyEntity;
+import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
 import com.netcracker.project.entity.user.student.StudentEntity;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
-@Table(name = "request", schema = "netcrackerappdb")
-public class RequestEntity {
+@Table(name = "practice", schema = "netcrackerappdb")
+public class PracticeEntity {
 
     private int id;
-    private RequestStatus status;
+    private PracticeStatus status;
     private FacultyEntity faculty;
     private int studentRequiredCount;
     private double minAvgScore;
@@ -24,7 +26,9 @@ public class RequestEntity {
     private Date dateStart;
     private Date dateEnd;
     private EducationForm educationForm;
-    private Set<StudentEntity> students = new HashSet<>();
+    private UserEntity headFromCompany;
+    private UserEntity headFromUniversity;
+    private List<StudentEntity> students = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,12 +42,13 @@ public class RequestEntity {
     }
 
     @Enumerated(EnumType.STRING)
-    public RequestStatus getStatus() {
+    @Column(name = "status")
+    public PracticeStatus getStatus() {
         return status;
     }
 
-    public void setStatus(RequestStatus requestStatus) {
-        this.status = requestStatus;
+    public void setStatus(PracticeStatus practiceStatus) {
+        this.status = practiceStatus;
     }
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -77,6 +82,7 @@ public class RequestEntity {
     }
 
     @Enumerated(EnumType.STRING)
+    @Column(name = "hire_condition")
     public HireCondition getHireCondition() {
         return hireCondition;
     }
@@ -115,12 +121,33 @@ public class RequestEntity {
         this.educationForm = educationForm;
     }
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "head_from_company_id")
+    public UserEntity getHeadFromCompany() {
+        return headFromCompany;
+    }
+
+    public void setHeadFromCompany(UserEntity headFromCompany) {
+        this.headFromCompany = headFromCompany;
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "head_from_university_id")
+    public UserEntity getHeadFromUniversity() {
+        return headFromUniversity;
+    }
+
+    public void setHeadFromUniversity(UserEntity headFromUniversity) {
+        this.headFromUniversity = headFromUniversity;
+    }
+
+    @Transactional
     @ManyToMany(mappedBy = "practices")
-    public Set<StudentEntity> getStudents() {
+    public List<StudentEntity> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<StudentEntity> students) {
+    public void setStudents(List<StudentEntity> students) {
         this.students = students;
     }
 
@@ -128,7 +155,7 @@ public class RequestEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RequestEntity that = (RequestEntity) o;
+        PracticeEntity that = (PracticeEntity) o;
         return id == that.id &&
                 studentRequiredCount == that.studentRequiredCount &&
                 Objects.equals(minAvgScore, that.minAvgScore) &&
@@ -143,7 +170,7 @@ public class RequestEntity {
 
     @Override
     public String toString() {
-        return "RequestEntity{" +
+        return "PracticeEntity{" +
                 "id=" + id +
                 ", status=" + status +
                 ", faculty=" + faculty +

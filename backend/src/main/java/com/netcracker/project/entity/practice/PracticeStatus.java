@@ -1,13 +1,13 @@
 package com.netcracker.project.entity.practice;
 
-public enum RequestStatus {
+public enum PracticeStatus {
 
     CHECKED("Checked"),
     PROCESSING("Processing");
 
     private String description;
 
-    RequestStatus(String description) {
+    PracticeStatus(String description) {
         this.description = description;
     }
 

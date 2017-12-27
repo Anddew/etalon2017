@@ -1,10 +1,12 @@
 package com.netcracker.project.bean.practice;
 
 import com.netcracker.project.bean.university.FacultyViewModel;
+import com.netcracker.project.bean.user.HeadFromCompanyViewModel;
+import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 
 import java.util.Objects;
 
-public class RequestViewModel {
+public class PracticeViewModel {
 
     private String id;
     private String status;
@@ -15,6 +17,8 @@ public class RequestViewModel {
     private String dateStart;
     private String dateEnd;
     private String educationForm;
+    private HeadFromCompanyViewModel headFromCompany;
+    private HeadFromUniversityViewModel headFromUniversity;
 
 
     public String getId() {
@@ -89,11 +93,27 @@ public class RequestViewModel {
         this.educationForm = educationForm;
     }
 
+    public HeadFromCompanyViewModel getHeadFromCompany() {
+        return headFromCompany;
+    }
+
+    public void setHeadFromCompany(HeadFromCompanyViewModel headFromCompany) {
+        this.headFromCompany = headFromCompany;
+    }
+
+    public HeadFromUniversityViewModel getHeadFromUniversity() {
+        return headFromUniversity;
+    }
+
+    public void setHeadFromUniversity(HeadFromUniversityViewModel headFromUniversity) {
+        this.headFromUniversity = headFromUniversity;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        RequestViewModel that = (RequestViewModel) o;
+        PracticeViewModel that = (PracticeViewModel) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(faculty, that.faculty) &&
@@ -112,7 +132,7 @@ public class RequestViewModel {
 
     @Override
     public String toString() {
-        return "RequestViewModel{" +
+        return "PracticeViewModel{" +
                 "id='" + id + '\'' +
                 ", status='" + status + '\'' +
                 ", faculty=" + faculty +

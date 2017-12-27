@@ -12,11 +12,10 @@
 <link href="../resources/css/libs/bootstrap-table.min.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="../resources/css/custom/home.css" rel="stylesheet" type="text/css" media="all"/>
 <body>
-
 <jsp:include page="/jsp/block/header.jsp"/>
-
 <div class="container-fluid">
     <div class="row content">
+
         <div class="col-sm-2" align="center">
             <div class="btn-group-vertical">
                 <sec:authentication var="user" property="principal"/>
@@ -28,7 +27,6 @@
                 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
                 <h5>Head menu</h5>
                     <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
-                    <button type="button" class="btn btn-primary">My students</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
                     <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
@@ -47,122 +45,25 @@
 
         <div class="col-sm-10">
             <div class="jsStudentsContainer" style="display: none">
-                <table id="studentsTable"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[5, 10, 20, 50, 100]"
-                       data-search="true"
-                       data-classes="table table-hover">
-                    <thead>
-                    <tr>
-                        <th data-checkbox="true" data-halign="center" data-align="center">#</th>
-                        <th data-field="firstName" data-halign="center" data-align="left" data-sortable="true">First name</th>
-                        <th data-field="lastName" data-halign="center" data-align="left" data-sortable="true">Last name</th>
-                        <th data-field="email" data-halign="center" data-align="left">Email</th>
-                        <th data-field="speciality.faculty.university.name" data-halign="center" data-align="left" data-sortable="true">University</th>
-                        <th data-field="speciality.faculty.name" data-halign="center" data-align="left" data-sortable="true">Faculty</th>
-                        <th data-field="speciality.name" data-halign="center" data-align="left" data-sortable="true">Speciality</th>
-                        <th data-field="groupNumber" data-halign="center" data-align="center" data-sortable="true">Group number</th>
-                        <th data-field="avgScore" data-halign="center" data-align="center" data-sortable="true">Avg score</th>
-                        <th data-field="educationForm" data-halign="center" data-align="center" data-sortable="true">Education form</th>
-                        <th data-field="requiredJob" data-halign="center" data-align="center" data-sortable="true">Hiring</th>
-                        <th data-field="practiceStatus" data-halign="center" data-align="center" data-sortable="true">Status</th>
-                        <th data-field="studentId" data-formatter="linkFormatter" data-halign="center" data-align="center">Profile</th>
-                        <script>
-                            function linkFormatter(value) {
-                                return "<a href=\"students/" + value + "\" class=\"btn btn-default btn-block\" target=\"_blank\">Show</a>";
-                            }
-                        </script>
-                    </tr>
-                    </thead>
-                </table>
+                <jsp:include page="/jsp/block/table/students.jsp" />
             </div>
-
             <div class="jsHeadFromCompanyContainer" style="display: none">
-                <table id="headsFromCompanyTable"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[5, 10, 20, 50, 100]"
-                       data-search="true"
-                       data-classes="table table-hover">
-                    <thead>
-                    <tr>
-                       <th data-checkbox="true" data-halign="center" data-align="center">#</th>
-                       <th data-field="firstName" data-halign="center" data-align="left">First name</th>
-                       <th data-field="lastName" data-halign="center" data-align="left">Last name</th>
-                       <th data-field="email" data-halign="center" data-align="left">Email</th>
-                       <th data-field="company.name" data-halign="center" data-align="left">Company</th>
-                    </tr>
-                    </thead>
-                </table>
+                <jsp:include page="/jsp/block/table/heads-from-company.jsp" />
             </div>
-
             <div class="jsHeadFromUniversityContainer" style="display: none">
-                <table id="headsFromUniversityTable"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[5, 10, 20, 50, 100]"
-                       data-search="true"
-                       data-classes="table table-hover">
-                    <thead>
-                    <tr>
-                        <th data-checkbox="true" data-halign="center" data-align="center">#</th>
-                        <th data-field="firstName" data-halign="center" data-align="left">First name</th>
-                        <th data-field="lastName" data-halign="center" data-align="left">Last name</th>
-                        <th data-field="email" data-halign="center" data-align="left">Email</th>
-                        <th data-field="faculty.name" data-halign="center" data-align="center">Faculty</th>
-                    </tr>
-                    </thead>
-                </table>
+                <jsp:include page="/jsp/block/table/heads-from-university.jsp" />
             </div>
-
             <div class="jsAdminsContainer" style="display: none">
-                <table id="adminsTable"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[5, 10, 20, 50, 100]"
-                       data-search="true"
-                       data-classes="table table-hover">
-                    <thead>
-                    <tr>
-                        <th data-checkbox="true" data-halign="center" data-align="center">#</th>
-                        <th data-field="firstName" data-halign="center" data-align="left">First name</th>
-                        <th data-field="lastName" data-halign="center" data-align="left">Last name</th>
-                        <th data-field="email" data-halign="center" data-align="left">Email</th>
-                    </tr>
-                    </thead>
-                </table>
+                <jsp:include page="/jsp/block/table/admins.jsp" />
             </div>
-
+            <div class="jsPracticesContainer" style="display: none">
+                <jsp:include page="/jsp/block/table/practice.jsp" />
+            </div>
             <div class="jsStudentFullInfoContainer" style="display: none">
                 <jsp:include page="/jsp/block/student.jsp" />
             </div>
-
-            <div class="jsPracticesContainer" style="display: none">
-                <table id="practicesTable"
-                       data-pagination="true"
-                       data-page-size="10"
-                       data-page-list="[5, 10, 20, 50, 100]"
-                       data-search="true"
-                       data-classes="table table-hover">
-                    <thead>
-                    <tr>
-                        <th data-field="status" data-halign="center" data-align="left">Status</th>
-                        <th data-field="faculty.name" data-halign="center" data-align="left">Faculty</th>
-                        <th data-field="educationForm" data-halign="center" data-align="left">Education form</th>
-                        <th data-field="studentRequiredCount" data-halign="center" data-align="left">Count</th>
-                        <th data-field="minAvgScore" data-halign="center" data-align="left">Score (min)</th>
-                        <th data-field="hireCondition" data-halign="center" data-align="left">Hiring</th>
-                        <th data-field="dateStart" data-halign="center" data-align="left">Start</th>
-                        <th data-field="dateEnd" data-halign="center" data-align="left">End</th>
-                        <th data-field="headFromUniversity.lastName" data-halign="center" data-align="left">Head from university</th>
-                        <th data-field="headFromCompany.lastName" data-halign="center" data-align="left">Head from company</th>
-                    </tr>
-                    </thead>
-                </table>
-            </div>
-
         </div>
+
     </div>
 </div>
 

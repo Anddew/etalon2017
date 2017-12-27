@@ -12,6 +12,6 @@
       <mapping class="com.netcracker.project.entity.university.FacultyEntity"/>
       <mapping class="com.netcracker.project.entity.university.UniversityEntity"/>
       <mapping class="com.netcracker.project.entity.user.student.StudentEntity"/>
-      <mapping class="com.netcracker.project.entity.practice.RequestEntity"/>
+      <mapping class="com.netcracker.project.entity.practice.PracticeEntity"/>
   </session-factory>
 </hibernate-configuration>

@@ -1,5 +1,6 @@
 package com.netcracker.project.service;
 
+import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.user.UserEntity;
 
 import java.util.List;
@@ -19,10 +20,14 @@ public interface UserService {
 
     UserEntity findStudent(int id);
 
+    List<UserEntity> findStudentsFromPractice(int id);
+
     UserEntity findUserByUserName(String username);
 
     void addUser(UserEntity user);
 
     UserEntity findStudentByUsername(String username);
+
+    List<PracticeEntity> getPractices(String username);
 
 }

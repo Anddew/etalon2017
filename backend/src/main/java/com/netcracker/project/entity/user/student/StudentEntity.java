@@ -1,12 +1,13 @@
 package com.netcracker.project.entity.user.student;
 
-import com.netcracker.project.entity.practice.RequestEntity;
+import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.university.SpecialityEntity;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "student", schema = "netcrackerappdb")
@@ -19,7 +20,7 @@ public class StudentEntity {
     private Double avgScore;
     private boolean requiredJob;
     private PracticeStatus practiceStatus;
-    private Set<RequestEntity> practices = new HashSet<>();
+    private List<PracticeEntity> practices = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -92,17 +93,18 @@ public class StudentEntity {
         this.practiceStatus = practiceStatus;
     }
 
+    @Transactional
     @ManyToMany(cascade = { CascadeType.ALL })
     @JoinTable(
-            name = "request_student",
+            name = "practice_student",
             joinColumns = { @JoinColumn(name = "student_id") },
-            inverseJoinColumns = { @JoinColumn(name = "request_id") }
+            inverseJoinColumns = { @JoinColumn(name = "practice_id") }
     )
-    public Set<RequestEntity> getPractices() {
+    public List<PracticeEntity> getPractices() {
         return practices;
     }
 
-    public void setPractices(Set<RequestEntity> practices) {
+    public void setPractices(List<PracticeEntity> practices) {
         this.practices = practices;
     }
 

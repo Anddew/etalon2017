@@ -1,9 +1,10 @@
 package com.netcracker.project.converter.practice;
 
-import com.netcracker.project.bean.practice.RequestViewModel;
-import com.netcracker.project.entity.practice.RequestEntity;
-import com.netcracker.project.entity.practice.RequestStatus;
+import com.netcracker.project.bean.practice.PracticeViewModel;
+import com.netcracker.project.entity.practice.PracticeEntity;
+import com.netcracker.project.entity.practice.PracticeStatus;
 import com.netcracker.project.entity.university.FacultyEntity;
+import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
 import org.apache.log4j.Logger;
@@ -14,7 +15,7 @@ import org.springframework.util.StringUtils;
 
 import java.sql.Date;
 
-public class RequestViewModelToRequestEntityConverter implements Converter<RequestViewModel, RequestEntity> {
+public class RequestViewModelToRequestEntityConverter implements Converter<PracticeViewModel, PracticeEntity> {
 
     private Logger logger = Logger.getLogger(RequestViewModelToRequestEntityConverter.class.getSimpleName());
 
@@ -22,43 +23,45 @@ public class RequestViewModelToRequestEntityConverter implements Converter<Reque
     private ConversionService conversionService;
 
     @Override
-    public RequestEntity convert(RequestViewModel requestViewModel) {
-        RequestEntity requestEntity = new RequestEntity();
-        String id = requestViewModel.getId();
+    public PracticeEntity convert(PracticeViewModel practiceViewModel) {
+        PracticeEntity practiceEntity = new PracticeEntity();
+        String id = practiceViewModel.getId();
         if(!StringUtils.isEmpty(id)) {
-            requestEntity.setId(Integer.parseInt(id));
+            practiceEntity.setId(Integer.parseInt(id));
         }
-        String status = requestViewModel.getStatus();
+        String status = practiceViewModel.getStatus();
         if(!StringUtils.isEmpty(status)) {
-            requestEntity.setStatus(RequestStatus.valueOf(status));
+            practiceEntity.setStatus(PracticeStatus.valueOf(status));
         }
-        requestEntity.setFaculty(conversionService.convert(requestViewModel.getFaculty(), FacultyEntity.class));
-        String studentRequiredCount = requestViewModel.getStudentRequiredCount();
+        practiceEntity.setFaculty(conversionService.convert(practiceViewModel.getFaculty(), FacultyEntity.class));
+        String studentRequiredCount = practiceViewModel.getStudentRequiredCount();
         if(!StringUtils.isEmpty(studentRequiredCount)) {
-            requestEntity.setStudentRequiredCount(Integer.parseInt(studentRequiredCount));
+            practiceEntity.setStudentRequiredCount(Integer.parseInt(studentRequiredCount));
         }
-        String minAvgScore = requestViewModel.getMinAvgScore();
+        String minAvgScore = practiceViewModel.getMinAvgScore();
         if(!StringUtils.isEmpty(minAvgScore)) {
-            requestEntity.setMinAvgScore(Double.parseDouble(minAvgScore));
+            practiceEntity.setMinAvgScore(Double.parseDouble(minAvgScore));
         }
-        String hireCondition = requestViewModel.getHireCondition();
+        String hireCondition = practiceViewModel.getHireCondition();
         if(!StringUtils.isEmpty(hireCondition)) {
-            requestEntity.setHireCondition(HireCondition.valueOf(hireCondition));
+            practiceEntity.setHireCondition(HireCondition.valueOf(hireCondition));
         }
-        String dateStart = requestViewModel.getDateStart();
+        String dateStart = practiceViewModel.getDateStart();
         if(!StringUtils.isEmpty(dateStart)) {
-            requestEntity.setDateStart(Date.valueOf(dateStart));
+            practiceEntity.setDateStart(Date.valueOf(dateStart));
         }
-        String dateEnd = requestViewModel.getDateEnd();
+        String dateEnd = practiceViewModel.getDateEnd();
         if(!StringUtils.isEmpty(dateEnd)) {
-            requestEntity.setDateEnd(Date.valueOf(dateEnd));
+            practiceEntity.setDateEnd(Date.valueOf(dateEnd));
         }
-        String educationForm = requestViewModel.getEducationForm();
+        String educationForm = practiceViewModel.getEducationForm();
         if(!StringUtils.isEmpty(educationForm)) {
-            requestEntity.setEducationForm(EducationForm.valueOf(educationForm));
+            practiceEntity.setEducationForm(EducationForm.valueOf(educationForm));
         }
-        logger.debug("Conversion RequestViewModel to RequestEntity completed.");
-        return requestEntity;
+        practiceEntity.setHeadFromCompany(conversionService.convert(practiceViewModel.getHeadFromCompany(), UserEntity.class));
+        practiceEntity.setHeadFromUniversity(conversionService.convert(practiceViewModel.getHeadFromUniversity(), UserEntity.class));
+        logger.debug("Conversion PracticeViewModel to PracticeEntity completed.");
+        return practiceEntity;
     }
 
 }
