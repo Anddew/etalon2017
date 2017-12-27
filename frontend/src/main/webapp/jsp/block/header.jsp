@@ -18,9 +18,10 @@
                 <sec:authorize access="isAuthenticated()">
                     <sec:authentication var="user" property="principal"/>
                     <h5>Hello, ${user.username}</h5>
+                    <a href="/logout">Log out</a>
                     <br/>
                     <h6>Role - ${user.authorities}</h6>
-                    <a href="/logout">Log out</a>
+                    <a href="/home" >Go home</a>
                 </sec:authorize>
             </div>
         </div>
