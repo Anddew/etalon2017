@@ -14,7 +14,7 @@ public class StudentViewModel extends UserViewModel {
     private SpecialityViewModel speciality;
     private String groupNumber;
     private String avgScore;
-    private String requiredJob;
+    private String hireCondition;
     private String practiceStatus;
 
     public String getStudentId() {
@@ -57,12 +57,12 @@ public class StudentViewModel extends UserViewModel {
         this.avgScore = avgScore;
     }
 
-    public String getRequiredJob() {
-        return requiredJob;
+    public String getHireCondition() {
+        return hireCondition;
     }
 
-    public void setRequiredJob(String requiredJob) {
-        this.requiredJob = requiredJob;
+    public void setHireCondition(String hireCondition) {
+        this.hireCondition = hireCondition;
     }
 
     public String getPracticeStatus() {
@@ -88,13 +88,13 @@ public class StudentViewModel extends UserViewModel {
                 Objects.equals(speciality, that.speciality) &&
                 Objects.equals(groupNumber, that.groupNumber) &&
                 Objects.equals(avgScore, that.avgScore) &&
-                Objects.equals(requiredJob, that.requiredJob) &&
+                Objects.equals(hireCondition, that.hireCondition) &&
                 Objects.equals(practiceStatus, that.practiceStatus);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(super.hashCode(), studentId, educationForm, speciality, groupNumber, avgScore, requiredJob, practiceStatus);
+        return Objects.hash(super.hashCode(), studentId, educationForm, speciality, groupNumber, avgScore, hireCondition, practiceStatus);
     }
 
     @Override
@@ -105,7 +105,7 @@ public class StudentViewModel extends UserViewModel {
                 ", speciality=" + speciality +
                 ", groupNumber='" + groupNumber + '\'' +
                 ", avgScore='" + avgScore + '\'' +
-                ", requiredJob='" + requiredJob + '\'' +
+                ", hireCondition='" + hireCondition + '\'' +
                 ", practiceStatus='" + practiceStatus + '\'' +
                 "} " + super.toString();
     }

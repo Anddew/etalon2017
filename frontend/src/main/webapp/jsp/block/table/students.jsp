@@ -18,7 +18,7 @@
         <th data-field="groupNumber" data-halign="center" data-align="center" data-sortable="true">Group number</th>
         <th data-field="avgScore" data-halign="center" data-align="center" data-sortable="true">Avg score</th>
         <th data-field="educationForm" data-halign="center" data-align="center" data-sortable="true">Education form</th>
-        <th data-field="requiredJob" data-halign="center" data-align="center" data-sortable="true">Hiring</th>
+        <th data-field="hireCondition" data-halign="center" data-align="center" data-sortable="true">Hiring</th>
         <th data-field="practiceStatus" data-halign="center" data-align="center" data-sortable="true">Status</th>
         <th data-field="studentId" data-formatter="linkFormatter" data-halign="center" data-align="center">Profile</th>
         <script>

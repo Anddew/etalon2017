@@ -163,6 +163,7 @@ $(document).ready(function () {
     });
 
     function setStudentInfo(student) {
+        $('#id').html(student.studentId);
         $('#firstname').html(student.firstName);
         $('#lastname').html(student.lastName);
         $('#email').html(student.email);

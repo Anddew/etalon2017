@@ -3,12 +3,15 @@ package com.netcracker.project.service.impl;
 import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.entity.user.UserEntity;
+import com.netcracker.project.entity.user.student.EducationForm;
+import com.netcracker.project.entity.user.student.HireCondition;
 import com.netcracker.project.repository.PracticeRepository;
 import com.netcracker.project.repository.StudentRepository;
 import com.netcracker.project.repository.UserRepository;
 import com.netcracker.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -99,6 +102,11 @@ public class UserServiceImpl implements UserService {
             }
         }
         return practices;
+    }
+
+    @Override
+    public void setStudentDetails(int id, double avgScore, EducationForm educationForm, HireCondition hireCondition) {
+        userRepository.saveStudentDetails(id, avgScore, educationForm, hireCondition);
     }
 
 }

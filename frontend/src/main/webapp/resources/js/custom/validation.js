@@ -4,7 +4,8 @@
         $emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         $textPattern = /^[\w]{2,15}$/,
         $groupNumberPattern = /^[\d]{1,10}$/,
-        $excludeDigitsAndUnderscorePattern = /\d|_/
+        $excludeDigitsAndUnderscorePattern = /\d|_/,
+        $avgScorePattern = /^\d(\.[\d]{1,2})?$/;
     ;
 
     var Validation = {
@@ -66,6 +67,20 @@
                 return true;
             }
             return $groupNumberPattern.test(value.val());
+        },
+
+        validateAvgScore: function (value) {
+            if(value === null || value === "") {
+                return false;
+            }
+            return $avgScorePattern.test(value);
+        },
+
+        validateIsSelectChosen: function (value) {
+            if(value === null || value === "") {
+                return false;
+            }
+            return value != 0;
         },
 
         hideNotifications: function (notifications) {

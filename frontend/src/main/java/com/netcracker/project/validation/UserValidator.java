@@ -1,5 +1,7 @@
 package com.netcracker.project.validation;
 
+import com.netcracker.project.entity.user.student.EducationForm;
+import com.netcracker.project.entity.user.student.HireCondition;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Component;
 
@@ -28,11 +30,13 @@ public class UserValidator {
             ;
     private static final String TEXT_FIELD_REGEX = "[a-zA-Z]{2,15}";
     private static final String GROUP_NUMBER_REGEX = "[\\d]{1,10}";
+    private static final String AVG_SCORE_REGEX = "\\d(\\.[\\d]{1,2})?";
 
     private final Pattern usernamePattern = Pattern.compile(USERNAME_REGEX);
     private final Pattern emailPattern = Pattern.compile(EMAIL_REGEX);
     private final Pattern textFieldPattern = Pattern.compile(TEXT_FIELD_REGEX);
     private final Pattern groupNumberPattern = Pattern.compile(GROUP_NUMBER_REGEX);
+    private final Pattern avgScorePattern = Pattern.compile(AVG_SCORE_REGEX);
 
     private boolean validateUsername(String username) {
         return usernamePattern.matcher(username).matches();
@@ -115,6 +119,36 @@ public class UserValidator {
             return false;
         }
         logger.debug("Head from university user fields validation success.");
+        return true;
+    }
+
+    public boolean validateAvgScoreField(String avgScore) {
+        return avgScorePattern.matcher(avgScore).matches();
+    }
+
+    public boolean validateEducationForm(String educationForm) {
+        if(educationForm == null) {
+            return false;
+        }
+        try {
+            EducationForm.valueOf(educationForm);
+        } catch (IllegalArgumentException e) {
+            logger.error("Cannot translate value '" + educationForm + "' into value of enum type " + EducationForm.class + ". No matches.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validateHiring(String hireCondition) {
+        if(hireCondition == null || hireCondition.isEmpty()) {
+            return false;
+        }
+        try {
+            HireCondition.valueOf(hireCondition);
+        } catch (IllegalArgumentException e) {
+            logger.error("Cannot translate value '" + hireCondition + "' into value of enum type " + HireCondition.class + ". No matches.");
+            return false;
+        }
         return true;
     }
 

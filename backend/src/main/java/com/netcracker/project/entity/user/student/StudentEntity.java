@@ -2,8 +2,6 @@ package com.netcracker.project.entity.user.student;
 
 import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.university.SpecialityEntity;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
@@ -17,8 +15,8 @@ public class StudentEntity {
     private EducationForm educationForm;
     private SpecialityEntity speciality;
     private int groupNumber;
-    private Double avgScore;
-    private boolean requiredJob;
+    private double avgScore;
+    private HireCondition hireCondition;
     private PracticeStatus practiceStatus;
     private List<PracticeEntity> practices = new ArrayList<>();
 
@@ -64,23 +62,24 @@ public class StudentEntity {
     }
 
     @Basic
-    @Column(name = "avg_score", nullable = true, precision = 0)
-    public Double getAvgScore() {
+    @Column(name = "avg_score")
+    public double getAvgScore() {
         return avgScore;
     }
 
-    public void setAvgScore(Double avgScore) {
+    public void setAvgScore(double avgScore) {
         this.avgScore = avgScore;
     }
 
     @Basic
-    @Column(name = "required_job", nullable = true)
-    public boolean getRequiredJob() {
-        return requiredJob;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "hire_condition")
+    public HireCondition getHireCondition() {
+        return hireCondition;
     }
 
-    public void setRequiredJob(boolean requiredJob) {
-        this.requiredJob = requiredJob;
+    public void setHireCondition(HireCondition hireCondition) {
+        this.hireCondition = hireCondition;
     }
 
     @Enumerated(EnumType.STRING)
@@ -116,12 +115,12 @@ public class StudentEntity {
         return studentId == that.studentId &&
                 groupNumber == that.groupNumber &&
                 Objects.equals(avgScore, that.avgScore) &&
-                Objects.equals(requiredJob, that.requiredJob);
+                Objects.equals(hireCondition, that.hireCondition);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(studentId, groupNumber, avgScore, requiredJob);
+        return Objects.hash(studentId, groupNumber, avgScore, hireCondition);
     }
 
     @Override
@@ -132,7 +131,7 @@ public class StudentEntity {
                 ", speciality=" + speciality +
                 ", groupNumber=" + groupNumber +
                 ", avgScore=" + avgScore +
-                ", requiredJob=" + requiredJob +
+                ", hireCondition=" + hireCondition +
                 ", practiceStatus=" + practiceStatus +
                 '}';
     }

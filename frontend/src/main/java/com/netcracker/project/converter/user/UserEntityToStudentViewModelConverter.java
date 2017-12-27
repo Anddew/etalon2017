@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 
-import java.util.Optional;
-
 public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, StudentViewModel> {
 
     private Logger logger = Logger.getLogger(UserEntityToStudentViewModelConverter.class.getSimpleName());
@@ -44,7 +42,10 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
         if(avgScore != null) {
             studentViewModel.setAvgScore(String.valueOf(avgScore));
         }
-        studentViewModel.setRequiredJob(studentEntity.getRequiredJob() ? HireCondition.ACCEPT.getDescription() : HireCondition.DENY.getDescription());
+        HireCondition hireCondition = studentEntity.getHireCondition();
+        if(hireCondition != null) {
+            studentViewModel.setHireCondition(hireCondition.getDescription());
+        }
         PracticeStatus practiceStatus = studentEntity.getPracticeStatus();
         if(practiceStatus != null) {
             studentViewModel.setPracticeStatus(practiceStatus.getDescription());

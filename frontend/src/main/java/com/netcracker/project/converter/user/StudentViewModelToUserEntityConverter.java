@@ -13,8 +13,6 @@ import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 
-import java.sql.Timestamp;
-
 public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<StudentViewModel, UserEntity> {
 
     private Logger logger = Logger.getLogger(StudentViewModelToUserEntityConverter.class.getSimpleName());
@@ -45,9 +43,9 @@ public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEn
         if(!StringUtils.isEmpty(avgScore)) {
             studentEntity.setAvgScore(Double.parseDouble(avgScore));
         }
-        String requiredJob = studentViewModel.getRequiredJob();
-        if(!StringUtils.isEmpty(requiredJob)) {
-            studentEntity.setRequiredJob(requiredJob.equals(HireCondition.ACCEPT.getDescription()));
+        String hireCondition = studentViewModel.getHireCondition();
+        if(!StringUtils.isEmpty(hireCondition)) {
+            studentEntity.setHireCondition(HireCondition.valueOf(hireCondition));
         }
         String practiceStatus = studentViewModel.getPracticeStatus().toUpperCase();
         if(!StringUtils.isEmpty(practiceStatus)) {

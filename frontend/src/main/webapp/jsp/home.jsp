@@ -37,7 +37,6 @@
                     <button type="button" class="btn btn-primary jsAdminsButton">Admins</button>
                     <button type="button" class="btn btn-primary jsHeadFromCompanyButton">Heads from company</button>
                     <button type="button" class="btn btn-primary jsHeadFromUniversityButton">Heads from university</button>
-                    <button type="button" class="btn btn-primary">Set student info</button>
                     <button type="button" class="btn btn-primary">Assign to practice</button>
                 </sec:authorize>
             </div>
@@ -62,6 +61,7 @@
             <div class="jsStudentFullInfoContainer" style="display: none">
                 <jsp:include page="/jsp/block/student.jsp" />
             </div>
+
         </div>
 
     </div>

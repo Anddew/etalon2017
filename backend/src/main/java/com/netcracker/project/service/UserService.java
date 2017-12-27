@@ -2,6 +2,8 @@ package com.netcracker.project.service;
 
 import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.user.UserEntity;
+import com.netcracker.project.entity.user.student.EducationForm;
+import com.netcracker.project.entity.user.student.HireCondition;
 
 import java.util.List;
 import java.util.Set;
@@ -29,5 +31,7 @@ public interface UserService {
     UserEntity findStudentByUsername(String username);
 
     List<PracticeEntity> getPractices(String username);
+
+    void setStudentDetails(int id, double avgScore, EducationForm educationForm, HireCondition hireCondition);
 
 }
