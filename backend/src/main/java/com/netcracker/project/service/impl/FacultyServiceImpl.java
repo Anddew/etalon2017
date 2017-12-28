@@ -16,10 +16,6 @@ public class FacultyServiceImpl implements FacultyService {
     @Autowired
     private FacultyRepository facultyRepository;
 
-    public FacultyRepository getFacultyRepository() {
-        return facultyRepository;
-    }
-
 
     @Override
     public List<FacultyEntity> getAllFaculties() {
@@ -27,13 +23,20 @@ public class FacultyServiceImpl implements FacultyService {
     }
 
     @Override
-    public FacultyEntity getFacultyById(int facultyId) {
-        return facultyRepository.findById(facultyId);
+    public FacultyEntity getFacultyById(int id) {
+        return facultyRepository.findById(id);
+    }
+
+    @Override
+    public List<FacultyEntity> getFacultiesByUniversityId(int id) {
+        return facultyRepository.findFacultyEntitiesByUniversityId(id);
     }
 
     @Override
     public void addFaculty(FacultyEntity university) {
         facultyRepository.save(university);
     }
+
+
 
 }

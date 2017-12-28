@@ -158,14 +158,21 @@ public class PracticeEntity {
         PracticeEntity that = (PracticeEntity) o;
         return id == that.id &&
                 studentRequiredCount == that.studentRequiredCount &&
-                Objects.equals(minAvgScore, that.minAvgScore) &&
+                Double.compare(that.minAvgScore, minAvgScore) == 0 &&
+                status == that.status &&
+                Objects.equals(faculty, that.faculty) &&
+                hireCondition == that.hireCondition &&
                 Objects.equals(dateStart, that.dateStart) &&
-                Objects.equals(dateEnd, that.dateEnd);
+                Objects.equals(dateEnd, that.dateEnd) &&
+                educationForm == that.educationForm &&
+                Objects.equals(headFromCompany, that.headFromCompany) &&
+                Objects.equals(headFromUniversity, that.headFromUniversity) &&
+                Objects.equals(students, that.students);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, studentRequiredCount, minAvgScore, dateStart, dateEnd);
+        return Objects.hash(id, status, faculty, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm, headFromCompany, headFromUniversity, students);
     }
 
     @Override
@@ -180,6 +187,9 @@ public class PracticeEntity {
                 ", dateStart=" + dateStart +
                 ", dateEnd=" + dateEnd +
                 ", educationForm=" + educationForm +
+                ", headFromCompany=" + headFromCompany +
+                ", headFromUniversity=" + headFromUniversity +
+                ", students=" + students +
                 '}';
     }
 

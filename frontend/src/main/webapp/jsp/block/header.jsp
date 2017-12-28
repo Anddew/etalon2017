@@ -3,7 +3,7 @@
 
 <script src="../../resources/js/libs/popper.min.js"></script>
 <script src="../../resources/js/libs/bootstrap.min.js"></script>
-<script src="../../resources/js/custom/validation.js"></script>
+<script src="../../resources/js/custom/block/validation.js"></script>
 <link href="../../resources/css/libs/bootstrap.min.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="../../resources/css/custom/general.css" rel="stylesheet" type="text/css" media="all"/>
 <header class="header">

@@ -11,4 +11,6 @@ public interface PracticeService {
 
     PracticeEntity findById(int id);
 
+    void createPractice(PracticeEntity practice);
+
 }

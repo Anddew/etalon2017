@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RequestMapping(value = "universities")
 public class UniversityController {
 
     private Logger logger = Logger.getLogger(UniversityController.class.getSimpleName());
@@ -30,10 +31,20 @@ public class UniversityController {
     @Autowired
     private UniversityService universityService;
 
+    @Autowired
+    private FacultyService facultyService;
+
+    @Autowired
+    private SpecialityService specialityService;
+
     private final TypeDescriptor universityEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UniversityEntity.class));
     private final TypeDescriptor universityViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UniversityViewModel.class));
+    private final TypeDescriptor facultyEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyEntity.class));
+    private final TypeDescriptor facultyViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(FacultyViewModel.class));
+    private final TypeDescriptor specialityEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityEntity.class));
+    private final TypeDescriptor specialityViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityViewModel.class));
 
-    @RequestMapping(value = "/universities/{universityId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/{universityId}", method = RequestMethod.GET)
     @ResponseBody
     public UniversityViewModel getUniversityById(@PathVariable String universityId) {
         int id = Integer.parseInt(universityId);
@@ -42,19 +53,76 @@ public class UniversityController {
         return conversionService.convert(university, UniversityViewModel.class);
     }
 
-    @RequestMapping(value = "/university", method = RequestMethod.POST)
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public void createUniversity(@RequestBody UniversityViewModel universityViewModel) {
         UniversityEntity university = conversionService.convert(universityViewModel, UniversityEntity.class);
         universityService.addUniversity(university);
     }
 
-    @RequestMapping(value = "universities", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<UniversityViewModel> getAllUniversities() {
         List<UniversityEntity> universities = universityService.getAllUniversities();
         logger.debug("Show all universities.");
         return (List<UniversityViewModel>) conversionService.convert(universities, universityEntityTypeDescriptor, universityViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/{universityId}/faculties", method = RequestMethod.GET)
+    @ResponseBody
+    public List<FacultyViewModel> getFacultiesByUniversityId(@PathVariable String universityId) {
+        int id = Integer.parseInt(universityId);
+        List<FacultyEntity> facultyEntities = facultyService.getFacultiesByUniversityId(id);
+        logger.debug("Show faculties for university id=" + universityId);
+        return (List<FacultyViewModel>) conversionService.convert(facultyEntities, facultyEntityTypeDescriptor, facultyViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/faculties/{facultyId}", method = RequestMethod.GET)
+    @ResponseBody
+    public FacultyViewModel getFacultyById(@PathVariable String facultyId) {
+        int id = Integer.parseInt(facultyId);
+        FacultyEntity faculty = facultyService.getFacultyById(id);
+        logger.debug("Show faculty id=" + facultyId);
+        return conversionService.convert(faculty, FacultyViewModel.class);
+    }
+
+    @RequestMapping(value = "/faculty", method = RequestMethod.POST)
+    @ResponseBody
+    public void createFaculty(@RequestBody FacultyViewModel facultyViewModel) {
+        FacultyEntity faculty = conversionService.convert(facultyViewModel, FacultyEntity.class);
+        facultyService.addFaculty(faculty);
+    }
+
+    @RequestMapping(value = "faculties", method = RequestMethod.GET)
+    @ResponseBody
+    public List<FacultyViewModel> getAllFaculties() {
+        List<FacultyEntity> faculties = facultyService.getAllFaculties();
+        logger.debug("Show all faculties");
+        return (List<FacultyViewModel>) conversionService.convert(faculties, facultyEntityTypeDescriptor, facultyViewModelTypeDescriptor);
+    }
+
+    @RequestMapping(value = "/specialities/{specialityId}", method = RequestMethod.GET)
+    @ResponseBody
+    public SpecialityViewModel getSpecialityById(@PathVariable String specialityId) {
+        int id = Integer.parseInt(specialityId);
+        SpecialityEntity speciality = specialityService.getSpecialityById(id);
+        logger.debug("Show speciality id=" + specialityId);
+        return conversionService.convert(speciality, SpecialityViewModel.class);
+    }
+
+    @RequestMapping(value = "/speciality", method = RequestMethod.POST)
+    @ResponseBody
+    public void createSpeciality(@RequestBody SpecialityViewModel specialityViewModel) {
+        SpecialityEntity speciality = conversionService.convert(specialityViewModel, SpecialityEntity.class);
+        specialityService.addSpeciality(speciality);
+    }
+
+    @RequestMapping(value = "specialities", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SpecialityViewModel> getAllSpecialities() {
+        List<SpecialityEntity> faculties = specialityService.getAllSpecialities();
+        logger.debug("Show all specialities.");
+        return (List<SpecialityViewModel>) conversionService.convert(faculties, specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
     }
 
 }

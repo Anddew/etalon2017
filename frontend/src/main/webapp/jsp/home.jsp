@@ -28,6 +28,9 @@
                 <h5>Head menu</h5>
                     <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
                 </sec:authorize>
+                <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY')">
+                    <button type="button" class="btn btn-primary jsCreatePracticeButton">Create practice</button>
+                </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
                     <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
                 </sec:authorize>
@@ -60,6 +63,9 @@
             </div>
             <div class="jsStudentFullInfoContainer" style="display: none">
                 <jsp:include page="/jsp/block/student.jsp" />
+            </div>
+            <div class="jsPracticeFormContainer" style="display: none">
+                <jsp:include page="/jsp/block/practice-form.jsp" />
             </div>
 
         </div>

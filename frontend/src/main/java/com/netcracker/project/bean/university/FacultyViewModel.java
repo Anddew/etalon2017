@@ -8,6 +8,12 @@ public class FacultyViewModel {
     private String name;
     private UniversityViewModel university;
 
+    public FacultyViewModel() {
+    }
+
+    public FacultyViewModel(String id) {
+        this.id = id;
+    }
 
     public String getId() {
         return id;

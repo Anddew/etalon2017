@@ -9,8 +9,10 @@ public interface FacultyService {
 
     List<FacultyEntity> getAllFaculties();
 
-    FacultyEntity getFacultyById(int facultyId);
+    FacultyEntity getFacultyById(int id);
 
     void addFaculty(FacultyEntity faculty);
+
+    List<FacultyEntity> getFacultiesByUniversityId(int id);
 
 }

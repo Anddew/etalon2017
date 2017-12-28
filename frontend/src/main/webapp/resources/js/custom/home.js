@@ -6,15 +6,16 @@ $(document).ready(function () {
         BTN_HEADS_FROM_UNIVERSITY: '.jsHeadFromUniversityButton',
         BTN_ADMINS: '.jsAdminsButton',
         BTN_STUDENT_FULL_INFO: '.jsStudentFullInfoButton',
-        BTN_STUDENTS_FROM_PRACTICE: '.jsStudentsFromPracticeButton',
         BTN_PRACTICES: '.jsPracticesButton',
+        BTN_CREATE_PRACTICE: '.jsCreatePracticeButton',
 
         CONTAINER_STUDENTS_DATA: '.jsStudentsContainer',
         CONTAINER_HEAD_FROM_COMPANY_DATA: '.jsHeadFromCompanyContainer',
         CONTAINER_HEAD_FROM_UNIVERSITY_DATA: '.jsHeadFromUniversityContainer',
         CONTAINER_ADMINS_DATA: '.jsAdminsContainer',
         CONTAINER_STUDENT_FULL_INFO_DATA: '.jsStudentFullInfoContainer',
-        CONTAINER_PRACTICES_DATA: '.jsPracticesContainer'
+        CONTAINER_PRACTICES_DATA: '.jsPracticesContainer',
+        CONTAINER_PRACTICE_FORM_DATA: '.jsPracticeFormContainer'
     };
 
     var
@@ -23,15 +24,16 @@ $(document).ready(function () {
         $submitHeadsFromUniversityButton = $(ELEMENTS.BTN_HEADS_FROM_UNIVERSITY),
         $submitAdminsButton = $(ELEMENTS.BTN_ADMINS),
         $submitStudentFullInfoButton = $(ELEMENTS.BTN_STUDENT_FULL_INFO),
-        $submitStudentsFromPracticeButton = $(ELEMENTS.BTN_STUDENTS_FROM_PRACTICE),
         $submitPracticesButton = $(ELEMENTS.BTN_PRACTICES),
+        $submitCreatePracticeButton = $(ELEMENTS.BTN_CREATE_PRACTICE),
 
         $studentsContainerData = $(ELEMENTS.CONTAINER_STUDENTS_DATA),
         $headFromCompanyContainerData = $(ELEMENTS.CONTAINER_HEAD_FROM_COMPANY_DATA),
         $headFromUniversityContainerData = $(ELEMENTS.CONTAINER_HEAD_FROM_UNIVERSITY_DATA),
         $adminsContainerData = $(ELEMENTS.CONTAINER_ADMINS_DATA),
         $studentFullInfoContainerData = $(ELEMENTS.CONTAINER_STUDENT_FULL_INFO_DATA),
-        $practicesContainerData = $(ELEMENTS.CONTAINER_PRACTICES_DATA)
+        $practicesContainerData = $(ELEMENTS.CONTAINER_PRACTICES_DATA),
+        $practiceFormContainerData = $(ELEMENTS.CONTAINER_PRACTICE_FORM_DATA)
     ;
 
     var $containers = [
@@ -40,7 +42,8 @@ $(document).ready(function () {
         $headFromUniversityContainerData,
         $adminsContainerData,
         $studentFullInfoContainerData,
-        $practicesContainerData
+        $practicesContainerData,
+        $practiceFormContainerData
     ];
 
     function hideAllContainters(containers) {
@@ -198,6 +201,15 @@ $(document).ready(function () {
         });
 
     });
+
+    $submitCreatePracticeButton.click(function (event) {
+        event.stopPropagation();
+
+        hideAllContainters($containers);
+        $practiceFormContainerData.show();
+
+    });
+
 
     /*function calcOffset() {
         var serverTime = document.cookie['serverTime'];

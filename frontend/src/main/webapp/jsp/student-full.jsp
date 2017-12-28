@@ -26,28 +26,9 @@
                     <button type="button" class="btn btn-primary jsShowStudentInfoFormButton">Set student info</button>
                 </div>
                 <div class="form-group jsStudentInfoFormContainer" style="display: none">
-                    <input class="form-control jsAvgScore" id="avgScore" placeholder="Average score" type="text" />
-                    <div class="alert alert-danger jsAvgScoreNotification" role="alert" style="display: none">
-                        Input average score between 0.00-9.99
-                    </div>
-                    <select id="selectEducationForm" class="jsEducationForm" required>
-                        <option value="0">Select education form</option>
-                        <option value="FULL_TIME">Full time</option>
-                        <option value="PART_TIME">Part time</option>
-                        <option value="EVENING">Evening</option>
-                        <option value="DISTANCE">Distance</option>
-                    </select>
-                    <div class="alert alert-danger jsEducationFormNotification" role="alert" style="display: none">
-                        Select education form.
-                    </div>
-                    <select id="selectHiringForm" class="jsHiringForm">
-                        <option value="0">Select hiring type</option>
-                        <option value="ACCEPT">Require</option>
-                        <option value="DENY">Not require</option>
-                    </select>
-                    <div class="alert alert-danger jsHireConditionNotification" role="alert" style="display: none">
-                        Select hiring type.
-                    </div>
+                    <jsp:include page="/jsp/block/input/input-avg-score.jsp" />
+                    <jsp:include page="/jsp/block/input/select-education-form.jsp" />
+                    <jsp:include page="/jsp/block/input/select-hire-condition.jsp" />
                     <button type="submit" class="btn btn-primary jsStudentInfoFormSubmitButton">Submit</button>
                 </div>
             </sec:authorize>

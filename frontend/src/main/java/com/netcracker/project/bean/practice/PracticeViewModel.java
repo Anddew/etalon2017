@@ -109,6 +109,7 @@ public class PracticeViewModel {
         this.headFromUniversity = headFromUniversity;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -122,12 +123,14 @@ public class PracticeViewModel {
                 Objects.equals(hireCondition, that.hireCondition) &&
                 Objects.equals(dateStart, that.dateStart) &&
                 Objects.equals(dateEnd, that.dateEnd) &&
-                Objects.equals(educationForm, that.educationForm);
+                Objects.equals(educationForm, that.educationForm) &&
+                Objects.equals(headFromCompany, that.headFromCompany) &&
+                Objects.equals(headFromUniversity, that.headFromUniversity);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, faculty, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm);
+        return Objects.hash(id, status, faculty, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm, headFromCompany, headFromUniversity);
     }
 
     @Override
@@ -142,6 +145,8 @@ public class PracticeViewModel {
                 ", dateStart='" + dateStart + '\'' +
                 ", dateEnd='" + dateEnd + '\'' +
                 ", educationForm='" + educationForm + '\'' +
+                ", headFromCompany=" + headFromCompany +
+                ", headFromUniversity=" + headFromUniversity +
                 '}';
     }
 
