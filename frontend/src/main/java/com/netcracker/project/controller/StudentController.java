@@ -5,7 +5,6 @@ import com.netcracker.project.bean.user.StudentViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
-import com.netcracker.project.entity.user.student.StudentEntity;
 import com.netcracker.project.service.UserService;
 import com.netcracker.project.validation.UserValidator;
 import org.apache.log4j.Logger;
@@ -31,7 +30,9 @@ public class StudentController {
     private Logger logger = Logger.getLogger(StudentController.class.getSimpleName());
 
     private static final String STUDENT_PAGE_PATH = "/jsp/student-full.jsp";
+    private static final String PRACTICE_STUDENT_PATH = "practice-students";
     private static final String STUDENT_PARAMETER_NAME = "student";
+    private static final String PRACTICE_ID_PARAMETER_NAME = "practiceId";
     private static final String AVG_SCORE_PARAMETER_NAME = "avgScore";
     private static final String EDUCATION_FORM_PARAMETER_NAME = "educationForm";
     private static final String HIRE_CONDITION_PARAMETER_NAME = "hireCondition";
@@ -68,7 +69,7 @@ public class StudentController {
             String principal = request.getUserPrincipal().getName();
             user = userService.findUserByUserName(principal);
             student = conversionService.convert(user, StudentViewModel.class);
-            logger.debug("Show student id = '" + id + "'.");
+            logger.debug("Show my student info for logged student.");
         } else {
             user = userService.findStudent(id);
             student = conversionService.convert(user, StudentViewModel.class);
@@ -117,16 +118,20 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/practice/{id}", method = RequestMethod.GET)
+    public ModelAndView getStudentsFromPracticePage(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName(PRACTICE_STUDENT_PATH);
+        logger.debug("Show students from practice page.");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/practice/{id}/get", method = RequestMethod.GET)
     @ResponseBody
-    public ModelAndView getStudentsFromPractice(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
+    public List<StudentViewModel> getStudentsFromPractice(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
         List<UserEntity> users = userService.findStudentsFromPractice(id);
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
         logger.debug("Show students from practice id = '" + id + "' for user '" + request.getUserPrincipal().getName() + "' (authority - '" + SecurityContextHolder.getContext().getAuthentication().getAuthorities() + "').");
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("practice-students");
-        modelAndView.addObject("students", students);
-//        return students;
-        return modelAndView;
+        return students;
     }
 
 }

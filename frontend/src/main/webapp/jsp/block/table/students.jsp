@@ -23,7 +23,7 @@
         <th data-field="studentId" data-formatter="linkFormatter" data-halign="center" data-align="center">Profile</th>
         <script>
             function linkFormatter(value) {
-                return "<a href=\"students/" + value + "\" class=\"btn btn-default btn-block\" target=\"_blank\">Show</a>";
+                return "<a href=\"/students/" + value + "\" class=\"btn btn-default btn-block\" target=\"_blank\">Show</a>";
             }
         </script>
     </tr>

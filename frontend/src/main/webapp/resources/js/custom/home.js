@@ -192,50 +192,12 @@ $(document).ready(function () {
             success: function (practices) {
                 $practicesContainerData.show();
                 $('#practicesTable').bootstrapTable({
-                    data: practices,
+                    data: practices
                 });
             }
         });
 
-        $('#practicesTable tbody tr td').on('click', 'button', function () {
-            alert('click!');
-        } );
     });
-
-
-
-    $submitStudentsFromPracticeButton.click(function (event) {
-        event.stopPropagation();
-
-        hideAllContainters($containers);
-        var id = $submitStudentsFromPracticeButton.val();
-
-        $.ajax({
-            url: '/students/practice/' + id,
-            type: 'GET',
-            dataType: 'json',
-            contentType: "application/json",
-            mimeType: 'application/json',
-            data: '',
-            success: function (students) {
-                $studentsContainerData.show();
-                if(students) {
-                    alert("ok!");
-                } else {
-                    alert("no ok !!!");
-                }
-
-                /*$('#practicesTable').bootstrapTable({
-                    data: practices
-                });*/
-            }
-        });
-
-    });
-
-
-
-
 
     /*function calcOffset() {
         var serverTime = document.cookie['serverTime'];
