@@ -6,41 +6,43 @@
 <head>
     <title>Home page</title>
 </head>
+
 <script src="../resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="../resources/js/custom/home.js"></script>
 <script src="../resources/js/libs/bootstrap-table.js"></script>
 <link href="../resources/css/libs/bootstrap-table.min.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="../resources/css/custom/home.css" rel="stylesheet" type="text/css" media="all"/>
+
 <body>
 <jsp:include page="/jsp/block/header.jsp"/>
+
 <div class="container-fluid">
     <div class="row content">
 
         <div class="col-sm-2" align="center">
             <div class="btn-group-vertical">
                 <sec:authentication var="user" property="principal"/>
+                <h5>Menu</h5>
                 <sec:authorize access="hasAnyAuthority('STUDENT')">
-                    <h5>Student menu</h5>
                     <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
                     <button type="button" class="btn btn-primary jsStudentFullInfoButton" value="0">My full info</button>
                 </sec:authorize>
+                <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
+                    <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
+                </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
-                <h5>Head menu</h5>
                     <button type="button" class="btn btn-primary jsPracticesButton">My practices</button>
                 </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY')">
                     <button type="button" class="btn btn-primary jsCreatePracticeButton">Create practice</button>
                 </sec:authorize>
-                <sec:authorize access="hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')">
-                    <button type="button" class="btn btn-primary jsStudentsButton">Students</button>
-                </sec:authorize>
                 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
+                    <br/>
                     <h5>Admin menu</h5>
                     <button type="button" class="btn btn-primary jsPracticesButton">Practices</button>
                     <button type="button" class="btn btn-primary jsAdminsButton">Admins</button>
                     <button type="button" class="btn btn-primary jsHeadFromCompanyButton">Heads from company</button>
                     <button type="button" class="btn btn-primary jsHeadFromUniversityButton">Heads from university</button>
-                    <button type="button" class="btn btn-primary">Assign to practice</button>
                 </sec:authorize>
             </div>
         </div>

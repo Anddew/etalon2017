@@ -4,8 +4,7 @@ import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
-import com.netcracker.project.entity.user.student.StudentEntity;
-import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
@@ -17,8 +16,6 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<UserEntity, Integer> {
 
     UserEntity findByUserId(int id);
-
-    UserEntity findByUserIdAndRole(int id, UserRole role);
 
     @Query("SELECT u FROM UserEntity u WHERE u.studentInfo = (SELECT s FROM StudentEntity s WHERE s.studentId = :id)")
     UserEntity findStudentById(@Param("id") int id);

@@ -5,6 +5,7 @@ public enum PracticeStatus {
     CHECKED("Checked"),
     PROCESSING("Processing");
 
+
     private String description;
 
     PracticeStatus(String description) {

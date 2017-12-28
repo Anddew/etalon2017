@@ -14,63 +14,63 @@
 </div>
 
 <div class="form-group">
-    <input type="text" class="form-control jsUsername" id="username" placeholder="User name" name="username">
+    <input type="text" class="form-control jsUsername" placeholder="User name" name="username">
 </div>
 <div class="alert alert-danger jsUsernameNotification" role="alert" style="display: none">
     Input your username. Only letters and digits available. Length 3..15 symbols.
 </div>
 
 <div class="form-group">
-    <input type="email" class="form-control jsEmail" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+    <input type="email" class="form-control jsEmail" aria-describedby="emailHelp" placeholder="Enter email" name="email">
 </div>
 <div class="alert alert-danger jsEmailNotification" role="alert" style="display: none">
     Input your email. Should be like "example@gmail.com".
 </div>
 
 <div class="form-group">
-    <input type="password" class="form-control jsPassword" id="exampleInputPassword" placeholder="Password" name="password">
+    <input type="password" class="form-control jsPassword" placeholder="Password" name="password">
 </div>
 <div class="alert alert-danger jsPasswordNotification" role="alert" style="display: none">
     Input your password. Only letters and digits available. Length 3..15 symbols.
 </div>
 
 <div class="form-group">
-    <input type="password" class="form-control jsPasswordRepeat" id="repeatPassword" placeholder="Repeat password" name="passwordRepeat">
+    <input type="password" class="form-control jsPasswordRepeat" placeholder="Repeat password" name="passwordRepeat">
 </div>
 <div class="alert alert-danger jsPasswordRepeatNotification" role="alert" style="display: none">
     Passwords don`t match! Correct it.
 </div>
 
 <div class="form-group">
-    <input type="text" class="form-control jsFirstName" id="firstName" placeholder="First name" name="firstName">
+    <input type="text" class="form-control jsFirstName" placeholder="First name" name="firstName">
 </div>
 <div class="alert alert-danger jsFirstNameNotification" role="alert" style="display: none">
     Input your first name. Only letters available. Length 2..15 symbols.
 </div>
 
 <div class="form-group">
-    <input type="text" class="form-control jsLastName" id="lastName" placeholder="Last name" name="lastName">
+    <input type="text" class="form-control jsLastName" placeholder="Last name" name="lastName">
 </div>
 <div class="alert alert-danger jsLastNameNotification" role="alert" style="display: none">
     Input your last name. Only letters available. Length 2..15 symbols.
 </div>
 
 <div id="head_from_company" class="form-group show-hide">
-    <input type="text" class="form-control jsHeadFromCompany" id="inputHeadFromCompany"  placeholder="Company" name="company">
+    <input type="text" class="form-control jsHeadFromCompany" placeholder="Company" name="company">
 </div>
 <div class="alert alert-danger jsHeadFromCompanyNotification" role="alert" style="display: none">
     Input your company. Only letters available. Length 2..15 symbols.
 </div>
 
 <div id="head_from_university" class="form-group show-hide">
-    <input type="text" class="form-control jsHeadFromUniversity" id="inputHeadFromUniversity" placeholder="Faculty" name="faculty">
+    <input type="text" class="form-control jsHeadFromUniversity" placeholder="Faculty" name="faculty">
 </div>
 <div class="alert alert-danger jsHeadFromUniversityNotification" role="alert" style="display: none">
     Input your faculty. Only letters available. Length 2..15 symbols.
 </div>
 
 <div id="student" class="form-group show-hide">
-    <input type="text" class="form-control jsStudent" id="inputStudent" placeholder="Group number" name="group">
+    <input type="text" class="form-control jsStudent" placeholder="Group number" name="group">
 </div>
 <div class="alert alert-danger jsStudentNotification" role="alert" style="display: none">
     Input your group number like "850505" or "RT-611". Max 10 symbols.

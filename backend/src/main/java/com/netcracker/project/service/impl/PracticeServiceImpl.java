@@ -1,12 +1,8 @@
 package com.netcracker.project.service.impl;
 
 import com.netcracker.project.entity.practice.PracticeEntity;
-import com.netcracker.project.entity.user.UserEntity;
-import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.repository.PracticeRepository;
-import com.netcracker.project.repository.UserRepository;
 import com.netcracker.project.service.PracticeService;
-import com.netcracker.project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

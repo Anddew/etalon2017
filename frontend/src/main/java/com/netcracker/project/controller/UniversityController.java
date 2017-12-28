@@ -9,15 +9,17 @@ import com.netcracker.project.entity.university.UniversityEntity;
 import com.netcracker.project.service.FacultyService;
 import com.netcracker.project.service.SpecialityService;
 import com.netcracker.project.service.UniversityService;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 @RequestMapping(value = "universities")
@@ -44,6 +46,7 @@ public class UniversityController {
     private final TypeDescriptor specialityEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityEntity.class));
     private final TypeDescriptor specialityViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(SpecialityViewModel.class));
 
+
     @RequestMapping(value = "/{universityId}", method = RequestMethod.GET)
     @ResponseBody
     public UniversityViewModel getUniversityById(@PathVariable String universityId) {
@@ -58,6 +61,7 @@ public class UniversityController {
     public void createUniversity(@RequestBody UniversityViewModel universityViewModel) {
         UniversityEntity university = conversionService.convert(universityViewModel, UniversityEntity.class);
         universityService.addUniversity(university);
+        logger.debug("University created successfully.");
     }
 
     @RequestMapping(method = RequestMethod.GET)
@@ -90,7 +94,7 @@ public class UniversityController {
     @ResponseBody
     public void createFaculty(@RequestBody FacultyViewModel facultyViewModel) {
         FacultyEntity faculty = conversionService.convert(facultyViewModel, FacultyEntity.class);
-        facultyService.addFaculty(faculty);
+        facultyService.createFaculty(faculty);
     }
 
     @RequestMapping(value = "faculties", method = RequestMethod.GET)

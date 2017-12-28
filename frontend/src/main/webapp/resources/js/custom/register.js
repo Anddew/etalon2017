@@ -174,7 +174,7 @@ $(document).ready(function () {
             success: function () {
                 window.location.href = "/home"
             },
-            error: function (xhr, textStatus) {
+            error: function (xhr) {
                 xhr.status == 400 ? $duplicationErrorNotification.show() : $serverErrorNotification.show();
             }
         });

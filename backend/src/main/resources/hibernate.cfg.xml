@@ -4,8 +4,8 @@
     "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
   <session-factory>
-      <property name="connection.url">jdbc:mysql://localhost:3306/netcrackerappdb</property>
-      <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+      <!--<property name="connection.url">jdbc:mysql://localhost:3306/netcrackerappdb</property>-->
+      <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
       <mapping class="com.netcracker.project.entity.user.UserEntity"/>
       <mapping class="com.netcracker.project.entity.company.CompanyEntity"/>
       <mapping class="com.netcracker.project.entity.university.SpecialityEntity"/>

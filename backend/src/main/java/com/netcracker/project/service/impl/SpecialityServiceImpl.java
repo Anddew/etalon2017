@@ -14,9 +14,6 @@ public class SpecialityServiceImpl implements SpecialityService {
     @Autowired
     private SpecialityRepository specialityRepository;
 
-    public SpecialityRepository getSpecialityRepository() {
-        return specialityRepository;
-    }
 
     @Override
     public List<SpecialityEntity> getAllSpecialities() {
@@ -32,4 +29,5 @@ public class SpecialityServiceImpl implements SpecialityService {
     public void addSpeciality(SpecialityEntity speciality) {
         specialityRepository.save(speciality);
     }
+
 }

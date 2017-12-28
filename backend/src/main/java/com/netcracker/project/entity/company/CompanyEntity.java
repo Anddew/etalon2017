@@ -1,6 +1,12 @@
 package com.netcracker.project.entity.company;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.GenerationType;
 
 @Entity
 @Table(name = "company", schema = "netcrackerappdb")
@@ -8,6 +14,7 @@ public class CompanyEntity {
 
     private int id;
     private String name;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,7 +28,7 @@ public class CompanyEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = true, length = 45)
+    @Column(name = "name", length = 45)
     public String getName() {
         return name;
     }
@@ -54,6 +61,5 @@ public class CompanyEntity {
     public String toString() {
         return name;
     }
-
 
 }

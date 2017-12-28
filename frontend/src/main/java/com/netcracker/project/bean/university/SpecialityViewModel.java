@@ -8,6 +8,7 @@ public class SpecialityViewModel {
     private String name;
     private FacultyViewModel faculty;
 
+
     public String getId() {
         return id;
     }

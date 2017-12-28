@@ -2,7 +2,9 @@ package com.netcracker.project.converter.user;
 
 import com.netcracker.project.bean.user.AdminViewModel;
 import com.netcracker.project.entity.user.UserEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -13,6 +15,7 @@ public class UserEntityToAdminViewModelConverter extends UserEntityToUserViewMod
 
     @Autowired
     private ConversionService conversionService;
+
 
     @Override
     public AdminViewModel convert(UserEntity userEntity) {

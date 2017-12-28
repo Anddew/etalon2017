@@ -4,8 +4,22 @@ import com.netcracker.project.entity.company.CompanyEntity;
 import com.netcracker.project.entity.university.FacultyEntity;
 import com.netcracker.project.entity.user.student.StudentEntity;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.CascadeType;
+
 import java.sql.Timestamp;
+
 import java.util.Objects;
 
 @Entity
@@ -24,6 +38,7 @@ public class UserEntity {
     private FacultyEntity faculty;
     private StudentEntity studentInfo;
 
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

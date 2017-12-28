@@ -7,6 +7,7 @@ public enum EducationForm {
     EVENING("Evening"),
     DISTANCE("Distance");
 
+
     private String description;
 
     EducationForm(String description) {

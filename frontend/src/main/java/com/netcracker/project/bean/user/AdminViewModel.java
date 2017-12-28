@@ -8,6 +8,7 @@ public class AdminViewModel extends UserViewModel {
 
     private static final long serialVersionUID = -5638812931455752574L;
 
+
     @Override
     public UserRole getRole() {
         return UserRole.ADMINISTRATOR;

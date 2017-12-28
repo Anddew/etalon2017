@@ -3,7 +3,6 @@ package com.netcracker.project.service;
 import com.netcracker.project.entity.university.FacultyEntity;
 
 import java.util.List;
-import java.util.Set;
 
 public interface FacultyService {
 
@@ -11,7 +10,7 @@ public interface FacultyService {
 
     FacultyEntity getFacultyById(int id);
 
-    void addFaculty(FacultyEntity faculty);
+    void createFaculty(FacultyEntity faculty);
 
     List<FacultyEntity> getFacultiesByUniversityId(int id);
 

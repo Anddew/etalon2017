@@ -1,10 +1,10 @@
 package com.netcracker.project.security.impl;
 
-import com.netcracker.project.bean.user.UserViewModel;
-import com.netcracker.project.bean.user.UserViewModelFactory;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.service.UserService;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -25,6 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
+
 
     @Override
     @Transactional(readOnly = true)

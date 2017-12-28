@@ -2,13 +2,16 @@ package com.netcracker.project.converter.university;
 
 import com.netcracker.project.bean.university.UniversityViewModel;
 import com.netcracker.project.entity.university.UniversityEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 
 public class UniversityEntityToUniversityViewModelConverter implements Converter<UniversityEntity, UniversityViewModel> {
 
     private Logger logger = Logger.getLogger(UniversityEntityToUniversityViewModelConverter.class.getSimpleName());
+
 
     @Override
     public UniversityViewModel convert(UniversityEntity universityEntity) {

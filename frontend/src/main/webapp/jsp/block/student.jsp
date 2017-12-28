@@ -1,7 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-
-
 <table class="table table-bordered">
     <tbody>
     <tr style="display: none">

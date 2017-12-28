@@ -5,12 +5,14 @@ import com.netcracker.project.bean.user.HeadFromCompanyViewModel;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.exception.RegistrationException;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLException;
 import java.util.Map;
+
 
 @Service
 public class HeadFromCompanyRegistrationServiceImpl extends UserRegistrationServiceImpl {
@@ -20,6 +22,7 @@ public class HeadFromCompanyRegistrationServiceImpl extends UserRegistrationServ
     private static final String HEAD_FROM_COMPANY_VALIDATION_ERROR_MESSAGE = "Cannot register head from company user. Input data isn`t correct.";
 
     private static final String COMPANY_PARAMETER_NAME = "company";
+
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {

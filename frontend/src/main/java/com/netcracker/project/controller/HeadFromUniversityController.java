@@ -1,9 +1,11 @@
 package com.netcracker.project.controller;
 
-import com.netcracker.project.bean.user.*;
+import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.service.UserService;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+
 
 @Controller
 @RequestMapping(value = "/heads-university")

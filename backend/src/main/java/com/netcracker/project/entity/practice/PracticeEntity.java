@@ -5,13 +5,28 @@ import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
 import com.netcracker.project.entity.user.student.StudentEntity;
-import org.hibernate.annotations.NotFound;
-import org.hibernate.annotations.NotFoundAction;
+
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.CascadeType;
+
 import java.sql.Date;
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "practice", schema = "netcrackerappdb")

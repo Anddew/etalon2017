@@ -14,9 +14,6 @@ public class UniversityServiceImpl implements UniversityService {
     @Autowired
     private UniversityRepository universityRepository;
 
-    public UniversityRepository getUniversityRepository() {
-        return universityRepository;
-    }
 
     @Override
     public UniversityEntity getUniversityById(int universityId) {
@@ -32,6 +29,5 @@ public class UniversityServiceImpl implements UniversityService {
     public List<UniversityEntity> getAllUniversities() {
         return universityRepository.findAll();
     }
-
 
 }

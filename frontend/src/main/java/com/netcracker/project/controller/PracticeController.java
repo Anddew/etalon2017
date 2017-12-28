@@ -9,7 +9,9 @@ import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.service.FacultyService;
 import com.netcracker.project.service.PracticeService;
 import com.netcracker.project.service.UserService;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -22,15 +24,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
+
 @Controller
 @RequestMapping(value = "/practices")
 public class PracticeController {
 
     private Logger logger = Logger.getLogger(PracticeController.class.getSimpleName());
-
-    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
-    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeEntity.class));
-
 
     @Autowired
     private ConversionService conversionService;
@@ -44,8 +43,8 @@ public class PracticeController {
     @Autowired
     private FacultyService facultyService;
 
-    private final TypeDescriptor studentViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(StudentViewModel.class));
-    private final TypeDescriptor userEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserEntity.class));
+    private final TypeDescriptor practiceViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeViewModel.class));
+    private final TypeDescriptor practiceEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(PracticeEntity.class));
 
 
     @RequestMapping(method = RequestMethod.GET)

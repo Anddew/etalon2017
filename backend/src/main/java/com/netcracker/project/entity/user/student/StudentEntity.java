@@ -4,8 +4,25 @@ import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.university.SpecialityEntity;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Enumerated;
+import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.GenerationType;
+import javax.persistence.EnumType;
+import javax.persistence.CascadeType;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 
 @Entity
 @Table(name = "student", schema = "netcrackerappdb")
@@ -19,6 +36,7 @@ public class StudentEntity {
     private HireCondition hireCondition;
     private PracticeStatus practiceStatus;
     private List<PracticeEntity> practices = new ArrayList<>();
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

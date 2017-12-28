@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     var ELEMENTS = {
         BTN_SUBMIT_REGISTER: '.jsSubmitLogin',
+        
         INPUT_USERNAME: '.jsUsername',
         INPUT_PASSWORD: '.jsPassword',
         INPUT_REMEMBER_ME: '.jsRememberMe',
@@ -14,6 +15,7 @@ $(document).ready(function () {
 
     var
         $submitButton = $(ELEMENTS.BTN_SUBMIT_REGISTER),
+        
         $usernameField = $(ELEMENTS.INPUT_USERNAME),
         $passwordField = $(ELEMENTS.INPUT_PASSWORD),
         $rememberMeField = $(ELEMENTS.INPUT_REMEMBER_ME),
@@ -60,7 +62,7 @@ $(document).ready(function () {
             success: function () {
                 window.location.href = "/home"
             },
-            error: function (xhr, textStatus) {
+            error: function (xhr) {
                 xhr.status == 401 ? $credentialNotification.show() : alert('Something went wrong, try again later.');
             }
         });

@@ -1,6 +1,15 @@
 package com.netcracker.project.entity.university;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.ManyToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.GenerationType;
+import javax.persistence.CascadeType;
 
 @Entity
 @Table(name = "speciality", schema = "netcrackerappdb")
@@ -9,6 +18,7 @@ public class SpecialityEntity {
     private int id;
     private String name;
     private FacultyEntity faculty;
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

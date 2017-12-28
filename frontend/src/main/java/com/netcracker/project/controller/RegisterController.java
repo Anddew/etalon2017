@@ -7,7 +7,9 @@ import com.netcracker.project.exception.RegistrationException;
 import com.netcracker.project.servicefront.UserRegistrationService;
 import com.netcracker.project.servicefront.impl.UserRegistrationServiceFactory;
 import com.netcracker.project.validation.UserValidator;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +19,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.util.Map;
+
 
 @Controller
 public class RegisterController {
@@ -31,17 +35,16 @@ public class RegisterController {
     protected UserValidator validator;
 
     private static final String REGISTER_VIEW_PATH = "register";
-    private static final String REGISTER_URL_PATTERN = "register";
     private static final String ROLE_PARAMETER_NAME = "role";
 
-    @RequestMapping(value = REGISTER_URL_PATTERN, method = RequestMethod.GET)
+    @RequestMapping(value = "register", method = RequestMethod.GET)
     public ModelAndView register() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(REGISTER_VIEW_PATH);
         return modelAndView;
     }
 
-    @RequestMapping(value = REGISTER_URL_PATTERN, method = RequestMethod.POST)
+    @RequestMapping(value = "register", method = RequestMethod.POST)
     public void register(@RequestBody Map<String,String> userParameters, HttpServletRequest request, HttpServletResponse response) {
         String roleParameter = userParameters.get(ROLE_PARAMETER_NAME);
         if(roleParameter == null) {

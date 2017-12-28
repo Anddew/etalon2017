@@ -8,8 +8,7 @@
     <beans:import resource="classpath:backend-spring-context.xml"/>
 
     <http use-expressions="true">
-        <form-login login-page="/authorization"
-        />
+        <form-login login-page="/authorization" />
         <logout logout-url="/logout"
                 logout-success-url="/authorization"
                 delete-cookies="JSESSIONID"/>

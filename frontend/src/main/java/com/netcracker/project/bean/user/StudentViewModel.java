@@ -17,6 +17,7 @@ public class StudentViewModel extends UserViewModel {
     private String hireCondition;
     private String practiceStatus;
 
+
     public String getStudentId() {
         return studentId;
     }

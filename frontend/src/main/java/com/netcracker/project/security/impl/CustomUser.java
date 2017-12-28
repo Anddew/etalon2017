@@ -1,6 +1,7 @@
 package com.netcracker.project.security.impl;
 
 import org.apache.log4j.Logger;
+
 import org.springframework.security.core.CredentialsContainer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+
 
 public abstract class CustomUser implements UserDetails, CredentialsContainer {
 
@@ -45,6 +47,7 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
             throw new IllegalArgumentException("Cannot pass null or empty values to constructor");
         }
     }
+
 
     @Override
     public String getPassword() {

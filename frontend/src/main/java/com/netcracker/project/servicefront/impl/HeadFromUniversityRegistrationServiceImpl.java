@@ -5,11 +5,14 @@ import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.exception.RegistrationException;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+
 
 @Service
 public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationServiceImpl {
@@ -19,6 +22,7 @@ public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationS
     private static final String HEAD_FROM_UNIVERSITY_VALIDATION_ERROR_MESSAGE = "Cannot register head from university user. Input data isn`t correct.";
 
     private static final String FACULTY_PARAMETER_NAME = "faculty";
+
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {

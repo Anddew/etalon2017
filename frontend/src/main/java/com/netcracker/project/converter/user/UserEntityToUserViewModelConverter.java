@@ -2,14 +2,18 @@ package com.netcracker.project.converter.user;
 
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;
 
+
 public abstract class UserEntityToUserViewModelConverter {
 
     private Logger logger = Logger.getLogger(UserEntityToUserViewModelConverter.class.getSimpleName());
+
 
     public void convert(UserViewModel userViewModel, UserEntity userEntity) {
         Integer id = userEntity.getUserId();

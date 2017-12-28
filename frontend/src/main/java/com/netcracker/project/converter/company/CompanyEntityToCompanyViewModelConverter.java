@@ -2,13 +2,16 @@ package com.netcracker.project.converter.company;
 
 import com.netcracker.project.bean.company.CompanyViewModel;
 import com.netcracker.project.entity.company.CompanyEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.util.StringUtils;
 
 public class CompanyEntityToCompanyViewModelConverter implements Converter<CompanyEntity, CompanyViewModel> {
 
     private Logger logger = Logger.getLogger(CompanyEntityToCompanyViewModelConverter.class.getSimpleName());
+
 
     @Override
     public CompanyViewModel convert(CompanyEntity companyEntity) {

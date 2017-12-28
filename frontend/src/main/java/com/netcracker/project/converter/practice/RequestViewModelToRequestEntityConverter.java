@@ -7,7 +7,9 @@ import com.netcracker.project.entity.university.FacultyEntity;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -21,6 +23,7 @@ public class RequestViewModelToRequestEntityConverter implements Converter<Pract
 
     @Autowired
     private ConversionService conversionService;
+
 
     @Override
     public PracticeEntity convert(PracticeViewModel practiceViewModel) {

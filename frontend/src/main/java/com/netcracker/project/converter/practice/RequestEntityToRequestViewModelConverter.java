@@ -7,7 +7,9 @@ import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.practice.PracticeStatus;
 import com.netcracker.project.entity.user.student.EducationForm;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -21,6 +23,7 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Pract
 
     @Autowired
     private ConversionService conversionService;
+
 
     @Override
     public PracticeViewModel convert(PracticeEntity practiceEntity) {
@@ -63,4 +66,5 @@ public class RequestEntityToRequestViewModelConverter implements Converter<Pract
         logger.debug("Conversion PracticeEntity to PracticeViewModel completed.");
         return practiceViewModel;
     }
+
 }

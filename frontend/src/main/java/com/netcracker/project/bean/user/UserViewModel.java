@@ -16,8 +16,6 @@ public abstract class UserViewModel extends CustomUser {
     private String firstName;
     private String lastName;
 
-    public UserViewModel() {
-    }
 
     public String getUserId() {
         return userId;

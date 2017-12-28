@@ -8,6 +8,7 @@ public enum UserRole {
     HEAD_FROM_UNIVERSITY("Head from university"),
     STUDENT("Student");
 
+
     private String description;
 
     UserRole(String description) {

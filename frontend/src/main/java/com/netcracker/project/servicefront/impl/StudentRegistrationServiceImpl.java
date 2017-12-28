@@ -5,7 +5,9 @@ import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.PracticeStatus;
 import com.netcracker.project.exception.RegistrationException;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +21,7 @@ public class StudentRegistrationServiceImpl extends UserRegistrationServiceImpl 
     private static final String STUDENT_VALIDATION_ERROR_MESSAGE = "Cannot register student user. Input data isn`t correct.";
 
     private static final String GROUP_NUMBER_PARAMETER_NAME = "group";
+
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
@@ -38,4 +41,5 @@ public class StudentRegistrationServiceImpl extends UserRegistrationServiceImpl 
         }
         logger.info("Student user have been successfully registered.");
     }
+
 }

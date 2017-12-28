@@ -1,10 +1,16 @@
 package com.netcracker.project.controller.filter;
 
 
-import javax.servlet.*;
+import javax.servlet.Filter;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.FilterChain;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import java.io.IOException;
 
 public class SessionTimeoutCookieFilter implements Filter {
@@ -14,8 +20,6 @@ public class SessionTimeoutCookieFilter implements Filter {
     }
 
     public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("!!!!!!!!!!!!!! DO FILTER !!!!!!!!!!!!!!!!!");
-
         HttpServletResponse httpResp = (HttpServletResponse) resp;
         HttpServletRequest httpReq = (HttpServletRequest) req;
         long currTime = System.currentTimeMillis();

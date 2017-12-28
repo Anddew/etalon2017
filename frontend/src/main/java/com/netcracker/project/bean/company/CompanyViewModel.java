@@ -7,6 +7,7 @@ public class CompanyViewModel {
     private String id;
     private String name;
 
+
     public String getId() {
         return id;
     }

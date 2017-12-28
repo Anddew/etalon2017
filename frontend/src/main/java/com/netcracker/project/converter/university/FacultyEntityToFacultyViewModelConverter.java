@@ -3,7 +3,9 @@ package com.netcracker.project.converter.university;
 import com.netcracker.project.bean.university.FacultyViewModel;
 import com.netcracker.project.bean.university.UniversityViewModel;
 import com.netcracker.project.entity.university.FacultyEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
@@ -15,6 +17,7 @@ public class FacultyEntityToFacultyViewModelConverter implements Converter<Facul
 
     @Autowired
     private ConversionService conversionService;
+
 
     @Override
     public FacultyViewModel convert(FacultyEntity facultyEntity) {
@@ -31,4 +34,5 @@ public class FacultyEntityToFacultyViewModelConverter implements Converter<Facul
         logger.debug("Conversion FacultyEntity to FacultyViewModel completed.");
         return facultyViewModel;
     }
+
 }

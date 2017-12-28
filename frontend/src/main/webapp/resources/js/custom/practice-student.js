@@ -15,7 +15,7 @@ $(document).ready(function () {
                 data: students
             });
         },
-        error: function (xhr, textStatus) {
+        error: function () {
             alert("Something went wrong!")
         }
     });

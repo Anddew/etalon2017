@@ -6,6 +6,7 @@ public enum PracticeStatus {
     WAITING("Waiting"),
     ON_PRACTICE("On practice");
 
+
     private String description;
 
     PracticeStatus(String description) {

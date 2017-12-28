@@ -76,8 +76,7 @@
             return $groupNumberPattern.test(val);
         },
 
-        validateAvgScore: function (value) {
-            var val = value.val();
+        validateAvgScore: function (val) {
             if(val === null || val === "") {
                 return true;
             }
@@ -93,11 +92,10 @@
         },
 
         validateIsSelectChosen: function (value) {
-            var val = value.val();
-            if(val === null || val === "") {
+            if(value === null || value === "") {
                 return false;
             }
-            return val != 0;
+            return value != 0;
         },
 
         validateDates: function (dateStart, dateEnd) {

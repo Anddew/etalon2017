@@ -6,9 +6,11 @@
 <head>
     <title>Register page</title>
 </head>
+
 <script src="../resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="../resources/js/custom/register.js"></script>
 <link href="../resources/css/custom/register.css" rel="stylesheet" type="text/css" media="all"/>
+
 <body>
 <jsp:include page="/jsp/block/header.jsp"/>
 
@@ -31,8 +33,6 @@
         <div class="col-md-5">
         </div>
     </div>
-
-
 </div>
 
 <jsp:include page="/jsp/block/footer.jsp"/>

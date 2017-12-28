@@ -1,7 +1,9 @@
 package com.netcracker.project.security.impl;
 
 import com.netcracker.project.security.Encrypter;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.stereotype.Component;
 
 import java.security.MessageDigest;
@@ -14,6 +16,7 @@ public class MD5Encrypter implements Encrypter {
 
     private static final String CRYPT_ALGORITHM = "MD5";
     private static final String NO_SUCH_CRYPT_ALGORITHM_ERROR_MESSAGE = "Runtime exception. No such algorithm to crypt password - ";
+
 
     @Override
     public String encrypt(String target) {

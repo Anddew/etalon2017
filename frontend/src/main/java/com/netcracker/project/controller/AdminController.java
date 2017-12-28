@@ -1,10 +1,11 @@
 package com.netcracker.project.controller;
 
 import com.netcracker.project.bean.user.AdminViewModel;
-import com.netcracker.project.bean.user.HeadFromCompanyViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.service.UserService;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
@@ -21,7 +22,6 @@ public class AdminController {
 
     private Logger logger = Logger.getLogger(AdminController.class.getSimpleName());
 
-
     @Autowired
     private ConversionService conversionService;
 
@@ -31,6 +31,7 @@ public class AdminController {
     private final TypeDescriptor userEntityTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(UserEntity.class));
     private final TypeDescriptor adminViewModelTypeDescriptor = TypeDescriptor.collection(List.class, TypeDescriptor.valueOf(AdminViewModel.class));
 
+
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<AdminViewModel> getAllAdmins() {
@@ -39,6 +40,5 @@ public class AdminController {
         logger.debug("Show all admins.");
         return admins;
     }
-
 
 }

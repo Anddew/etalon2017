@@ -11,6 +11,7 @@ public class HeadFromUniversityViewModel extends UserViewModel {
 
     private FacultyViewModel faculty;
 
+
     public FacultyViewModel getFaculty() {
         return faculty;
     }

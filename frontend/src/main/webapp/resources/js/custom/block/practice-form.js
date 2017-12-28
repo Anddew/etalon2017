@@ -17,7 +17,7 @@ $(document).ready(function () {
         NOTIFICATION_AVG_SCORE_ERROR: '.jsMinAvgScoreNotification',
         NOTIFICATION_EDUCATION_FORM_ERROR: '.jsEducationFormNotification',
         NOTIFICATION_HIRE_CONDITION_ERROR: '.jsHireConditionNotification',
-        NOTIFICATION_DATE_ERROR: '.jsDateNotification',
+        NOTIFICATION_DATE_ERROR: '.jsDateNotification'
         };
 
     var
@@ -153,6 +153,7 @@ $(document).ready(function () {
             return;
         }
 
+        //todo
         var fac = $facultyField.val();
 
         $.ajax({

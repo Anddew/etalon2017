@@ -3,7 +3,9 @@ package com.netcracker.project.converter.user;
 import com.netcracker.project.bean.user.UserViewModel;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.UserRole;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.util.StringUtils;
 
 import java.sql.Timestamp;

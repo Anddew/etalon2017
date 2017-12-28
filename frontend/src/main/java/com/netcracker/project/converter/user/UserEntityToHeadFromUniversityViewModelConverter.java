@@ -3,10 +3,13 @@ package com.netcracker.project.converter.user;
 import com.netcracker.project.bean.university.FacultyViewModel;
 import com.netcracker.project.bean.user.HeadFromUniversityViewModel;
 import com.netcracker.project.entity.user.UserEntity;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+
 
 public class UserEntityToHeadFromUniversityViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, HeadFromUniversityViewModel> {
 
@@ -14,6 +17,7 @@ public class UserEntityToHeadFromUniversityViewModelConverter extends UserEntity
 
     @Autowired
     private ConversionService conversionService;
+
 
     @Override
     public HeadFromUniversityViewModel convert(UserEntity userEntity) {

@@ -6,7 +6,6 @@ import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
 
 import java.util.List;
-import java.util.Set;
 
 public interface UserService {
 
@@ -18,17 +17,13 @@ public interface UserService {
 
     List<UserEntity> findAllAdmins();
 
-    UserEntity findById(int id);
-
-    UserEntity findStudent(int id);
+    UserEntity findUser(int id);
 
     List<UserEntity> findStudentsFromPractice(int id);
 
     UserEntity findUserByUserName(String username);
 
     void addUser(UserEntity user);
-
-    UserEntity findStudentByUsername(String username);
 
     List<PracticeEntity> getPractices(String username);
 

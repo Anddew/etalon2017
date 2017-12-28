@@ -3,11 +3,12 @@ $(document).ready(function () {
     var ELEMENTS = {
         BTN_SHOW_STUDENT_INFO_FORM: '.jsShowStudentInfoFormButton',
         BTN_SUBMIT_STUDENT_INFO_FORM: '.jsStudentInfoFormSubmitButton',
-        INPUT_AVG_SCORE: '.jsAvgScore',
-        INPUT_EDUCATION_FORM: '.jsEducationForm',
-        INPUT_HIRING: '.jsHiringForm',
 
-        NOTIFICATION_AVG_SCORE_ERROR: '.jsAvgScoreNotification',
+        INPUT_AVG_SCORE: '.jsMinAvgScore',
+        INPUT_EDUCATION_FORM: '.jsEducationForm',
+        INPUT_HIRING: '.jsHiringType',
+
+        NOTIFICATION_AVG_SCORE_ERROR: '.jsMinAvgScoreNotification',
         NOTIFICATION_EDUCATION_FORM_ERROR: '.jsEducationFormNotification',
         NOTIFICATION_HIRE_CONDITION_ERROR: '.jsHireConditionNotification',
 
@@ -18,6 +19,7 @@ $(document).ready(function () {
     var
         $showStudentInfoFormButton = $(ELEMENTS.BTN_SHOW_STUDENT_INFO_FORM),
         $submitStudentInfoFormButton = $(ELEMENTS.BTN_SUBMIT_STUDENT_INFO_FORM),
+
         $avgScoreField = $(ELEMENTS.INPUT_AVG_SCORE),
         $educationFormField = $(ELEMENTS.INPUT_EDUCATION_FORM),
         $hiringFormField = $(ELEMENTS.INPUT_HIRING),

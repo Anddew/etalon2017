@@ -6,13 +6,17 @@ import com.netcracker.project.security.Encrypter;
 import com.netcracker.project.servicefront.UserRegistrationService;
 import com.netcracker.project.service.UserService;
 import com.netcracker.project.validation.UserValidator;
+
 import org.apache.log4j.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Component;
 
 import java.sql.Timestamp;
+
 import java.util.Map;
+
 
 @Component
 public abstract class UserRegistrationServiceImpl implements UserRegistrationService {
@@ -38,6 +42,7 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
 
     @Autowired
     private Encrypter encrypter;
+
 
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {

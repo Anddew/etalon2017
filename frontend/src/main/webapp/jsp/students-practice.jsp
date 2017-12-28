@@ -5,11 +5,13 @@
 <head>
     <title>Students on practice</title>
 </head>
+
 <script src="../../resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="../../resources/js/custom/practice-student.js"></script>
 <script src="../../resources/js/libs/bootstrap-table.js"></script>
 <link href="../../resources/css/libs/bootstrap-table.min.css" rel="stylesheet" type="text/css" media="all"/>
 <link href="../../resources/css/custom/student-full.css" rel="stylesheet" type="text/css" media="all"/>
+
 <body>
 <jsp:include page="/jsp/block/header.jsp"/>
 

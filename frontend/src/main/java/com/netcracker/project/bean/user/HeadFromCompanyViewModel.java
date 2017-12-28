@@ -11,6 +11,7 @@ public class HeadFromCompanyViewModel extends UserViewModel {
 
     private CompanyViewModel company;
 
+
     public CompanyViewModel getCompany() {
         return company;
     }
@@ -43,4 +44,5 @@ public class HeadFromCompanyViewModel extends UserViewModel {
                 "company=" + company +
                 "} " + super.toString();
     }
+
 }

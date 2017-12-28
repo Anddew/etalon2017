@@ -5,13 +5,15 @@ import com.netcracker.project.entity.user.UserRole;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
+
 import com.netcracker.project.repository.PracticeRepository;
 import com.netcracker.project.repository.StudentRepository;
 import com.netcracker.project.repository.UserRepository;
+
 import com.netcracker.project.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -49,12 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserEntity findById(int id) {
-        return userRepository.findByUserId(id);
-    }
-
-    @Override
-    public UserEntity findStudent(int id) {
+    public UserEntity findUser(int id) {
         return userRepository.findStudentById(id);
     }
 
@@ -71,11 +68,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public void addUser(UserEntity user) {
         userRepository.save(user);
-    }
-
-    @Override
-    public UserEntity findStudentByUsername(String username) {
-        return userRepository.findByUsernameAndRole(username, UserRole.STUDENT);
     }
 
     @Override

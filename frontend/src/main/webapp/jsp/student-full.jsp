@@ -6,8 +6,10 @@
 <head>
     <title>Full student info</title>
 </head>
+
 <script src="../resources/js/libs/jquery-3.2.1.min.js"></script>
 <script src="../resources/js/custom/student-full.js"></script>
+
 <body>
 <jsp:include page="/jsp/block/header.jsp"/>
 
