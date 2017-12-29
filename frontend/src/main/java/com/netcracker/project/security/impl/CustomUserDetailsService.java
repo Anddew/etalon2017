@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CustomUserDetailsService implements UserDetailsService {
 
-    private Logger logger = Logger.getLogger(CustomUserDetailsService.class.getSimpleName());
+    private Logger logger = Logger.getLogger(CustomUserDetailsService.class);
 
     private static final String USER_NOT_FOUND_MESSAGE = "User not found. No matches username: ";
 

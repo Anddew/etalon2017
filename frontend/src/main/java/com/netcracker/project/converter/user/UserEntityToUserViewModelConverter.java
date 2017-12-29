@@ -12,7 +12,7 @@ import java.sql.Timestamp;
 
 public abstract class UserEntityToUserViewModelConverter {
 
-    private Logger logger = Logger.getLogger(UserEntityToUserViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserEntityToUserViewModelConverter.class);
 
 
     public void convert(UserViewModel userViewModel, UserEntity userEntity) {

@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 public class CompanyViewModelToCompanyEntityConverter implements Converter<CompanyViewModel, CompanyEntity> {
 
-    private Logger logger = Logger.getLogger(CompanyViewModelToCompanyEntityConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(CompanyViewModelToCompanyEntityConverter.class);
 
 
     @Override

@@ -17,9 +17,7 @@ import java.util.Map;
 @Service
 public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationServiceImpl {
 
-    private Logger logger = Logger.getLogger(HeadFromUniversityRegistrationServiceImpl.class.getSimpleName());
-
-    private static final String HEAD_FROM_UNIVERSITY_VALIDATION_ERROR_MESSAGE = "Cannot register head from university user. Input data isn`t correct.";
+    private Logger logger = Logger.getLogger(HeadFromUniversityRegistrationServiceImpl.class);
 
     private static final String FACULTY_PARAMETER_NAME = "faculty";
 
@@ -28,7 +26,7 @@ public class HeadFromUniversityRegistrationServiceImpl extends UserRegistrationS
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
         if(!validator.validateHeadFromUniversityFields(userParameters)) {
             logger.warn("Head from university user validation failed.");
-            throw new RegistrationException(HEAD_FROM_UNIVERSITY_VALIDATION_ERROR_MESSAGE);
+            throw new RegistrationException("Cannot register head from university user. Input data isn`t correct.");
         }
         super.register(user, userParameters);
         HeadFromUniversityViewModel headFromUniversity = (HeadFromUniversityViewModel) user;

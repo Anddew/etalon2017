@@ -19,7 +19,7 @@ import java.util.Date;
 
 public class RequestEntityToRequestViewModelConverter implements Converter<PracticeEntity, PracticeViewModel> {
 
-    private Logger logger = Logger.getLogger(RequestEntityToRequestViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(RequestEntityToRequestViewModelConverter.class);
 
     @Autowired
     private ConversionService conversionService;

@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 
 public class SpecialityEntityToSpecialityViewModelConverter implements Converter<SpecialityEntity, SpecialityViewModel> {
 
-    private Logger logger = Logger.getLogger(SpecialityEntityToSpecialityViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(SpecialityEntityToSpecialityViewModelConverter.class);
 
     @Autowired
     private ConversionService conversionService;

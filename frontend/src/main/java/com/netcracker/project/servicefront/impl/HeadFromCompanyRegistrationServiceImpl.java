@@ -17,9 +17,7 @@ import java.util.Map;
 @Service
 public class HeadFromCompanyRegistrationServiceImpl extends UserRegistrationServiceImpl {
 
-    private Logger logger = Logger.getLogger(HeadFromCompanyRegistrationServiceImpl.class.getSimpleName());
-
-    private static final String HEAD_FROM_COMPANY_VALIDATION_ERROR_MESSAGE = "Cannot register head from company user. Input data isn`t correct.";
+    private Logger logger = Logger.getLogger(HeadFromCompanyRegistrationServiceImpl.class);
 
     private static final String COMPANY_PARAMETER_NAME = "company";
 
@@ -28,7 +26,7 @@ public class HeadFromCompanyRegistrationServiceImpl extends UserRegistrationServ
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
         if(!validator.validateHeadFromCompanyFields(userParameters)) {
             logger.warn("Head from company user validation failed.");
-            throw new RegistrationException(HEAD_FROM_COMPANY_VALIDATION_ERROR_MESSAGE);
+            throw new RegistrationException("Cannot register head from company user. Input data isn`t correct.");
         }
         super.register(user, userParameters);
         HeadFromCompanyViewModel headFromCompany = (HeadFromCompanyViewModel) user;

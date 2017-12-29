@@ -45,6 +45,7 @@ public class PracticeEntity {
     private UserEntity headFromUniversity;
     private List<StudentEntity> students = new ArrayList<>();
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)

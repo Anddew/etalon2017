@@ -12,7 +12,7 @@ import org.springframework.core.convert.converter.Converter;
 
 public class AdminViewModelToUserEntityConverter extends UserViewModelToUserEntityConverter implements Converter<AdminViewModel, UserEntity> {
 
-    private Logger logger = Logger.getLogger(AdminViewModelToUserEntityConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(AdminViewModelToUserEntityConverter.class);
 
     @Autowired
     private ConversionService conversionService;

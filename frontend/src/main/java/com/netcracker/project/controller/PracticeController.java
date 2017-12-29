@@ -29,7 +29,7 @@ import java.util.List;
 @RequestMapping(value = "/practices")
 public class PracticeController {
 
-    private Logger logger = Logger.getLogger(PracticeController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(PracticeController.class);
 
     @Autowired
     private ConversionService conversionService;

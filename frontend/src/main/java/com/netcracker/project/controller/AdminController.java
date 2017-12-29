@@ -20,7 +20,7 @@ import java.util.List;
 @RequestMapping(value = "/admins")
 public class AdminController {
 
-    private Logger logger = Logger.getLogger(AdminController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(AdminController.class);
 
     @Autowired
     private ConversionService conversionService;

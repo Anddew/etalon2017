@@ -31,7 +31,7 @@ import java.util.Map;
 @RequestMapping(value = "/students")
 public class StudentController {
 
-    private Logger logger = Logger.getLogger(StudentController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(StudentController.class);
 
     private static final String STUDENT_PAGE_PATH = "/jsp/student-full.jsp";
     private static final String PRACTICE_STUDENT_PATH = "students-practice";

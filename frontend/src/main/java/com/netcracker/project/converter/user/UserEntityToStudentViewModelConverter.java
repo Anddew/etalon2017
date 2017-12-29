@@ -17,7 +17,7 @@ import org.springframework.core.convert.converter.Converter;
 
 public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, StudentViewModel> {
 
-    private Logger logger = Logger.getLogger(UserEntityToStudentViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserEntityToStudentViewModelConverter.class);
 
     @Autowired
     private ConversionService conversionService;

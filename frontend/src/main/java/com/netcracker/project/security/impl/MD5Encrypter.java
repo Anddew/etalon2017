@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
 @Component
 public class MD5Encrypter implements Encrypter {
 
-    private Logger logger = Logger.getLogger(MD5Encrypter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(MD5Encrypter.class);
 
     private static final String CRYPT_ALGORITHM = "MD5";
     private static final String NO_SUCH_CRYPT_ALGORITHM_ERROR_MESSAGE = "Runtime exception. No such algorithm to crypt password - ";

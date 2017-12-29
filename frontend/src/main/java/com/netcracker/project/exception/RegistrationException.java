@@ -4,6 +4,7 @@ public class RegistrationException extends Exception {
 
     private static final long serialVersionUID = -1300025401732657716L;
 
+
     public RegistrationException() {
         super();
     }

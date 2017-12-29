@@ -21,7 +21,7 @@ import java.util.Map;
 @Component
 public abstract class UserRegistrationServiceImpl implements UserRegistrationService {
 
-    private Logger logger = Logger.getLogger(UserRegistrationServiceImpl.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserRegistrationServiceImpl.class);
 
     private static final String EMAIL_PARAMETER_NAME = "email";
     private static final String FIRST_NAME_PARAMETER_NAME = "firstname";
@@ -29,7 +29,6 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
     private static final String USERNAME_PARAMETER_NAME = "username";
     private static final String PASSWORD_PARAMETER_NAME = "password";
 
-    private static final String USER_VALIDATION_ERROR_MESSAGE = "Cannot register user. Input data isn`t correct.";
 
     @Autowired
     protected UserValidator validator;
@@ -48,7 +47,7 @@ public abstract class UserRegistrationServiceImpl implements UserRegistrationSer
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
         if(!validator.validateUserFields(userParameters)) {
             logger.warn("User fields validation failed.");
-            throw new RegistrationException(USER_VALIDATION_ERROR_MESSAGE);
+            throw new RegistrationException("Cannot register user. Input data isn`t correct.");
         }
         user.setUsername(userParameters.get(USERNAME_PARAMETER_NAME));
         user.setPassword(encrypter.encrypt(userParameters.get(PASSWORD_PARAMETER_NAME)));

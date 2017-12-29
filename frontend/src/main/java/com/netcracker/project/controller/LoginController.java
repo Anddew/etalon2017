@@ -20,7 +20,7 @@ import java.util.Map;
 @Controller
 public class LoginController {
 
-    private Logger logger = Logger.getLogger(LoginController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(LoginController.class);
 
     private static final String LOGIN_VIEW_PATH = "login";
 

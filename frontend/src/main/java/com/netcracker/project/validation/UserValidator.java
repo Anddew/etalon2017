@@ -14,10 +14,10 @@ import java.util.regex.Pattern;
 @Component
 public class UserValidator {
 
-    private Logger logger = Logger.getLogger(UserValidator.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserValidator.class);
 
-    private static final String USERNAME_USER_PARAMETER = "username";
-    private static final String PASSWORD_USER_PARAMETER = "password";
+    private static final String USERNAME_PARAMETER_NAME = "username";
+    private static final String PASSWORD_PARAMETER_NAME = "password";
     private static final String PASSWORD_REPEAT_PARAMETER_NAME = "passwordRepeat";
     private static final String EMAIL_PARAMETER_NAME = "email";
     private static final String FIRST_NAME_PARAMETER_NAME = "firstname";
@@ -74,11 +74,11 @@ public class UserValidator {
     }
 
     public boolean validateUserFields(Map<String,String> userParameters) {
-        if(!validateUsername(userParameters.get(USERNAME_USER_PARAMETER))) {
+        if(!validateUsername(userParameters.get(USERNAME_PARAMETER_NAME))) {
             logger.debug("User fields validation fails. Invalid username.");
             return false;
         }
-        if(!validatePassword(userParameters.get(PASSWORD_USER_PARAMETER), userParameters.get(PASSWORD_REPEAT_PARAMETER_NAME))) {
+        if(!validatePassword(userParameters.get(PASSWORD_PARAMETER_NAME), userParameters.get(PASSWORD_REPEAT_PARAMETER_NAME))) {
             logger.debug("User fields validation fails. Invalid password.");
             return false;
         }

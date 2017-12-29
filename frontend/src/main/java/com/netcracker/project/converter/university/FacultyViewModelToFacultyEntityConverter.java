@@ -13,7 +13,7 @@ import org.springframework.util.StringUtils;
 
 public class FacultyViewModelToFacultyEntityConverter implements Converter<FacultyViewModel, FacultyEntity> {
 
-    private Logger logger = Logger.getLogger(FacultyViewModelToFacultyEntityConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(FacultyViewModelToFacultyEntityConverter.class);
 
     @Autowired
     private ConversionService conversionService;

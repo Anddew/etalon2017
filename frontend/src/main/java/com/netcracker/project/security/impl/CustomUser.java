@@ -15,7 +15,7 @@ public abstract class CustomUser implements UserDetails, CredentialsContainer {
 
     private static final long serialVersionUID = 410L;
 
-    private Logger logger = Logger.getLogger(CustomUser.class.getSimpleName());
+    private Logger logger = Logger.getLogger(CustomUser.class);
 
     private String password;
     private String username;

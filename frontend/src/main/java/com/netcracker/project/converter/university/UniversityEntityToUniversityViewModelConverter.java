@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 
 public class UniversityEntityToUniversityViewModelConverter implements Converter<UniversityEntity, UniversityViewModel> {
 
-    private Logger logger = Logger.getLogger(UniversityEntityToUniversityViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UniversityEntityToUniversityViewModelConverter.class);
 
 
     @Override

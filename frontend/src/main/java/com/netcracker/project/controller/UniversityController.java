@@ -25,7 +25,7 @@ import java.util.List;
 @RequestMapping(value = "universities")
 public class UniversityController {
 
-    private Logger logger = Logger.getLogger(UniversityController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UniversityController.class);
 
     @Autowired
     private ConversionService conversionService;

@@ -13,7 +13,7 @@ import org.springframework.core.convert.converter.Converter;
 
 public class UserEntityToHeadFromCompanyViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, HeadFromCompanyViewModel> {
 
-    private Logger logger = Logger.getLogger(UserEntityToHeadFromCompanyViewModelConverter.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserEntityToHeadFromCompanyViewModelConverter.class);
 
     @Autowired
     private ConversionService conversionService;

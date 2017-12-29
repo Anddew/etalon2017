@@ -13,7 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController {
 
-    private Logger logger = Logger.getLogger(HomeController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(HomeController.class);
 
     private static final String ERROR_VIEW_PATH = "error";
     private static final String HOME_VIEW_PATH = "home";

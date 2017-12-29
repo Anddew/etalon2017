@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping(value = "/heads-company")
 public class HeadFromCompanyController {
 
-    private Logger logger = Logger.getLogger(HeadFromCompanyController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(HeadFromCompanyController.class);
 
     @Autowired
     private ConversionService conversionService;

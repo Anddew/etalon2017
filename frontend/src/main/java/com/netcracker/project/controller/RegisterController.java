@@ -26,7 +26,7 @@ import java.util.Map;
 @Controller
 public class RegisterController {
 
-    private Logger logger = Logger.getLogger(RegisterController.class.getSimpleName());
+    private Logger logger = Logger.getLogger(RegisterController.class);
 
     @Autowired
     private UserRegistrationServiceFactory userRegistrationServiceFactory;

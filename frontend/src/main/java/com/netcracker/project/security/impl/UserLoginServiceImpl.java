@@ -21,7 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class UserLoginServiceImpl implements UserLoginService {
 
-    private Logger logger = Logger.getLogger(UserLoginServiceImpl.class.getSimpleName());
+    private Logger logger = Logger.getLogger(UserLoginServiceImpl.class);
 
     @Autowired
     @Qualifier("authenticationManager")
