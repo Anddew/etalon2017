@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <table class="jsHeadsFromUniversityTable"
        data-pagination="true"
@@ -16,3 +17,7 @@
     </tr>
     </thead>
 </table>
+
+<sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
+    <button type="button" class="btn btn-primary jsSetHeadButton" disabled style="display: none">Set head</button>
+</sec:authorize>

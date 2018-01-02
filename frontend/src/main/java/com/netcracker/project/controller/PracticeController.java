@@ -106,4 +106,15 @@ public class PracticeController {
         logger.info("Practice id = '" + id + "' has been successfully approved.");
     }
 
+    @Transactional
+    @RequestMapping(value = "/set-head", method = RequestMethod.POST)
+    public void setHead(@RequestBody Map<String, String> data, HttpServletRequest request, HttpServletResponse response) {
+        int practiceId = Integer.valueOf(data.get("practiceId"));
+        int userId = Integer.valueOf(data.get("headId"));
+        PracticeEntity practice = practiceService.getPractice(practiceId);
+        UserEntity head = userService.getUser(userId);
+        practice.setHeadFromUniversity(head);
+        logger.info("Head from university id ='" + userId + "' has been successfully set for practice id = '" + practiceId + "'.");
+    }
+
 }

@@ -16,6 +16,8 @@ public interface UserService {
 
     List<UserEntity> getAdmins();
 
+    UserEntity getUser(int id);
+
     UserEntity getStudent(int id);
 
     List<UserEntity> getStudentsFromPractice(int practiceId);

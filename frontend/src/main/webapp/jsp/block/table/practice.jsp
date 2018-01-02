@@ -39,5 +39,8 @@
     <button type="button" class="btn btn-primary jsFindStudentsButton" disabled>Find students</button>
 </sec:authorize>
 <sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
-    <button type="button" class="btn btn-primary jsApprovePracticeButton" disabled>Approve practice</button>
+    <div class="btn-group" role="group" aria-label="Basic example">
+        <button type="button" class="btn btn-primary jsApprovePracticeButton" disabled>Approve practice</button>
+        <button type="button" class="btn btn-primary jsFindHeadButton" disabled>Find head</button>
+    </div>
 </sec:authorize>

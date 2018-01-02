@@ -48,6 +48,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public UserEntity getUser(int id) {
+        logger.debug("Get user id = '" + id + "'.");
+        return userRepository.findOne(id);
+    }
+
+    @Override
     public UserEntity getStudent(int id) {
         logger.debug("Get student id = '" + id + "'.");
         return userRepository.findStudentById(id);

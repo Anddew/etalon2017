@@ -11,6 +11,8 @@ $(document).ready(function () {
         BTN_FIND_STUDENTS: '.jsFindStudentsButton',
         BTN_ASSIGN_STUDENTS: '.jsAssignStudentsButton',
         BTN_APPROVE_PRACTICE: '.jsApprovePracticeButton',
+        BTN_FIND_HEAD: '.jsFindHeadButton',
+        BTN_SET_HEAD: '.jsSetHeadButton',
 
         TABLE_HEADS_FROM_COMPANY: '.jsHeadsFromCompanyTable',
         TABLE_HEADS_FROM_UNIVERSITY: '.jsHeadsFromUniversityTable',
@@ -38,6 +40,8 @@ $(document).ready(function () {
         $submitFindStudentsButton = $(ELEMENTS.BTN_FIND_STUDENTS),
         $submitAssignStudentsButton = $(ELEMENTS.BTN_ASSIGN_STUDENTS),
         $submitApprovePracticeButton = $(ELEMENTS.BTN_APPROVE_PRACTICE),
+        $submitFindHeadButton = $(ELEMENTS.BTN_FIND_HEAD),
+        $submitSetHeadButton = $(ELEMENTS.BTN_SET_HEAD),
 
         $tableHeadsFromCompany = $(ELEMENTS.TABLE_HEADS_FROM_COMPANY),
         $tableHeadsFromUniversity = $(ELEMENTS.TABLE_HEADS_FROM_UNIVERSITY),
@@ -121,7 +125,11 @@ $(document).ready(function () {
         event.stopPropagation();
 
         hideAllContainters($containers);
+        getAllHeadsFromUniversity();
 
+    });
+
+    function getAllHeadsFromUniversity() {
         $.ajax({
             url: 'heads-university',
             type: 'GET',
@@ -136,8 +144,7 @@ $(document).ready(function () {
                 });
             }
         });
-
-    });
+    }
 
     $submitAdminsButton.click(function (event) {
         event.stopPropagation();
@@ -250,6 +257,7 @@ $(document).ready(function () {
     });
 
     var selectedPractice;
+    var selectedHeadFromUniversity;
     var studentsLeft;
     var selectedStudents = [];
 
@@ -274,6 +282,16 @@ $(document).ready(function () {
             Validation.switchButtons([$submitApprovePracticeButton], true);
         } else {
             Validation.switchButtons([$submitApprovePracticeButton], false);
+        }
+    });
+
+    $tablePractices.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
+        var selections = $tablePractices.bootstrapTable('getSelections');
+        if(selections.length === 1) {
+            selectedPractice = selections[0];
+            Validation.switchButtons([$submitFindHeadButton], true);
+        } else {
+            Validation.switchButtons([$submitFindHeadButton], false);
         }
     });
 
@@ -312,7 +330,7 @@ $(document).ready(function () {
                 alert('Assign failed!');
             }
         });
-    })
+    });
 
     $submitApprovePracticeButton.click(function (event) {
         event.stopPropagation();
@@ -332,7 +350,47 @@ $(document).ready(function () {
                 alert('Approving failed!');
             }
         });
-    })
+    });
+
+    $submitFindHeadButton.click(function (event) {
+        event.stopPropagation();
+
+        $headFromUniversityContainerData.show();
+        $submitSetHeadButton.show();
+        getAllHeadsFromUniversity();
+
+    });
+
+    $tableHeadsFromUniversity.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
+        var selections = $tableHeadsFromUniversity.bootstrapTable('getSelections');
+        if(selections.length === 1) {
+            selectedHeadFromUniversity = selections[0];
+            Validation.switchButtons([$submitSetHeadButton], true);
+        } else {
+            Validation.switchButtons([$submitSetHeadButton], false);
+        }
+    });
+
+    $submitSetHeadButton.click(function (event) {
+        event.stopPropagation();
+
+        $.ajax({
+            url: '/practices/set-head',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({
+                practiceId: selectedPractice.id,
+                headId : selectedHeadFromUniversity.userId
+            }),
+            success: function () {
+                alert('Setting head for practice successful!');
+                window.location.href = "/home"
+            },
+            error: function () {
+                alert('Setting failed!');
+            }
+        });
+    });
 
 
 });
