@@ -10,6 +10,7 @@ $(document).ready(function () {
         BTN_CREATE_PRACTICE: '.jsCreatePracticeButton',
         BTN_FIND_STUDENTS: '.jsFindStudentsButton',
         BTN_ASSIGN_STUDENTS: '.jsAssignStudentsButton',
+        BTN_APPROVE_PRACTICE: '.jsApprovePracticeButton',
 
         TABLE_HEADS_FROM_COMPANY: '.jsHeadsFromCompanyTable',
         TABLE_HEADS_FROM_UNIVERSITY: '.jsHeadsFromUniversityTable',
@@ -36,6 +37,7 @@ $(document).ready(function () {
         $submitCreatePracticeButton = $(ELEMENTS.BTN_CREATE_PRACTICE),
         $submitFindStudentsButton = $(ELEMENTS.BTN_FIND_STUDENTS),
         $submitAssignStudentsButton = $(ELEMENTS.BTN_ASSIGN_STUDENTS),
+        $submitApprovePracticeButton = $(ELEMENTS.BTN_APPROVE_PRACTICE),
 
         $tableHeadsFromCompany = $(ELEMENTS.TABLE_HEADS_FROM_COMPANY),
         $tableHeadsFromUniversity = $(ELEMENTS.TABLE_HEADS_FROM_UNIVERSITY),
@@ -265,6 +267,16 @@ $(document).ready(function () {
         Validation.switchButtons([$submitFindStudentsButton], false);
     });
 
+    $tablePractices.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
+        var selections = $tablePractices.bootstrapTable('getSelections');
+        if(selections.length === 1 && selections[0].status !== 'Checked') {
+            selectedPractice = selections[0];
+            Validation.switchButtons([$submitApprovePracticeButton], true);
+        } else {
+            Validation.switchButtons([$submitApprovePracticeButton], false);
+        }
+    });
+
     $tableStudents.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
         var selections = $tableStudents.bootstrapTable('getSelections');
         if(selections.length > 0 && selections.length <= studentsLeft) {
@@ -298,6 +310,26 @@ $(document).ready(function () {
             },
             error: function () {
                 alert('Assign failed!');
+            }
+        });
+    })
+
+    $submitApprovePracticeButton.click(function (event) {
+        event.stopPropagation();
+
+        $.ajax({
+            url: '/practices/approve',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({
+                practiceId: selectedPractice.id
+            }),
+            success: function () {
+                alert('Approving successful!');
+                window.location.href = "/home"
+            },
+            error: function () {
+                alert('Approving failed!');
             }
         });
     })

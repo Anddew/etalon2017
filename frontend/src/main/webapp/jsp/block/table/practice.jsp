@@ -38,3 +38,6 @@
 <sec:authorize access="hasAnyAuthority('HEAD_FROM_COMPANY')">
     <button type="button" class="btn btn-primary jsFindStudentsButton" disabled>Find students</button>
 </sec:authorize>
+<sec:authorize access="hasAnyAuthority('ADMINISTRATOR')">
+    <button type="button" class="btn btn-primary jsApprovePracticeButton" disabled>Approve practice</button>
+</sec:authorize>

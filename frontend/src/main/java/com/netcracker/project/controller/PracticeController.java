@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.Map;
 
 
 @Controller
@@ -94,6 +95,15 @@ public class PracticeController {
     public void releaseStudents(@RequestBody StudentsOnPracticeDTO studentsOnPractice, HttpServletRequest request, HttpServletResponse response) {
         practiceService.releaseStudents(studentsOnPractice.getPracticeId(), studentsOnPractice.getStudentsId());
         logger.debug("Release students successful.");
+    }
+
+    @Transactional
+    @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    public void approvePractice(@RequestBody Map<String, String> data, HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.valueOf(data.get("practiceId"));
+        PracticeEntity practice = practiceService.getPractice(id);
+        practice.setStatus(PracticeStatus.CHECKED);
+        logger.info("Practice id = '" + id + "' has been successfully approved.");
     }
 
 }
