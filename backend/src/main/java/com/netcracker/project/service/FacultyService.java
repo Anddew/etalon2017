@@ -6,12 +6,12 @@ import java.util.List;
 
 public interface FacultyService {
 
-    List<FacultyEntity> getAllFaculties();
+    List<FacultyEntity> getFaculties();
 
-    FacultyEntity getFacultyById(int id);
+    FacultyEntity getFaculty(int id);
 
     void createFaculty(FacultyEntity faculty);
 
-    List<FacultyEntity> getFacultiesByUniversityId(int id);
+    List<FacultyEntity> getFacultiesByUniversityId(int universityId);
 
 }

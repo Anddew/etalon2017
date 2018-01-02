@@ -9,8 +9,6 @@ public interface FacultyRepository extends CrudRepository<FacultyEntity, Integer
 
     List<FacultyEntity> findAll();
 
-    List<FacultyEntity> findFacultyEntitiesByUniversityId(int id);
-
-    FacultyEntity findById(int id);
+    List<FacultyEntity> findFacultiesByUniversityId(int id);
 
 }

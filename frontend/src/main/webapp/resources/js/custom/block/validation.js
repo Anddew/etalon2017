@@ -27,7 +27,6 @@
 
         validateOnEmpty: function (inputs) {
             for(var i = 0; i < inputs.length; i++) {
-                // if(!inputs[i].val().trim()) {
                 if(!inputs[i].val()) {
                     return false;
                 }
@@ -76,7 +75,8 @@
             return $groupNumberPattern.test(val);
         },
 
-        validateAvgScore: function (val) {
+        validateAvgScore: function (value) {
+            var val = value.val();
             if(val === null || val === "") {
                 return true;
             }

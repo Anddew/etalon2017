@@ -6,10 +6,16 @@ import java.util.List;
 
 public interface PracticeService {
 
-    List<PracticeEntity> findAllPractices();
+    List<PracticeEntity> getPractices();
 
-    PracticeEntity findById(int id);
+    List<PracticeEntity> getPractices(String username);
+
+    PracticeEntity getPractice(int id);
 
     void createPractice(PracticeEntity practice);
+
+    void assignStudents(Integer practiceId, List<Integer> studentsId);
+
+    void releaseStudents(Integer practiceId, List<Integer> studentsId);
 
 }

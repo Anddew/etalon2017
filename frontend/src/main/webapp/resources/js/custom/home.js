@@ -8,6 +8,14 @@ $(document).ready(function () {
         BTN_STUDENT_FULL_INFO: '.jsStudentFullInfoButton',
         BTN_PRACTICES: '.jsPracticesButton',
         BTN_CREATE_PRACTICE: '.jsCreatePracticeButton',
+        BTN_FIND_STUDENTS: '.jsFindStudentsButton',
+        BTN_ASSIGN_STUDENTS: '.jsAssignStudentsButton',
+
+        TABLE_HEADS_FROM_COMPANY: '.jsHeadsFromCompanyTable',
+        TABLE_HEADS_FROM_UNIVERSITY: '.jsHeadsFromUniversityTable',
+        TABLE_STUDENTS: '.jsStudentsTable',
+        TABLE_ADMINS: '.jsAdminsTable',
+        TABLE_PRACTICES: '.jsPracticesTable',
 
         CONTAINER_STUDENTS_DATA: '.jsStudentsContainer',
         CONTAINER_HEAD_FROM_COMPANY_DATA: '.jsHeadFromCompanyContainer',
@@ -26,6 +34,14 @@ $(document).ready(function () {
         $submitStudentFullInfoButton = $(ELEMENTS.BTN_STUDENT_FULL_INFO),
         $submitPracticesButton = $(ELEMENTS.BTN_PRACTICES),
         $submitCreatePracticeButton = $(ELEMENTS.BTN_CREATE_PRACTICE),
+        $submitFindStudentsButton = $(ELEMENTS.BTN_FIND_STUDENTS),
+        $submitAssignStudentsButton = $(ELEMENTS.BTN_ASSIGN_STUDENTS),
+
+        $tableHeadsFromCompany = $(ELEMENTS.TABLE_HEADS_FROM_COMPANY),
+        $tableHeadsFromUniversity = $(ELEMENTS.TABLE_HEADS_FROM_UNIVERSITY),
+        $tableStudents = $(ELEMENTS.TABLE_STUDENTS),
+        $tableAdmins = $(ELEMENTS.TABLE_ADMINS),
+        $tablePractices = $(ELEMENTS.TABLE_PRACTICES),
 
         $studentsContainerData = $(ELEMENTS.CONTAINER_STUDENTS_DATA),
         $headFromCompanyContainerData = $(ELEMENTS.CONTAINER_HEAD_FROM_COMPANY_DATA),
@@ -68,7 +84,7 @@ $(document).ready(function () {
             data: '',
             success: function (students) {
                 $studentsContainerData.show();
-                $('#studentsTable').bootstrapTable({
+                $tableStudents.bootstrapTable({
                     data: students
                 });
             }
@@ -91,7 +107,7 @@ $(document).ready(function () {
             data: '',
             success: function (headsFromCompany) {
                 $headFromCompanyContainerData.show();
-                $('#headsFromCompanyTable').bootstrapTable({
+                $tableHeadsFromCompany.bootstrapTable({
                     data: headsFromCompany
                 });
             }
@@ -113,7 +129,7 @@ $(document).ready(function () {
             data: '',
             success: function (headsFromUniversity) {
                 $headFromUniversityContainerData.show();
-                $('#headsFromUniversityTable').bootstrapTable({
+                $tableHeadsFromUniversity.bootstrapTable({
                     data: headsFromUniversity
                 });
             }
@@ -135,7 +151,7 @@ $(document).ready(function () {
             data: '',
             success: function (admins) {
                 $adminsContainerData.show();
-                $('#adminsTable').bootstrapTable({
+                $tableAdmins.bootstrapTable({
                     data: admins
                 });
             }
@@ -194,7 +210,7 @@ $(document).ready(function () {
             data: '',
             success: function (practices) {
                 $practicesContainerData.show();
-                $('#practicesTable').bootstrapTable({
+                $tablePractices.bootstrapTable({
                     data: practices
                 });
             }
@@ -209,5 +225,82 @@ $(document).ready(function () {
         $practiceFormContainerData.show();
 
     });
+
+    $submitFindStudentsButton.click(function (event) {
+        event.stopPropagation();
+
+        $.ajax({
+            url: '/students/available',
+            type: 'GET',
+            dataType: 'json',
+            contentType: "application/json",
+            mimeType: 'application/json',
+            data: '',
+            success: function (students) {
+                $studentsContainerData.show();
+                $submitAssignStudentsButton.show();
+                $tableStudents.bootstrapTable({
+                    data: students
+                });
+            }
+        });
+
+    });
+
+    var selectedPractice;
+    var studentsLeft;
+    var selectedStudents = [];
+
+    $tablePractices.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
+        $studentsContainerData.hide();
+        var selections = $tablePractices.bootstrapTable('getSelections');
+        if(selections.length === 1 && selections[0].status === 'Checked') {
+            selectedPractice = selections[0];
+            studentsLeft = selectedPractice.studentRequiredCount - selectedPractice.currentStudentRequiredCount;
+            if(studentsLeft > 0) {
+                Validation.switchButtons([$submitFindStudentsButton], true);
+                return;
+            }
+        }
+        Validation.switchButtons([$submitFindStudentsButton], false);
+    });
+
+    $tableStudents.on('check.bs.table uncheck.bs.table check-all.bs.table uncheck-all.bs.table', function (e, row, $element) {
+        var selections = $tableStudents.bootstrapTable('getSelections');
+        if(selections.length > 0 && selections.length <= studentsLeft) {
+            selectedStudents = selections;
+            Validation.switchButtons([$submitAssignStudentsButton], true)
+        } else {
+            Validation.switchButtons([$submitAssignStudentsButton], false)
+        }
+    });
+
+    $submitAssignStudentsButton.click(function (event) {
+        event.stopPropagation();
+
+        var practiceId = selectedPractice.id;
+        var studentsId = [];
+        for(var i = 0; i < selectedStudents.length; i++) {
+            studentsId.push(selectedStudents[i].studentId);
+        }
+
+        $.ajax({
+            url: '/practices/assign',
+            type: 'POST',
+            contentType: "application/json",
+            data: JSON.stringify({
+                practiceId: practiceId,
+                studentsId : studentsId
+            }),
+            success: function () {
+                alert('Assign successful!');
+                window.location.href = "/home"
+            },
+            error: function () {
+                alert('Assign failed!');
+            }
+        });
+    })
+
 
 });

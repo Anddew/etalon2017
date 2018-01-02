@@ -17,9 +17,9 @@ import org.springframework.util.StringUtils;
 
 import java.sql.Date;
 
-public class RequestViewModelToRequestEntityConverter implements Converter<PracticeViewModel, PracticeEntity> {
+public class PracticeViewModelToPracticeEntityConverter implements Converter<PracticeViewModel, PracticeEntity> {
 
-    private Logger logger = Logger.getLogger(RequestViewModelToRequestEntityConverter.class);
+    private Logger logger = Logger.getLogger(PracticeViewModelToPracticeEntityConverter.class);
 
     @Autowired
     private ConversionService conversionService;

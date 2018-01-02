@@ -48,6 +48,9 @@
         </div>
 
         <div class="col-sm-10">
+            <div class="jsPracticesContainer" style="display: none">
+                <jsp:include page="/jsp/block/table/practice.jsp" />
+            </div>
             <div class="jsStudentsContainer" style="display: none">
                 <jsp:include page="/jsp/block/table/students.jsp" />
             </div>
@@ -59,9 +62,6 @@
             </div>
             <div class="jsAdminsContainer" style="display: none">
                 <jsp:include page="/jsp/block/table/admins.jsp" />
-            </div>
-            <div class="jsPracticesContainer" style="display: none">
-                <jsp:include page="/jsp/block/table/practice.jsp" />
             </div>
             <div class="jsStudentFullInfoContainer" style="display: none">
                 <jsp:include page="/jsp/block/student.jsp" />

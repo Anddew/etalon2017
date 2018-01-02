@@ -17,8 +17,8 @@
             <bean class="com.netcracker.project.converter.university.SpecialityViewModelToSpecialityEntityConverter"/>
             <bean class="com.netcracker.project.converter.company.CompanyEntityToCompanyViewModelConverter"/>
             <bean class="com.netcracker.project.converter.company.CompanyViewModelToCompanyEntityConverter"/>
-            <bean class="com.netcracker.project.converter.practice.RequestEntityToRequestViewModelConverter"/>
-            <bean class="com.netcracker.project.converter.practice.RequestViewModelToRequestEntityConverter"/>
+            <bean class="com.netcracker.project.converter.practice.PracticeEntityToPracticeViewModelConverter"/>
+            <bean class="com.netcracker.project.converter.practice.PracticeViewModelToPracticeEntityConverter"/>
             <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromUniversityViewModelConverter"/>
             <bean class="com.netcracker.project.converter.user.HeadFromUniversityViewModelToUserEntityConverter"/>
             <bean class="com.netcracker.project.converter.user.UserEntityToHeadFromCompanyViewModelConverter"/>

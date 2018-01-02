@@ -8,19 +8,7 @@ import com.netcracker.project.entity.user.student.StudentEntity;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Enumerated;
-import javax.persistence.ManyToOne;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinColumn;
-import javax.persistence.GenerationType;
-import javax.persistence.EnumType;
-import javax.persistence.CascadeType;
+import javax.persistence.*;
 
 import java.sql.Date;
 
@@ -158,7 +146,12 @@ public class PracticeEntity {
     }
 
     @Transactional
-    @ManyToMany(mappedBy = "practices")
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "practice_student",
+            joinColumns = { @JoinColumn(name = "practice_id") },
+            inverseJoinColumns = { @JoinColumn(name = "student_id") }
+    )
     public List<StudentEntity> getStudents() {
         return students;
     }

@@ -14,4 +14,7 @@ public interface PracticeRepository extends CrudRepository<PracticeEntity, Integ
 
     List<PracticeEntity> findAllByHeadFromUniversity(UserEntity user);
 
+    @Override
+    PracticeEntity findOne(Integer integer);
+
 }

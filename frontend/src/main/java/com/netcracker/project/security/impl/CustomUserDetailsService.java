@@ -30,7 +30,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
-        UserEntity user = userService.findUserByUserName(username);
+        UserEntity user = userService.getUserByUsername(username);
         if (user == null) {
             logger.warn("No such user found: '" + username + "'.");
             throw new UsernameNotFoundException(USER_NOT_FOUND_MESSAGE + username);

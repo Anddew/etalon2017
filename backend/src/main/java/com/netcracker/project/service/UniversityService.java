@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface UniversityService {
 
-    UniversityEntity getUniversityById(int universityId);
+    List<UniversityEntity> getUniversities();
 
-    void addUniversity(UniversityEntity university);
+    UniversityEntity getUniversity(int id);
 
-    List<UniversityEntity> getAllUniversities();
+    void createUniversity(UniversityEntity university);
 
 }

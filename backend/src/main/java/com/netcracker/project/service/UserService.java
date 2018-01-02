@@ -1,6 +1,5 @@
 package com.netcracker.project.service;
 
-import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.EducationForm;
 import com.netcracker.project.entity.user.student.HireCondition;
@@ -9,23 +8,23 @@ import java.util.List;
 
 public interface UserService {
 
-    List<UserEntity> findAllStudents();
+    List<UserEntity> getStudents();
 
-    List<UserEntity> findAllHeadsFromCompany();
+    List<UserEntity> getHeadsFromCompany();
 
-    List<UserEntity> findAllHeadsFromUniversity();
+    List<UserEntity> getHeadsFromUniversity();
 
-    List<UserEntity> findAllAdmins();
+    List<UserEntity> getAdmins();
 
-    UserEntity findUser(int id);
+    UserEntity getStudent(int id);
 
-    List<UserEntity> findStudentsFromPractice(int id);
+    List<UserEntity> getStudentsFromPractice(int practiceId);
 
-    UserEntity findUserByUserName(String username);
+    List<UserEntity> getAvailableStudents();
+
+    UserEntity getUserByUsername(String username);
 
     void addUser(UserEntity user);
-
-    List<PracticeEntity> getPractices(String username);
 
     void setStudentDetails(int id, double avgScore, EducationForm educationForm, HireCondition hireCondition);
 

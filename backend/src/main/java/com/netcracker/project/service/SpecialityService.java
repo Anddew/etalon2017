@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface SpecialityService {
 
-    List<SpecialityEntity> getAllSpecialities();
+    List<SpecialityEntity> getSpecialities();
 
-    SpecialityEntity getSpecialityById(int facultyId);
+    SpecialityEntity getSpeciality(int id);
 
-    void addSpeciality(SpecialityEntity speciality);
+    void createSpeciality(SpecialityEntity speciality);
 
 }

@@ -36,7 +36,7 @@ public class HeadFromCompanyController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<HeadFromCompanyViewModel> getAllHeadsFromCompany() {
-        List<UserEntity> users = userService.findAllHeadsFromCompany();
+        List<UserEntity> users = userService.getHeadsFromCompany();
         List<HeadFromCompanyViewModel> headsFromCompany = (List<HeadFromCompanyViewModel>) conversionService.convert(users, userEntityTypeDescriptor, headFromCompanyViewModelTypeDescriptor);
         logger.debug("Show all heads from companies.");
         return headsFromCompany;

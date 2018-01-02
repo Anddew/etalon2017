@@ -1,7 +1,8 @@
 package com.netcracker.project.controller;
 
 import com.netcracker.project.bean.practice.PracticeViewModel;
-import com.netcracker.project.bean.user.StudentViewModel;
+import com.netcracker.project.dto.StudentsOnPracticeDTO;
+import com.netcracker.project.dto.CreatePracticeDTO;
 import com.netcracker.project.entity.practice.PracticeEntity;
 import com.netcracker.project.entity.practice.PracticeStatus;
 import com.netcracker.project.entity.university.FacultyEntity;
@@ -51,7 +52,7 @@ public class PracticeController {
     @ResponseBody
     public List<PracticeViewModel> getPractices(HttpServletRequest request, HttpServletResponse response) {
         String principal = request.getUserPrincipal().getName();
-        List<PracticeEntity> myPracticeEntities = userService.getPractices(principal);
+        List<PracticeEntity> myPracticeEntities = practiceService.getPractices(principal);
         List<PracticeViewModel> myPractices = (List<PracticeViewModel>) conversionService.convert(myPracticeEntities, practiceEntityTypeDescriptor, practiceViewModelTypeDescriptor);
         logger.debug("Show practices for user '" + principal + "' (authority - '" + SecurityContextHolder.getContext().getAuthentication().getAuthorities() + "').");
         return myPractices;
@@ -59,19 +60,40 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public void addPractice(@RequestBody PracticeViewModel practice, HttpServletRequest request, HttpServletResponse response) {
-        PracticeEntity practiceEntity = conversionService.convert(practice, PracticeEntity.class);
+    public void addPractice(@RequestBody CreatePracticeDTO practice, HttpServletRequest request, HttpServletResponse response) {
+        PracticeEntity practiceEntity = new PracticeEntity();
+        practiceEntity.setStatus(PracticeStatus.PROCESSING);
 
         String principal = request.getUserPrincipal().getName();
-        UserEntity user = userService.findUserByUserName(principal);
+        UserEntity user = userService.getUserByUsername(principal);
         practiceEntity.setHeadFromCompany(user);
 
-        FacultyEntity faculty = facultyService.getFacultyById(Integer.parseInt(practice.getFaculty().getId()));
+        FacultyEntity faculty = facultyService.getFaculty(practice.getFacultyId());
         practiceEntity.setFaculty(faculty);
 
-        practiceEntity.setStatus(PracticeStatus.PROCESSING);
+        practiceEntity.setStudentRequiredCount(practice.getStudentRequiredCount());
+        practiceEntity.setMinAvgScore(practice.getMinAvgScore());
+        practiceEntity.setEducationForm(practice.getEducationForm());
+        practiceEntity.setHireCondition(practice.getHireCondition());
+        practiceEntity.setDateStart(practice.getDateStart());
+        practiceEntity.setDateEnd(practice.getDateEnd());
+
         practiceService.createPractice(practiceEntity);
         logger.debug("Add practice for user '" + principal + "'.");
+    }
+
+    @Transactional
+    @RequestMapping(value = "/assign", method = RequestMethod.POST)
+    public void assignStudents(@RequestBody StudentsOnPracticeDTO studentsOnPractice, HttpServletRequest request, HttpServletResponse response) {
+        practiceService.assignStudents(studentsOnPractice.getPracticeId(), studentsOnPractice.getStudentsId());
+        logger.debug("Assign students successful.");
+    }
+
+    @Transactional
+    @RequestMapping(value = "/release", method = RequestMethod.POST)
+    public void releaseStudents(@RequestBody StudentsOnPracticeDTO studentsOnPractice, HttpServletRequest request, HttpServletResponse response) {
+        practiceService.releaseStudents(studentsOnPractice.getPracticeId(), studentsOnPractice.getStudentsId());
+        logger.debug("Release students successful.");
     }
 
 }

@@ -35,7 +35,7 @@ public class AdminController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<AdminViewModel> getAllAdmins() {
-        List<UserEntity> users = userService.findAllAdmins();
+        List<UserEntity> users = userService.getAdmins();
         List<AdminViewModel> admins = (List<AdminViewModel>) conversionService.convert(users, userEntityTypeDescriptor, adminViewModelTypeDescriptor);
         logger.debug("Show all admins.");
         return admins;

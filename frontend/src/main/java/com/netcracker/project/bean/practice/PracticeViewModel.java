@@ -11,6 +11,7 @@ public class PracticeViewModel {
     private String id;
     private String status;
     private FacultyViewModel faculty;
+    private String currentStudentRequiredCount;
     private String studentRequiredCount;
     private String minAvgScore;
     private String hireCondition;
@@ -43,6 +44,14 @@ public class PracticeViewModel {
 
     public void setFaculty(FacultyViewModel faculty) {
         this.faculty = faculty;
+    }
+
+    public String getCurrentStudentRequiredCount() {
+        return currentStudentRequiredCount;
+    }
+
+    public void setCurrentStudentRequiredCount(String currentStudentRequiredCount) {
+        this.currentStudentRequiredCount = currentStudentRequiredCount;
     }
 
     public String getStudentRequiredCount() {
@@ -118,6 +127,7 @@ public class PracticeViewModel {
         return Objects.equals(id, that.id) &&
                 Objects.equals(status, that.status) &&
                 Objects.equals(faculty, that.faculty) &&
+                Objects.equals(currentStudentRequiredCount, that.currentStudentRequiredCount) &&
                 Objects.equals(studentRequiredCount, that.studentRequiredCount) &&
                 Objects.equals(minAvgScore, that.minAvgScore) &&
                 Objects.equals(hireCondition, that.hireCondition) &&
@@ -130,7 +140,7 @@ public class PracticeViewModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, status, faculty, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm, headFromCompany, headFromUniversity);
+        return Objects.hash(id, status, faculty, currentStudentRequiredCount, studentRequiredCount, minAvgScore, hireCondition, dateStart, dateEnd, educationForm, headFromCompany, headFromUniversity);
     }
 
     @Override
@@ -139,6 +149,7 @@ public class PracticeViewModel {
                 "id='" + id + '\'' +
                 ", status='" + status + '\'' +
                 ", faculty=" + faculty +
+                ", currentStudentRequiredCount='" + currentStudentRequiredCount + '\'' +
                 ", studentRequiredCount='" + studentRequiredCount + '\'' +
                 ", minAvgScore='" + minAvgScore + '\'' +
                 ", hireCondition='" + hireCondition + '\'' +

@@ -35,7 +35,7 @@ public class HeadFromUniversityController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<HeadFromUniversityViewModel> getAllHeadsFromUniversity() {
-        List<UserEntity> users = userService.findAllHeadsFromUniversity();
+        List<UserEntity> users = userService.getHeadsFromUniversity();
         List<HeadFromUniversityViewModel> headsFromUniversity = (List<HeadFromUniversityViewModel>) conversionService.convert(users, userEntityTypeDescriptor, headFromUniversityViewModelTypeDescriptor);
         logger.debug("Show all heads from universities.");
         return headsFromUniversity;

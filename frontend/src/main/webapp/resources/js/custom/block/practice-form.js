@@ -153,24 +153,13 @@ $(document).ready(function () {
             return;
         }
 
-        //todo
-        var fac = $facultyField.val();
-
         $.ajax({
             url: '/practices/add',
             type: 'POST',
             contentType: "application/json",
             data: JSON.stringify({
                 studentRequiredCount: $studentCountField.val(),
-                // faculty: fac,
-                // faculty: {
-                //     id : $facultyField.val(),
-                //     name: "name",
-                //     university : {
-                //         id : 1,
-                //         name : "check"
-                //     }
-                // },
+                facultyId: $facultyField.val(),
                 minAvgScore: $minAvgScoreField.val(),
                 educationForm: $educationFormField.val(),
                 hireCondition: $hiringTypeField.val(),
@@ -179,10 +168,11 @@ $(document).ready(function () {
             })
             ,
             success: function () {
-                alert("ok!")
+                alert("Practice has been successfully created.");
+                window.location.href = "/home"
             },
             error: function (xhr, textStatus) {
-                alert("!!! ERROR !!!")
+                alert("Practice has been not created. Something going wrong.")
             }
         });
 

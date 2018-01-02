@@ -83,7 +83,7 @@ $(document).ready(function () {
                 $('#hireCondition').html(studentInfo.hireCondition);
             },
             error: function () {
-                alert("Error! Data have not set!")
+                alert("Error! Data have been not set!")
             }
         });
 

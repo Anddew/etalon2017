@@ -56,7 +56,7 @@ public class StudentController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
     public List<StudentViewModel> getAllStudents() {
-        List<UserEntity> users = userService.findAllStudents();
+        List<UserEntity> users = userService.getStudents();
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
         logger.debug("Show all students.");
         return students;
@@ -69,11 +69,11 @@ public class StudentController {
         StudentViewModel student;
         if(id == 0) {
             String principal = request.getUserPrincipal().getName();
-            user = userService.findUserByUserName(principal);
+            user = userService.getUserByUsername(principal);
             student = conversionService.convert(user, StudentViewModel.class);
             logger.debug("Show my student info for logged student.");
         } else {
-            user = userService.findUser(id);
+            user = userService.getStudent(id);
             student = conversionService.convert(user, StudentViewModel.class);
             request.setAttribute(STUDENT_PARAMETER_NAME, student);
             try {
@@ -130,9 +130,18 @@ public class StudentController {
     @RequestMapping(value = "/practice/{id}/get", method = RequestMethod.GET)
     @ResponseBody
     public List<StudentViewModel> getStudentsFromPractice(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
-        List<UserEntity> users = userService.findStudentsFromPractice(id);
+        List<UserEntity> users = userService.getStudentsFromPractice(id);
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
         logger.debug("Show students from practice id = '" + id + "' for user '" + request.getUserPrincipal().getName() + "' (authority - '" + SecurityContextHolder.getContext().getAuthentication().getAuthorities() + "').");
+        return students;
+    }
+
+    @RequestMapping(value = "/available", method = RequestMethod.GET)
+    @ResponseBody
+    public List<StudentViewModel> getAvailableStudents(HttpServletRequest request, HttpServletResponse response) {
+        List<UserEntity> users = userService.getAvailableStudents();
+        List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
+        logger.debug("Show available students for user '" + request.getUserPrincipal().getName() + "' (authority - '" + SecurityContextHolder.getContext().getAuthentication().getAuthorities() + "').");
         return students;
     }
 
