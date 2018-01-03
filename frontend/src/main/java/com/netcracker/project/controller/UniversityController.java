@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,6 +50,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/{universityId}", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public UniversityViewModel getUniversityById(@PathVariable String universityId) {
         int id = Integer.parseInt(universityId);
         UniversityEntity university = universityService.getUniversity(id);
@@ -58,6 +60,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public void createUniversity(@RequestBody UniversityViewModel universityViewModel) {
         UniversityEntity university = conversionService.convert(universityViewModel, UniversityEntity.class);
         universityService.createUniversity(university);
@@ -83,6 +86,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/faculties/{facultyId}", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public FacultyViewModel getFacultyById(@PathVariable String facultyId) {
         int id = Integer.parseInt(facultyId);
         FacultyEntity faculty = facultyService.getFaculty(id);
@@ -92,6 +96,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/faculty", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public void createFaculty(@RequestBody FacultyViewModel facultyViewModel) {
         FacultyEntity faculty = conversionService.convert(facultyViewModel, FacultyEntity.class);
         facultyService.createFaculty(faculty);
@@ -99,6 +104,7 @@ public class UniversityController {
 
     @RequestMapping(value = "faculties", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public List<FacultyViewModel> getAllFaculties() {
         List<FacultyEntity> faculties = facultyService.getFaculties();
         logger.debug("Show all faculties");
@@ -107,6 +113,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/specialities/{specialityId}", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public SpecialityViewModel getSpecialityById(@PathVariable String specialityId) {
         int id = Integer.parseInt(specialityId);
         SpecialityEntity speciality = specialityService.getSpeciality(id);
@@ -116,6 +123,7 @@ public class UniversityController {
 
     @RequestMapping(value = "/speciality", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public void createSpeciality(@RequestBody SpecialityViewModel specialityViewModel) {
         SpecialityEntity speciality = conversionService.convert(specialityViewModel, SpecialityEntity.class);
         specialityService.createSpeciality(speciality);
@@ -123,6 +131,7 @@ public class UniversityController {
 
     @RequestMapping(value = "specialities", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public List<SpecialityViewModel> getAllSpecialities() {
         List<SpecialityEntity> faculties = specialityService.getSpecialities();
         logger.debug("Show all specialities.");

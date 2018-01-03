@@ -40,34 +40,6 @@ public class UserValidator {
     private final Pattern avgScorePattern = Pattern.compile(AVG_SCORE_REGEX);
 
 
-    private boolean validateUsername(String username) {
-        return usernamePattern.matcher(username).matches();
-    }
-
-    private boolean validatePassword(String password, String repeatPassword) {
-        if(password == null || repeatPassword == null) {
-            return false;
-        }
-        logger.debug("Password repeating validation success.");
-        return password.equals(repeatPassword);
-    }
-
-    private boolean validateEmail(String email) {
-        return emailPattern.matcher(email).matches();
-    }
-
-    private boolean validateTextField(String text) {
-        return textFieldPattern.matcher(text).matches();
-    }
-
-    private boolean validateGroupNumber(String groupNumber) {
-        return groupNumberPattern.matcher(groupNumber).matches();
-    }
-
-    private boolean validateCompanyName(String companyName) {
-        return textFieldPattern.matcher(companyName).matches();
-    }
-
     public boolean validateUserFields(Map<String,String> userParameters) {
         if(!validateUsername(userParameters.get(USERNAME_PARAMETER_NAME))) {
             logger.debug("User fields validation fails. Invalid username.");
@@ -139,6 +111,34 @@ public class UserValidator {
             return false;
         }
         return true;
+    }
+
+    private boolean validateUsername(String username) {
+        return usernamePattern.matcher(username).matches();
+    }
+
+    private boolean validatePassword(String password, String repeatPassword) {
+        if(password == null || repeatPassword == null) {
+            return false;
+        }
+        logger.debug("Password repeating validation success.");
+        return password.equals(repeatPassword);
+    }
+
+    private boolean validateEmail(String email) {
+        return emailPattern.matcher(email).matches();
+    }
+
+    private boolean validateTextField(String text) {
+        return textFieldPattern.matcher(text).matches();
+    }
+
+    private boolean validateGroupNumber(String groupNumber) {
+        return groupNumberPattern.matcher(groupNumber).matches();
+    }
+
+    private boolean validateCompanyName(String companyName) {
+        return textFieldPattern.matcher(companyName).matches();
     }
 
 }

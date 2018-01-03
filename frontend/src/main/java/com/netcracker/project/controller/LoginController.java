@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 @Controller
+@RequestMapping(value = "authorization")
 public class LoginController {
 
     private Logger logger = Logger.getLogger(LoginController.class);
@@ -35,7 +36,7 @@ public class LoginController {
     private UserLoginService userLoginService;
 
 
-    @RequestMapping(value = "authorization", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView login(HttpServletRequest request,
                               HttpServletResponse response) {
 
@@ -45,7 +46,7 @@ public class LoginController {
         return modelAndView;
     }
 
-    @RequestMapping(value = "authorization", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public void login(@RequestBody Map<String,String> userParameters,
                       HttpServletRequest request,
                       HttpServletResponse response) {

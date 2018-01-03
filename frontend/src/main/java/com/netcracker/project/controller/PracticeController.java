@@ -16,6 +16,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -51,6 +52,7 @@ public class PracticeController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public List<PracticeViewModel> getPractices(HttpServletRequest request, HttpServletResponse response) {
         String principal = request.getUserPrincipal().getName();
         List<PracticeEntity> myPracticeEntities = practiceService.getPractices(principal);
@@ -61,6 +63,7 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/add", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyAuthority('HEAD_FROM_COMPANY')")
     public void addPractice(@RequestBody CreatePracticeDTO practice, HttpServletRequest request, HttpServletResponse response) {
         PracticeEntity practiceEntity = new PracticeEntity();
         practiceEntity.setStatus(PracticeStatus.PROCESSING);
@@ -85,6 +88,7 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/assign", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyAuthority('HEAD_FROM_COMPANY')")
     public void assignStudents(@RequestBody StudentsOnPracticeDTO studentsOnPractice, HttpServletRequest request, HttpServletResponse response) {
         practiceService.assignStudents(studentsOnPractice.getPracticeId(), studentsOnPractice.getStudentsId());
         logger.debug("Assign students successful.");
@@ -92,6 +96,7 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/release", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY')")
     public void releaseStudents(@RequestBody StudentsOnPracticeDTO studentsOnPractice, HttpServletRequest request, HttpServletResponse response) {
         practiceService.releaseStudents(studentsOnPractice.getPracticeId(), studentsOnPractice.getStudentsId());
         logger.debug("Release students successful.");
@@ -99,6 +104,7 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
     public void approvePractice(@RequestBody Map<String, String> data, HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.valueOf(data.get("practiceId"));
         PracticeEntity practice = practiceService.getPractice(id);
@@ -108,6 +114,7 @@ public class PracticeController {
 
     @Transactional
     @RequestMapping(value = "/set-head", method = RequestMethod.POST)
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
     public void setHead(@RequestBody Map<String, String> data, HttpServletRequest request, HttpServletResponse response) {
         int practiceId = Integer.valueOf(data.get("practiceId"));
         int userId = Integer.valueOf(data.get("headId"));

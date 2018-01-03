@@ -6,6 +6,7 @@
 
 
     <beans:import resource="classpath:backend-spring-context.xml"/>
+    <global-method-security pre-post-annotations="enabled" />
 
     <http use-expressions="true">
         <form-login login-page="/authorization" />
@@ -18,10 +19,10 @@
         <intercept-url pattern="/login" access="permitAll()" />
         <intercept-url pattern="/register" access="permitAll()" />
         <intercept-url pattern="/admins" access="hasAuthority('ADMINISTRATOR')" />
-        <intercept-url pattern="/heads-company" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY')" />
-        <intercept-url pattern="/heads-university" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_UNIVERSITY')" />
-        <intercept-url pattern="/students" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
-        <intercept-url pattern="/practice" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
+        <intercept-url pattern="/heads-company" access="hasAnyAuthority('ADMINISTRATOR')" />
+        <intercept-url pattern="/heads-university" access="hasAnyAuthority('ADMINISTRATOR')" />
+        <intercept-url pattern="/students" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY')" />
+        <intercept-url pattern="/practices" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY','STUDENT')" />
         <intercept-url pattern="/home" access="hasAnyAuthority('ADMINISTRATOR', 'HEAD_FROM_COMPANY', 'HEAD_FROM_UNIVERSITY', 'STUDENT')" />
     </http>
 

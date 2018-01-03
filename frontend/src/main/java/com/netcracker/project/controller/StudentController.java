@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.TypeDescriptor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,7 @@ public class StudentController {
 
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public List<StudentViewModel> getAllStudents() {
         List<UserEntity> users = userService.getStudents();
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
@@ -64,6 +66,7 @@ public class StudentController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public StudentViewModel getFullStudentInfo(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
         UserEntity user;
         StudentViewModel student;
@@ -88,6 +91,7 @@ public class StudentController {
 
     @RequestMapping(value = "/{id}/setInfo", method = RequestMethod.POST)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR')")
     public StudentViewModel setStudentInfo(@PathVariable int id, @RequestBody Map<String, String> data, HttpServletRequest request, HttpServletResponse response) {
         String avgScoreData = data.get(AVG_SCORE_PARAMETER_NAME);
         String educationFormData = data.get(EDUCATION_FORM_PARAMETER_NAME);
@@ -120,6 +124,7 @@ public class StudentController {
     }
 
     @RequestMapping(value = "/practice/{id}", method = RequestMethod.GET)
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY','STUDENT')")
     public ModelAndView getStudentsFromPracticePage(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName(PRACTICE_STUDENT_PATH);
@@ -129,6 +134,7 @@ public class StudentController {
 
     @RequestMapping(value = "/practice/{id}/get", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public List<StudentViewModel> getStudentsFromPractice(@PathVariable int id, HttpServletRequest request, HttpServletResponse response) {
         List<UserEntity> users = userService.getStudentsFromPractice(id);
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
@@ -138,6 +144,7 @@ public class StudentController {
 
     @RequestMapping(value = "/available", method = RequestMethod.GET)
     @ResponseBody
+    @PreAuthorize("hasAnyAuthority('ADMINISTRATOR','HEAD_FROM_COMPANY','HEAD_FROM_UNIVERSITY')")
     public List<StudentViewModel> getAvailableStudents(HttpServletRequest request, HttpServletResponse response) {
         List<UserEntity> users = userService.getAvailableStudents();
         List<StudentViewModel> students = (List<StudentViewModel>) conversionService.convert(users, userEntityTypeDescriptor, studentViewModelTypeDescriptor);
