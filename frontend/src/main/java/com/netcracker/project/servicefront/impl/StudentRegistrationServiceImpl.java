@@ -2,14 +2,18 @@ package com.netcracker.project.servicefront.impl;
 
 import com.netcracker.project.bean.user.StudentViewModel;
 import com.netcracker.project.bean.user.UserViewModel;
+import com.netcracker.project.entity.university.SpecialityEntity;
 import com.netcracker.project.entity.user.UserEntity;
 import com.netcracker.project.entity.user.student.PracticeStatus;
 import com.netcracker.project.exception.RegistrationException;
 
+import com.netcracker.project.service.SpecialityService;
 import org.apache.log4j.Logger;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
 
@@ -21,7 +25,10 @@ public class StudentRegistrationServiceImpl extends UserRegistrationServiceImpl 
 
     private static final String GROUP_NUMBER_PARAMETER_NAME = "group";
 
+    @Autowired
+    private SpecialityService specialityService;
 
+    @Transactional
     @Override
     public void register(UserViewModel user, Map<String, String> userParameters) throws RegistrationException {
         if(!validator.validateStudentFields(userParameters)) {
@@ -33,6 +40,8 @@ public class StudentRegistrationServiceImpl extends UserRegistrationServiceImpl 
         student.setGroupNumber(userParameters.get(GROUP_NUMBER_PARAMETER_NAME));
         student.setPracticeStatus(PracticeStatus.AVAILABLE.getDescription());
         UserEntity userEntity = conversionService.convert(student, UserEntity.class);
+        SpecialityEntity speciality = specialityService.getSpeciality(Integer.valueOf(userParameters.get("specialityId")));
+        userEntity.getStudentInfo().setSpeciality(speciality);
         try {
             userService.addUser(userEntity);
         } catch (DataAccessException e) {

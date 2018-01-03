@@ -18,7 +18,7 @@ public class StudentEntity {
     private int studentId;
     private EducationForm educationForm;
     private SpecialityEntity speciality;
-    private int groupNumber;
+    private String groupNumber;
     private double avgScore;
     private HireCondition hireCondition;
     private PracticeStatus practiceStatus;
@@ -58,11 +58,11 @@ public class StudentEntity {
 
     @Basic
     @Column(name = "group_number", nullable = false)
-    public int getGroupNumber() {
+    public String getGroupNumber() {
         return groupNumber;
     }
 
-    public void setGroupNumber(int groupNumber) {
+    public void setGroupNumber(String groupNumber) {
         this.groupNumber = groupNumber;
     }
 

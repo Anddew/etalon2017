@@ -62,19 +62,16 @@
     Input your company. Only letters available. Length 2..15 symbols.
 </div>
 
-<div id="head_from_university" class="form-group show-hide">
-    <input type="text" class="form-control jsHeadFromUniversity" placeholder="Faculty" name="faculty">
-</div>
-<div class="alert alert-danger jsHeadFromUniversityNotification" role="alert" style="display: none">
-    Input your faculty. Only letters available. Length 2..15 symbols.
-</div>
-
 <div id="student" class="form-group show-hide">
     <input type="text" class="form-control jsStudent" placeholder="Group number" name="group">
 </div>
 <div class="alert alert-danger jsStudentNotification" role="alert" style="display: none">
     Input your group number like "850505" or "RT-611". Max 10 symbols.
 </div>
+
+<jsp:include page="/jsp/block/input/select-university.jsp" />
+<jsp:include page="/jsp/block/input/select-faculty.jsp" />
+<jsp:include page="/jsp/block/input/select-speciality.jsp" />
 
 <button type="submit" class="btn btn-primary jsSubmitRegister">Register</button>
 <a href="authorization">Go login</a>

@@ -11,4 +11,6 @@ public interface SpecialityRepository extends CrudRepository<SpecialityEntity, I
 
     SpecialityEntity findById(int id);
 
+    List<SpecialityEntity> findSpecialitiesByFacultyId(int id);
+
 }

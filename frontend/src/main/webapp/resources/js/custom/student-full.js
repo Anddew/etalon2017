@@ -48,7 +48,7 @@ $(document).ready(function () {
         var educationForm = $educationFormField.val();
         var hiring = $hiringFormField.val();
 
-        Validation.hideNotifications([
+        Validation.hideElements([
             $avgScoreErrorNotification,
             $educationFormErrorNotification,
             $hireConditionErrorNotification

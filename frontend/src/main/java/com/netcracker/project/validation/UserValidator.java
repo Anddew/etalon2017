@@ -24,14 +24,13 @@ public class UserValidator {
     private static final String LAST_NAME_PARAMETER_NAME = "lastname";
     private static final String GROUP_NUMBER_PARAMETER_NAME = "group";
     private static final String COMPANY_PARAMETER_NAME = "company";
-    private static final String FACULTY_PARAMETER_NAME = "faculty";
 
     private static final String USERNAME_REGEX = "[a-zA-Z0-9]{3,15}";
     private static final String EMAIL_REGEX =
             "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])"
             ;
     private static final String TEXT_FIELD_REGEX = "[a-zA-Z]{2,15}";
-    private static final String GROUP_NUMBER_REGEX = "[\\d]{1,10}";
+    private static final String GROUP_NUMBER_REGEX = "[\\w]{1,10}";
     private static final String AVG_SCORE_REGEX = "\\d(\\.[\\d]{1,2})?";
 
     private final Pattern usernamePattern = Pattern.compile(USERNAME_REGEX);
@@ -67,10 +66,6 @@ public class UserValidator {
 
     private boolean validateCompanyName(String companyName) {
         return textFieldPattern.matcher(companyName).matches();
-    }
-
-    private boolean validateFacultyName(String facultyName) {
-        return textFieldPattern.matcher(facultyName).matches();
     }
 
     public boolean validateUserFields(Map<String,String> userParameters) {
@@ -113,15 +108,6 @@ public class UserValidator {
             return false;
         }
         logger.debug("Head from company user fields validation success.");
-        return true;
-    }
-
-    public boolean validateHeadFromUniversityFields(Map<String,String> userParameters) {
-        if(!validateFacultyName(userParameters.get(FACULTY_PARAMETER_NAME))) {
-            logger.debug("Head from university fields validation fails. Invalid faculty name.");
-            return false;
-        }
-        logger.debug("Head from university user fields validation success.");
         return true;
     }
 

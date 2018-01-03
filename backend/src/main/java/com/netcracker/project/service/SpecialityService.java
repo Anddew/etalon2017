@@ -12,4 +12,6 @@ public interface SpecialityService {
 
     void createSpeciality(SpecialityEntity speciality);
 
+    List<SpecialityEntity> getSpecialitiesByFacultyId(int facultyId);
+
 }

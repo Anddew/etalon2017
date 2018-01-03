@@ -37,4 +37,10 @@ public class SpecialityServiceImpl implements SpecialityService {
         logger.info("New speciality has been successfully created.");
     }
 
+    @Override
+    public List<SpecialityEntity> getSpecialitiesByFacultyId(int facultyId) {
+        logger.debug("Get specialities for faculty id = '" + facultyId + "'.");
+        return specialityRepository.findSpecialitiesByFacultyId(facultyId);
+    }
+
 }

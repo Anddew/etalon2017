@@ -129,4 +129,13 @@ public class UniversityController {
         return (List<SpecialityViewModel>) conversionService.convert(faculties, specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
     }
 
+    @RequestMapping(value = "/faculties/{facultyId}/specialities", method = RequestMethod.GET)
+    @ResponseBody
+    public List<SpecialityViewModel> getSpecialitiesByFacultyId(@PathVariable String facultyId) {
+        int id = Integer.parseInt(facultyId);
+        List<SpecialityEntity> specialityEntities = specialityService.getSpecialitiesByFacultyId(id);
+        logger.debug("Show faculties for university id=" + facultyId);
+        return (List<SpecialityViewModel>) conversionService.convert(specialityEntities, specialityEntityTypeDescriptor, specialityViewModelTypeDescriptor);
+    }
+
 }

@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.ConversionService;
 import org.springframework.core.convert.converter.Converter;
+import org.springframework.util.StringUtils;
 
 
 public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewModelConverter implements Converter<UserEntity, StudentViewModel> {
@@ -38,8 +39,8 @@ public class UserEntityToStudentViewModelConverter extends UserEntityToUserViewM
             studentViewModel.setEducationForm(educationForm.getDescription());
         }
         studentViewModel.setSpeciality(conversionService.convert(studentEntity.getSpeciality(), SpecialityViewModel.class));
-        Integer groupNumber = studentEntity.getGroupNumber();
-        if(groupNumber != null) {
+        String groupNumber = studentEntity.getGroupNumber();
+        if(!StringUtils.isEmpty(groupNumber)) {
             studentViewModel.setGroupNumber(String.valueOf(groupNumber));
         }
         Double avgScore = studentEntity.getAvgScore();

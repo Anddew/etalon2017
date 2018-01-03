@@ -40,7 +40,7 @@ public class StudentViewModelToUserEntityConverter extends UserViewModelToUserEn
         studentEntity.setSpeciality(conversionService.convert(studentViewModel.getSpeciality(), SpecialityEntity.class));
         String groupNumber = studentViewModel.getGroupNumber();
         if(!StringUtils.isEmpty(groupNumber)) {
-            studentEntity.setGroupNumber(Integer.parseInt(groupNumber));
+            studentEntity.setGroupNumber(groupNumber);
         }
         String avgScore = studentViewModel.getAvgScore();
         if(!StringUtils.isEmpty(avgScore)) {

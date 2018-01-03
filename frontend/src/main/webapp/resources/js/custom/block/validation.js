@@ -3,7 +3,7 @@
     var $alphanumericPattern = /^[\w]{3,15}$/,
         $emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
         $textPattern = /^[\w]{2,15}$/,
-        $groupNumberPattern = /^[\d]{1,10}$/,
+        $groupNumberPattern = /^[\w]{1,10}$/,
         $excludeDigitsAndUnderscorePattern = /\d|_/,
         $avgScorePattern = /^\d(\.[\d]{1,2})?$/,
         $studentsCountPattern = /^\d{1,2}$/
@@ -75,8 +75,7 @@
             return $groupNumberPattern.test(val);
         },
 
-        validateAvgScore: function (value) {
-            var val = value.val();
+        validateAvgScore: function (val) {
             if(val === null || val === "") {
                 return true;
             }
@@ -107,13 +106,21 @@
             return (start - end) <= 0;
         },
 
-        hideNotifications: function (notifications) {
-        if(notifications) {
-            for(var i = 0; i < notifications.length; i++) {
-                notifications[i].hide();
+        hideElements: function (elements) {
+            if(elements) {
+                for(var i = 0; i < elements.length; i++) {
+                    elements[i].hide();
+                }
+            }
+        },
+
+        showElements: function (elements) {
+            if(elements) {
+                for(var i = 0; i < elements.length; i++) {
+                    elements[i].show();
+                }
             }
         }
-    }
 
     };
 
